@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/rolemu-LaCalahorra.ogg-f1488f6ce3fff4425d25b731bc3dc7ed.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/rolemu-LaCalahorra.ogg"
+dest_files=[ "res://.import/rolemu-LaCalahorra.ogg-f1488f6ce3fff4425d25b731bc3dc7ed.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

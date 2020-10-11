@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/scripts/SwitchButton.gd" type="Script" id=1]
+
+[node name="SwitchButton" type="Button"]
+margin_right = 128.0
+margin_bottom = 24.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+margin_left = 9.0
+margin_top = 5.0
+margin_right = 55.0
+margin_bottom = 19.0
+text = "Label : "
+
+[node name="Selection" type="Label" parent="HBoxContainer"]
+margin_left = 59.0
+margin_top = 5.0
+margin_right = 118.0
+margin_bottom = 19.0
+text = "Selection"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="." to="." method="_on_SwitchButton_pressed"]

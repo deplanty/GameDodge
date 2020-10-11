@@ -1,0 +1,55 @@
+{
+	"version": "0.10",
+	"Normal": [
+		[
+			"Brasif",
+			145
+		],
+		[
+			"Jeanne",
+			100
+		],
+		[
+			"Pierre",
+			90
+		],
+		[
+			"Marie",
+			60
+		],
+		[
+			"Eric",
+			40
+		],
+		[
+			"Camille",
+			27
+		]
+	],
+	"WTF": [
+		[
+			"Pierrette",
+			75
+		],
+		[
+			"Jeanne",
+			65
+		],
+		[
+			"Pierre",
+			50
+		],
+		[
+			"Marie",
+			40
+		],
+		[
+			"Eric",
+			30
+		],
+		[
+			"Camille",
+			25
+		]
+	]
+}
