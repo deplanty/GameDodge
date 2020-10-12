@@ -6,11 +6,12 @@ TITLE_LEADERBOARD;Leaderboard;Meilleurs scores
 TITLE_NEW_HIGHSCORE;New highscore!;Nouveau record !
 TITLE_SCORE;Score;Score
 TITLE_PAUSE;Pause;Pause
-TITLE_LANGUAGE;Language;Langue
+TITLE_SETTINGS;Settings;Options
 BUTTON_MODE_LABEL;Mode :;Mode :
 BUTTON_MAINMENU;Main menu;Menu principal
 BUTTON_RESTART;Restart;Recommencer
 BUTTON_RESUME;Resume;Reprendre
 BUTTON_OK;Ok;Ok
+LABEL_LANGUAGE;Language;Langue
 ENTRY_PSEUDO;Pseudo;Pseudo
 INSTRUCTION_PLAY;Press ← or → to start;Appuyer sur ← ou → pour commencer

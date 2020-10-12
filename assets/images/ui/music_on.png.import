@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cross.png-a911e832986da85b0980cdd185d2c5d6.stex"
+path="res://.import/music_on.png-17c43c0502f4a790b2b9336590759bcc.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/ui/cross.png"
-dest_files=[ "res://.import/cross.png-a911e832986da85b0980cdd185d2c5d6.stex" ]
+source_file="res://assets/images/ui/music_on.png"
+dest_files=[ "res://.import/music_on.png-17c43c0502f4a790b2b9336590759bcc.stex" ]
 
 [params]
 

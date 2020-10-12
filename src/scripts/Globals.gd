@@ -6,6 +6,10 @@ const path_highscore_res := "res://assets/highscore.json"
 const path_highscore_user := "user://highscore.json"
 const path_enemy_patterns := "res://assets/patterns.json"
 
+# Settings
+var music_on := true
+var fx_on := true
+
 # Variables
 var score := 0
 var velocity_multiplier := 1.0

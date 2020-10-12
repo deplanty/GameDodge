@@ -154,11 +154,9 @@ __meta__ = {
 [node name="PauseButton" type="Button" parent="Control"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -85.0
-margin_top = 8.0
-margin_right = -25.0
-margin_bottom = 62.0
-rect_scale = Vector2( 0.75, 0.75 )
+margin_left = -94.0
+margin_right = -32.0
+margin_bottom = 56.0
 mouse_default_cursor_shape = 2
 icon = ExtResource( 4 )
 flat = true

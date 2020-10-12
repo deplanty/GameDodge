@@ -2,8 +2,6 @@ extends Control
 
 
 var next_scene := String()
-var img_tick := load("res://assets/images/ui/tick.png")
-var img_cross := load("res://assets/images/ui/cross.png")
 
 
 func _ready() -> void:
@@ -17,6 +15,16 @@ func _ready() -> void:
 	
 	$Player.first_move = true
 	$Player.velocity.x = -$Player.speed.x
+
+# Signals
+
+func _on_OptionButton_pressed() -> void:
+	next_scene = "res://src/actors/Settings.tscn"
+	$FadeTransition.fade_in()
+
+
+func _on_QuitButton_pressed() -> void:
+	get_tree().quit()
 
 
 func _on_PlayButton_pressed() -> void:
@@ -32,10 +40,6 @@ func _on_PlayButton_pressed() -> void:
 func _on_HighscoreButton_pressed() -> void:
 	next_scene = "res://src/actors/Leaderboard.tscn"
 	$FadeTransition.fade_in()
-
-
-func _on_QuitButton_pressed() -> void:
-	get_tree().quit()
 
 
 func _on_Area2D_body_entered(body: Node) -> void:

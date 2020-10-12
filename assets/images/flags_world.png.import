@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tick.png-af11e30c60e065595c494990e296ba83.stex"
+path="res://.import/flags_world.png-d5dc1583ee84bf10093a5d04d45948ca.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/ui/tick.png"
-dest_files=[ "res://.import/tick.png-af11e30c60e065595c494990e296ba83.stex" ]
+source_file="res://assets/images/flags_world.png"
+dest_files=[ "res://.import/flags_world.png-d5dc1583ee84bf10093a5d04d45948ca.stex" ]
 
 [params]
 

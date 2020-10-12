@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/scripts/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/background.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/images/ui/trophee.png" type="Texture" id=7]
 [ext_resource path="res://src/actors/Player.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/actors/FadeTransition.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/images/ui/gear.png" type="Texture" id=10]
 [ext_resource path="res://src/actors/SwitchButton.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -58,14 +59,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="OptionButton" type="Button" parent="."]
+margin_left = 32.0
+margin_right = 94.0
+margin_bottom = 56.0
+mouse_default_cursor_shape = 2
+icon = ExtResource( 10 )
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="QuitButton" type="Button" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -85.0
-margin_top = 8.0
-margin_right = -25.0
-margin_bottom = 64.0
-rect_scale = Vector2( 0.75, 0.75 )
+margin_left = -94.0
+margin_right = -32.0
+margin_bottom = 56.0
 mouse_default_cursor_shape = 2
 icon = ExtResource( 6 )
 flat = true
@@ -98,6 +108,7 @@ margin_left = -86.5
 margin_top = -4.5
 margin_right = 86.5
 margin_bottom = 36.5
+mouse_default_cursor_shape = 2
 
 [node name="HighscoreButton" type="Button" parent="."]
 anchor_left = 0.5
@@ -128,6 +139,7 @@ shape = SubResource( 1 )
 
 [node name="FadeTransition" parent="." instance=ExtResource( 9 )]
 visible = false
+[connection signal="pressed" from="OptionButton" to="." method="_on_OptionButton_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="pressed" from="PlayButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="HighscoreButton" to="." method="_on_HighscoreButton_pressed"]

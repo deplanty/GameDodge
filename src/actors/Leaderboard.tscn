@@ -381,9 +381,9 @@ __meta__ = {
 }
 
 [node name="MainMenuButton" type="Button" parent="Buttons/HBoxContainer"]
-margin_left = 60.0
-margin_right = 120.0
-margin_bottom = 54.0
+margin_left = 59.0
+margin_right = 121.0
+margin_bottom = 56.0
 rect_min_size = Vector2( 60, 54 )
 mouse_default_cursor_shape = 2
 icon = ExtResource( 3 )
@@ -393,9 +393,9 @@ __meta__ = {
 }
 
 [node name="ResetButton" type="Button" parent="Buttons/HBoxContainer"]
-margin_left = 200.0
-margin_right = 260.0
-margin_bottom = 54.0
+margin_left = 201.0
+margin_right = 261.0
+margin_bottom = 56.0
 mouse_default_cursor_shape = 2
 icon = ExtResource( 2 )
 flat = true
