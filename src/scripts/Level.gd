@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 			break
 	
 	if all_deleted:
-		get_node("/root/Globals").velocity_multiplier += 0.02
+		Globals.velocity_multiplier += 0.02
 		add_random_pattern()
 
 # Signals
@@ -52,7 +52,7 @@ func _on_Player_first_jump() -> void:
 	# Hide instructions
 	$Control/Instruction.visible = false
 	# Create enemies
-	get_node("/root/Globals").velocity_multiplier = 1.0
+	Globals.velocity_multiplier = 1.0
 	add_random_pattern()
 	# Create coin
 	var coin = coin_scene.instance()
@@ -121,7 +121,7 @@ func _on_MainMenuButton_pressed() -> void:
 
 func on_death() -> void:
 	$Player.invulnerability = true
-	$"/root/Globals".score = score
+	Globals.score = score
 	next_scene = "res://src/actors/GameOver.tscn"
 	$Control/FadeTransition.fade_in()
 
@@ -132,9 +132,9 @@ func add_random_pattern() -> void:
 	Add a random pattern on the scene
 	"""
 	
-	print("Enemy speed multiplier: ", get_node("/root/Globals").velocity_multiplier)
-	var i = round(rand_range(0, get_node("/root/Globals").enemy_patterns.size() - 1))
-	current_enemies = load_pattern(get_node("/root/Globals").enemy_patterns, i)
+	print("Enemy speed multiplier: ", Globals.velocity_multiplier)
+	var i = round(rand_range(0, Globals.enemy_patterns.size() - 1))
+	current_enemies = load_pattern(Globals.enemy_patterns, i)
 	for e in current_enemies:
 		$Enemies.add_child(e)
 
@@ -150,7 +150,7 @@ func load_pattern(patterns, i: int) -> Array:
 		var v = Vector2(enemy["velocity"][0], enemy["velocity"][1])
 		var e = enemy_scene.instance()
 		e.position = p
-		e.velocity = v * get_node("/root/Globals").velocity_multiplier
+		e.velocity = v * Globals.velocity_multiplier
 		array.append(e)
 	
 	return array

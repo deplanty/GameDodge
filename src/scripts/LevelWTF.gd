@@ -35,6 +35,6 @@ func _on_Coin_fall_in_lava() -> void:
 
 func on_death() -> void:
 	$Player.invulnerability = true
-	$"/root/Globals".score = score
+	Globals.score = score
 	next_scene = "res://src/actors/GameOver.tscn"
 	$Control/FadeTransition.fade_in()

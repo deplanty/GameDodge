@@ -21,7 +21,7 @@ func _on_ResetButton_pressed() -> void:
 
 
 func _on_YesButton_pressed() -> void:
-	$"/root/Globals".init_highscore(true)
+	Globals.init_highscore(true)
 	set_highscores()
 	$PopupConfirmReset.hide()
 
@@ -37,7 +37,7 @@ func _on_FadeTransition_animation_finished(anim_name: String) -> void:
 # Tools
 
 func set_highscores() -> void:
-	var data = $"/root/Globals".load_highscores()
+	var data = Globals.load_highscores()
 	for mode in ["Normal", "WTF"]:
 		for i in data[mode].size():
 			var si := str(i + 1)

@@ -21,7 +21,7 @@ func _ready() -> void:
 
 func _on_PlayButton_pressed() -> void:
 	var mode_selected = $SwitchModeButton.get_selection()
-	$"/root/Globals".mode_selected = mode_selected
+	Globals.mode_selected = mode_selected
 	if mode_selected == "Normal":
 		next_scene = "res://src/actors/LevelNormal.tscn"
 	elif mode_selected == "WTF":
