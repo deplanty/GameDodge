@@ -15,7 +15,6 @@ func _on_SwitchButton_pressed() -> void:
 	current += 1
 	if current >= elements.size():
 		current = 0
-	
 	$HBoxContainer/Selection.text = elements[current]
 
 # Tools
@@ -24,7 +23,7 @@ func set_label(label: String) -> void:
 	$HBoxContainer/Label.text = label
 
 
-func set_list(list: Array, current=0) -> void:
+func set_list(list: Array, index=0) -> void:
 	"""
 	Set the list and the current element.
 	'current' can be an integer or an element of the list.
@@ -33,11 +32,10 @@ func set_list(list: Array, current=0) -> void:
 	elements.clear()
 	elements = list
 	
-	if typeof(current) == TYPE_INT:
-		current = current
+	if typeof(index) == TYPE_INT:
+		current = index
 	else:
-		current = elements.find(current)
-	
+		current = elements.find(index)
 	$HBoxContainer/Selection.text = elements[current]
 
 

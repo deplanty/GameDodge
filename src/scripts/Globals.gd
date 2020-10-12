@@ -19,6 +19,8 @@ func _ready() -> void:
 	# Write user files
 	init_highscore()
 	load_enemy_patterns()
+	# Set language
+	TranslationServer.set_locale("en")
 
 # Highscore
 

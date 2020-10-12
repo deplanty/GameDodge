@@ -13,7 +13,7 @@ func _ready() -> void:
 	$FadeTransition.fade_out()
 	$PlayButton.grab_focus()
 	$SwitchModeButton.set_label("Mode :")
-	$SwitchModeButton.set_list(["Normal", "WTF"], $"/root/Globals".mode_selected)
+	$SwitchModeButton.set_list(["Normal", "WTF"], Globals.mode_selected)
 	
 	$Player.first_move = true
 	$Player.velocity.x = -$Player.speed.x
