@@ -45,12 +45,16 @@ func _ready() -> void:
 
 func _on_NameEdit_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("confirm"):
-		if $Name/NameEdit.text == "":
-			return
-		add_highscore($Name/NameEdit.text, Globals.score)
-		$Name.visible = false
-		$Buttons.visible = true
-		$Buttons/RestartButton.grab_focus()
+		_on_NameButton_pressed()
+
+
+func _on_NameButton_pressed() -> void:
+	if $Name/NameEdit.text == "":
+		return
+	add_highscore($Name/NameEdit.text, Globals.score)
+	$Name.visible = false
+	$Buttons.visible = true
+	$Buttons/RestartButton.grab_focus()
 
 
 func _on_RestartButton_pressed() -> void:

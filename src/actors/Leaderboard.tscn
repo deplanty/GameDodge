@@ -47,7 +47,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TabContainer" type="TabContainer" parent="."]
+[node name="TabContainer" type="Control" parent="."]
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
@@ -55,7 +55,67 @@ margin_left = 48.0
 margin_top = -144.0
 margin_right = -48.0
 margin_bottom = 112.0
-custom_fonts/font = ExtResource( 7 )
+rect_min_size = Vector2( 320, 256 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Buttons" type="HBoxContainer" parent="TabContainer"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -154.0
+margin_right = 154.0
+margin_bottom = 48.0
+custom_constants/separation = 20
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TabNormal" type="Button" parent="TabContainer/Buttons"]
+margin_left = 44.0
+margin_right = 144.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 100, 48 )
+mouse_default_cursor_shape = 2
+text = "GAME_MODE_NORMAL"
+flat = true
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UnderlineNormal" type="ColorRect" parent="TabContainer/Buttons/TabNormal"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -3.0
+margin_right = -7.62939e-06
+margin_bottom = -3.8147e-06
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TabWTF" type="Button" parent="TabContainer/Buttons"]
+margin_left = 164.0
+margin_right = 264.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 100, 48 )
+mouse_default_cursor_shape = 2
+text = "GAME_MODE_WTF"
+flat = true
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UnderlineWTF" type="ColorRect" parent="TabContainer/Buttons/TabWTF"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -3.0
+margin_right = -7.62939e-06
+margin_bottom = -3.8147e-06
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -63,29 +123,31 @@ __meta__ = {
 [node name="GAME_MODE_NORMAL" type="CenterContainer" parent="TabContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 37.0
-margin_right = -4.0
-margin_bottom = -4.0
+margin_top = 48.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Grid" type="GridContainer" parent="TabContainer/GAME_MODE_NORMAL"]
-margin_left = 123.0
-margin_top = 28.0
-margin_right = 189.0
-margin_bottom = 187.0
+margin_left = 92.0
+margin_top = 24.0
+margin_right = 227.0
+margin_bottom = 183.0
 custom_constants/vseparation = 15
 custom_constants/hseparation = 15
 columns = 2
 
 [node name="Name1" type="Label" parent="TabContainer/GAME_MODE_NORMAL/Grid"]
-margin_right = 43.0
+margin_right = 80.0
 margin_bottom = 14.0
+rect_min_size = Vector2( 80, 0 )
 text = "Nom 1"
 
 [node name="Score1" type="Label" parent="TabContainer/GAME_MODE_NORMAL/Grid"]
-margin_left = 58.0
-margin_right = 66.0
+margin_left = 95.0
+margin_right = 135.0
 margin_bottom = 14.0
+rect_min_size = Vector2( 40, 0 )
 text = "0"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -93,14 +155,14 @@ __meta__ = {
 
 [node name="Name2" type="Label" parent="TabContainer/GAME_MODE_NORMAL/Grid"]
 margin_top = 29.0
-margin_right = 43.0
+margin_right = 80.0
 margin_bottom = 43.0
 text = "Nom 2"
 
 [node name="Score2" type="Label" parent="TabContainer/GAME_MODE_NORMAL/Grid"]
-margin_left = 58.0
+margin_left = 95.0
 margin_top = 29.0
-margin_right = 66.0
+margin_right = 135.0
 margin_bottom = 43.0
 text = "0"
 __meta__ = {
@@ -109,14 +171,14 @@ __meta__ = {
 
 [node name="Name3" type="Label" parent="TabContainer/GAME_MODE_NORMAL/Grid"]
 margin_top = 58.0
-margin_right = 43.0
+margin_right = 80.0
 margin_bottom = 72.0
 text = "Nom 3"
 
 [node name="Score3" type="Label" parent="TabContainer/GAME_MODE_NORMAL/Grid"]
-margin_left = 58.0
+margin_left = 95.0
 margin_top = 58.0
-margin_right = 66.0
+margin_right = 135.0
 margin_bottom = 72.0
 text = "0"
 __meta__ = {
@@ -125,14 +187,14 @@ __meta__ = {
 
 [node name="Name4" type="Label" parent="TabContainer/GAME_MODE_NORMAL/Grid"]
 margin_top = 87.0
-margin_right = 43.0
+margin_right = 80.0
 margin_bottom = 101.0
 text = "Nom 4"
 
 [node name="Score4" type="Label" parent="TabContainer/GAME_MODE_NORMAL/Grid"]
-margin_left = 58.0
+margin_left = 95.0
 margin_top = 87.0
-margin_right = 66.0
+margin_right = 135.0
 margin_bottom = 101.0
 text = "0"
 __meta__ = {
@@ -141,14 +203,14 @@ __meta__ = {
 
 [node name="Name5" type="Label" parent="TabContainer/GAME_MODE_NORMAL/Grid"]
 margin_top = 116.0
-margin_right = 43.0
+margin_right = 80.0
 margin_bottom = 130.0
 text = "Nom 5"
 
 [node name="Score5" type="Label" parent="TabContainer/GAME_MODE_NORMAL/Grid"]
-margin_left = 58.0
+margin_left = 95.0
 margin_top = 116.0
-margin_right = 66.0
+margin_right = 135.0
 margin_bottom = 130.0
 text = "0"
 __meta__ = {
@@ -157,14 +219,14 @@ __meta__ = {
 
 [node name="Name6" type="Label" parent="TabContainer/GAME_MODE_NORMAL/Grid"]
 margin_top = 145.0
-margin_right = 43.0
+margin_right = 80.0
 margin_bottom = 159.0
 text = "Nom 6"
 
 [node name="Score6" type="Label" parent="TabContainer/GAME_MODE_NORMAL/Grid"]
-margin_left = 58.0
+margin_left = 95.0
 margin_top = 145.0
-margin_right = 66.0
+margin_right = 135.0
 margin_bottom = 159.0
 text = "0"
 __meta__ = {
@@ -172,32 +234,33 @@ __meta__ = {
 }
 
 [node name="GAME_MODE_WTF" type="CenterContainer" parent="TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 37.0
-margin_right = -4.0
-margin_bottom = -4.0
+margin_top = 48.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Grid" type="GridContainer" parent="TabContainer/GAME_MODE_WTF"]
-margin_left = 123.0
-margin_top = 28.0
-margin_right = 189.0
-margin_bottom = 187.0
+margin_left = 92.0
+margin_top = 24.0
+margin_right = 227.0
+margin_bottom = 183.0
 custom_constants/vseparation = 15
 custom_constants/hseparation = 15
 columns = 2
 
 [node name="Name1" type="Label" parent="TabContainer/GAME_MODE_WTF/Grid"]
-margin_right = 43.0
+margin_right = 80.0
 margin_bottom = 14.0
+rect_min_size = Vector2( 80, 0 )
 text = "Nom 1"
 
 [node name="Score1" type="Label" parent="TabContainer/GAME_MODE_WTF/Grid"]
-margin_left = 58.0
-margin_right = 66.0
+margin_left = 95.0
+margin_right = 135.0
 margin_bottom = 14.0
+rect_min_size = Vector2( 40, 0 )
 text = "0"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -205,14 +268,14 @@ __meta__ = {
 
 [node name="Name2" type="Label" parent="TabContainer/GAME_MODE_WTF/Grid"]
 margin_top = 29.0
-margin_right = 43.0
+margin_right = 80.0
 margin_bottom = 43.0
 text = "Nom 2"
 
 [node name="Score2" type="Label" parent="TabContainer/GAME_MODE_WTF/Grid"]
-margin_left = 58.0
+margin_left = 95.0
 margin_top = 29.0
-margin_right = 66.0
+margin_right = 135.0
 margin_bottom = 43.0
 text = "0"
 __meta__ = {
@@ -221,14 +284,14 @@ __meta__ = {
 
 [node name="Name3" type="Label" parent="TabContainer/GAME_MODE_WTF/Grid"]
 margin_top = 58.0
-margin_right = 43.0
+margin_right = 80.0
 margin_bottom = 72.0
 text = "Nom 3"
 
 [node name="Score3" type="Label" parent="TabContainer/GAME_MODE_WTF/Grid"]
-margin_left = 58.0
+margin_left = 95.0
 margin_top = 58.0
-margin_right = 66.0
+margin_right = 135.0
 margin_bottom = 72.0
 text = "0"
 __meta__ = {
@@ -237,14 +300,14 @@ __meta__ = {
 
 [node name="Name4" type="Label" parent="TabContainer/GAME_MODE_WTF/Grid"]
 margin_top = 87.0
-margin_right = 43.0
+margin_right = 80.0
 margin_bottom = 101.0
 text = "Nom 4"
 
 [node name="Score4" type="Label" parent="TabContainer/GAME_MODE_WTF/Grid"]
-margin_left = 58.0
+margin_left = 95.0
 margin_top = 87.0
-margin_right = 66.0
+margin_right = 135.0
 margin_bottom = 101.0
 text = "0"
 __meta__ = {
@@ -253,14 +316,14 @@ __meta__ = {
 
 [node name="Name5" type="Label" parent="TabContainer/GAME_MODE_WTF/Grid"]
 margin_top = 116.0
-margin_right = 43.0
+margin_right = 80.0
 margin_bottom = 130.0
 text = "Nom 5"
 
 [node name="Score5" type="Label" parent="TabContainer/GAME_MODE_WTF/Grid"]
-margin_left = 58.0
+margin_left = 95.0
 margin_top = 116.0
-margin_right = 66.0
+margin_right = 135.0
 margin_bottom = 130.0
 text = "0"
 __meta__ = {
@@ -269,16 +332,30 @@ __meta__ = {
 
 [node name="Name6" type="Label" parent="TabContainer/GAME_MODE_WTF/Grid"]
 margin_top = 145.0
-margin_right = 43.0
+margin_right = 80.0
 margin_bottom = 159.0
 text = "Nom 6"
 
 [node name="Score6" type="Label" parent="TabContainer/GAME_MODE_WTF/Grid"]
-margin_left = 58.0
+margin_left = 95.0
 margin_top = 145.0
-margin_right = 66.0
+margin_right = 135.0
 margin_bottom = 159.0
 text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TabContainer_" type="TabContainer" parent="."]
+visible = false
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 48.0
+margin_top = -144.0
+margin_right = -48.0
+margin_bottom = 112.0
+custom_fonts/font = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -396,6 +473,8 @@ text = "Non"
 
 [node name="FadeTransition" parent="." instance=ExtResource( 5 )]
 visible = false
+[connection signal="pressed" from="TabContainer/Buttons/TabNormal" to="." method="_on_TabNormal_pressed"]
+[connection signal="pressed" from="TabContainer/Buttons/TabWTF" to="." method="_on_TabWTF_pressed"]
 [connection signal="pressed" from="Buttons/HBoxContainer/MainMenuButton" to="." method="_on_MainMenuButton_pressed"]
 [connection signal="pressed" from="Buttons/HBoxContainer/ResetButton" to="." method="_on_ResetButton_pressed"]
 [connection signal="pressed" from="PopupConfirmReset/Buttons/YesButton" to="." method="_on_YesButton_pressed"]

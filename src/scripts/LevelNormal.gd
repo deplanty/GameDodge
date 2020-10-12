@@ -1,4 +1,4 @@
-extends "res://src/scripts/Level.gd"
+extends LevelBase
 
 
 onready var bonus_scene := preload("res://src/actors/Bonus.tscn")
@@ -6,10 +6,14 @@ onready var coin_bonus_scene := preload("res://src/actors/CoinBonus.tscn")
 
 
 func _ready() -> void:
-	$Bonus/BonusTimer.start()
-
+	pass
 
 # Signals
+
+func _on_Player_first_jump() -> void:
+	._on_Player_first_jump()
+	$Bonus/BonusTimer.start()
+
 
 func _on_BonusTimer_timeout() -> void:
 	var bonus := bonus_scene.instance()

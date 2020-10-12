@@ -1,4 +1,4 @@
-extends "res://src/scripts/Level.gd"
+extends LevelBase
 
 
 var score_current := 0

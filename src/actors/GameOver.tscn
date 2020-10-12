@@ -119,7 +119,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="Name"]
+[node name="NameButton" type="Button" parent="Name"]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -193,7 +193,7 @@ visible = false
 [connection signal="timeout" from="Control/SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
 [connection signal="body_entered" from="Control/AreaJump" to="." method="_on_AreaJump_body_entered"]
 [connection signal="gui_input" from="Name/NameEdit" to="." method="_on_NameEdit_gui_input"]
-[connection signal="pressed" from="Name/Button" to="." method="_on_NameEdit_gui_input"]
+[connection signal="pressed" from="Name/NameButton" to="." method="_on_NameButton_pressed"]
 [connection signal="pressed" from="Buttons/RestartButton" to="." method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="Buttons/HBoxContainer/MainMenuButton" to="." method="_on_MainMenuButton_pressed"]
 [connection signal="pressed" from="Buttons/HBoxContainer/HighscoreButton" to="." method="_on_HighscoreButton_pressed"]
