@@ -1,31 +1,41 @@
+"""
+Explanation:
+------------
+
+At the end of the game, the score is saved globaly.
+When this scene is ready, an animation with coins is played.
+The amount of coins created depends on the score value.
+
+After the animation (when the last coin is caught), it checks if it's a new
+highscore.
+If it's a new highscore, it makes the player jump and it shows an entry.
+If it's not a highscore; it shows the buttons.
+"""
+
 extends Control
 
 
+# Satisfying animation to reach the score
+var coin_sum := 0  # To reach the score
+onready var coin_scene := preload("res://src/actors/Coin.tscn")
+# Highscore
 var highscores := Dictionary()  # All mode highscores
 var highscore := Array()  # Current mode highscores
 onready var mode_selected = $"/root/Globals".mode_selected
 var next_scene := String()
 
-
 func _ready() -> void:
 	$FadeTransition.fade_out()
-	highscores = $"/root/Globals".load_highscores()
+	# Player
+	$Control/Player.velocity = Vector2(0, 0)
+	$Control/Player.first_move = true
+	$Control/Player.set_physics_process(false)
+	$Control/Player/AnimatedSprite.play("right")
+	# Start animation
+	$Control/SpawnTimer.start(0.1)
+	# Highscore
+	highscores = Globals.load_highscores()
 	highscore = highscores[mode_selected]
-	
-	var score = $"/root/Globals".score
-	$ScoreValue.text = str(score)
-	
-	# If score is a highscore
-	if score > highscore[-1][1]:
-		$ScoreLabel.text = "Nouveau record !"
-		$Name.visible = true
-		$Buttons.visible = false
-		$Name/NameEdit.grab_focus()
-	# If score is not a highscore
-	else:
-		$Name.visible = false
-		$Buttons.visible = true
-		$Buttons/RestartButton.grab_focus()
 
 # Signals
 
@@ -61,7 +71,60 @@ func _on_FadeTransition_animation_finished(anim_name: String) -> void:
 	if anim_name == "fade_in":
 		get_tree().change_scene(next_scene)
 
+
+func _on_SpawnTimer_timeout() -> void:
+	# If not all coins have spawned
+	if coin_sum < Globals.score:
+		var coin = coin_scene.instance()
+		coin.init($Control/Player.position.x, $Control/Player.position.y - 100)
+		# If last coin
+		if coin_sum == Globals.score - 1:
+			coin.connect("caught", self, "_on_Coin_caught_last")
+		else:
+			coin.connect("caught", self, "_on_Coin_caught")
+		coin.get_node("AnimationPlayer").play("fade_in")
+		$Control/Coins.add_child(coin)
+		coin_sum += 1
+	# Lase coin
+	else:
+		$Control/SpawnTimer.stop()
+
+
+func _on_Coin_caught() -> void:
+	$ScoreValue.text = str(coin_sum)
+
+
+func _on_Coin_caught_last() -> void:
+	_on_Coin_caught()
+	show_after_animation()
+
+
+func _on_AreaJump_body_entered(body: Node) -> void:
+	if body == $Control/Player:
+		$Control/Player.jump_mainmenu()
+
 # Highscore
+
+func show_after_animation() -> void:
+	"""
+	Show UI elements after the coins animation.
+	"""
+	
+	# If score is a highscore
+	if Globals.score > highscore[-1][1]:
+		$ScoreLabel.text = "Nouveau record !"
+		$Name.visible = true
+		$Buttons.visible = false
+		$Name/NameEdit.grab_focus()
+		$Control/Player.set_physics_process(true)
+	# If score is not a highscore
+	else:
+		$Name.visible = false
+		$Buttons.visible = true
+		$Buttons/RestartButton.grab_focus()
+	
+	$ScoreLabel.visible = true
+	
 
 func custom_highscore_sort(a, b):
 	return a[1] > b[1]

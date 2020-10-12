@@ -12,13 +12,12 @@ var velocity_multiplier := 1.0
 var enemy_patterns := Array()
 
 # Options
-#var mode_enum := 
 var mode_selected := "Normal"
 
 
 func _ready() -> void:
 	# Write user files
-	init_highscore(true)
+	init_highscore()
 	load_enemy_patterns()
 
 # Highscore
