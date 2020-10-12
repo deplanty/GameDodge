@@ -2,7 +2,6 @@ extends KinematicBody2D
 
 
 signal caught
-signal fall_in_lava
 
 
 export var velocity := Vector2(0, 100)
@@ -13,7 +12,6 @@ func _physics_process(delta: float) -> void:
 	
 	if position.y > 600:
 		queue_free()
-		emit_signal("fall_in_lava")
 
 # Signals
 

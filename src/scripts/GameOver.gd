@@ -40,7 +40,10 @@ func _on_NameEdit_gui_input(event: InputEvent) -> void:
 
 
 func _on_RestartButton_pressed() -> void:
-	next_scene = "res://src/actors/Level.tscn"
+	if Globals.mode_selected == "Normal":
+		next_scene = "res://src/actors/LevelNormal.tscn"
+	elif Globals.mode_selected == "WTF":
+		next_scene = "res://src/actors/LevelWTF.tscn"
 	$FadeTransition.fade_in()
 
 

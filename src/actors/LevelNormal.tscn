@@ -28,6 +28,11 @@ script = ExtResource( 6 )
 position = Vector2( 208, 304 )
 texture = ExtResource( 7 )
 
+[node name="Bonus" type="Node2D" parent="."]
+
+[node name="BonusTimer" type="Timer" parent="Bonus"]
+wait_time = 20.0
+
 [node name="Coins" type="Node2D" parent="."]
 
 [node name="Enemies" type="Node2D" parent="."]
@@ -252,6 +257,7 @@ margin_right = 272.0
 margin_bottom = 210.0
 rect_min_size = Vector2( 0, 40 )
 text = "Menu principal"
+[connection signal="timeout" from="Bonus/BonusTimer" to="." method="_on_BonusTimer_timeout"]
 [connection signal="body_entered" from="World/LavaDetector" to="." method="_on_LavaDetector_body_entered"]
 [connection signal="first_jump" from="Player" to="." method="_on_Player_first_jump"]
 [connection signal="lose_life" from="Player" to="." method="_on_Player_lose_life"]

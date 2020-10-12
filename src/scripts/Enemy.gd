@@ -18,5 +18,6 @@ func _physics_process(delta: float) -> void:
 # Signals
 
 func _on_Detector_body_entered(body: Node) -> void:
-	body.lose_life()
-	queue_free()
+	if body.name == "Player":
+		body.lose_life()
+		queue_free()

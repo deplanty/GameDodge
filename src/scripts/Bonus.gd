@@ -2,10 +2,9 @@ extends KinematicBody2D
 
 
 signal caught
-signal fall_in_lava
 
 
-export var velocity := Vector2(0, 100)
+export var velocity := Vector2(0, 150)
 
 
 func _physics_process(delta: float) -> void:
@@ -13,7 +12,6 @@ func _physics_process(delta: float) -> void:
 	
 	if position.y > 600:
 		queue_free()
-		emit_signal("fall_in_lava")
 
 # Signals
 
@@ -21,10 +19,9 @@ func _on_Detector_body_entered(body: Node) -> void:
 	if body.name == "Player":
 		set_physics_process(false)
 		$AudioStreamPlayer.play()
-		$AnimationPlayer.play("delete")
-		$Particles2D/Timer.start()
-		$Particles2D.emitting = true
-		$LightOccluder2D.visible = false
+		$AnimationPlayer.play("explode")
+		$Explosion.emitting = true
+		$Explosion/Timer.start()
 		$Detector.disconnect("body_entered", self, "_on_Detector_body_entered")
 		emit_signal("caught")
 

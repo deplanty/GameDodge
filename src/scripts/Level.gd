@@ -74,6 +74,11 @@ func _on_Coin_caught() -> void:
 	call_deferred("add_coin")
 
 
+func _on_CoinBonus_caught() -> void:
+	score += 1
+	$Control/ScoreContainer/ValueScore/.text = str(score)
+
+
 func _on_Coin_fall_in_lava() -> void:
 	score = int(max(0, score - 1))
 	$Control/ScoreContainer/ValueScore/.text = str(score)
@@ -154,7 +159,9 @@ func load_pattern(patterns, i: int) -> Array:
 
 func add_coin() -> void:
 	var coin = coin_scene.instance()
-	coin.init(round(rand_range(40, 360)), -8)
+	var x := round(rand_range(40, 360))
+	var y := round(rand_range(-8, -32))
+	coin.init(x, y)
 	coin.connect("caught", self, "_on_Coin_caught")
 	coin.connect("fall_in_lava", self, "_on_Coin_fall_in_lava")
 	$Coins.add_child(coin)
