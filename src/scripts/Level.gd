@@ -160,7 +160,7 @@ func load_pattern(patterns, i: int) -> Array:
 func add_coin() -> void:
 	var coin = coin_scene.instance()
 	var x := round(rand_range(40, 360))
-	var y := round(rand_range(-8, -32))
+	var y := round(rand_range(-8, -64))
 	coin.init(x, y)
 	coin.connect("caught", self, "_on_Coin_caught")
 	coin.connect("fall_in_lava", self, "_on_Coin_fall_in_lava")

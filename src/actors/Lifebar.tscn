@@ -6,7 +6,7 @@
 [node name="Lifebar" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_min_size = Vector2( 114, 38 )
+rect_min_size = Vector2( 105, 28 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -14,27 +14,24 @@ __meta__ = {
 
 [node name="Hearts" type="Control" parent="."]
 light_mask = 0
-margin_right = 114.0
-margin_bottom = 38.0
-rect_min_size = Vector2( 114, 38 )
+margin_right = 105.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 105, 28 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="1" parent="Hearts" instance=ExtResource( 1 )]
 light_mask = 0
-position = Vector2( 6, 6 )
-frame = 6
-centered = false
+position = Vector2( 15, 13 )
+frame = 4
 
 [node name="2" parent="Hearts" instance=ExtResource( 1 )]
 light_mask = 0
-position = Vector2( 42, 6 )
-frame = 5
-centered = false
+position = Vector2( 51, 13 )
+frame = 3
 
 [node name="3" parent="Hearts" instance=ExtResource( 1 )]
 light_mask = 0
-position = Vector2( 78, 6 )
-frame = 5
-centered = false
+position = Vector2( 87, 13 )
+frame = 3

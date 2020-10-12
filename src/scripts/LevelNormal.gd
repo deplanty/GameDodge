@@ -19,7 +19,7 @@ func _on_BonusTimer_timeout() -> void:
 
 
 func _on_Bonus_caught() -> void:
-	add_bonus_coin()
+	call_deferred("add_bonus_coin")
 
 # Tools
 
@@ -27,7 +27,7 @@ func add_bonus_coin() -> void:
 	for i in range(5):
 		var coin = coin_bonus_scene.instance()
 		var x := round(rand_range(40, 360))
-		var y := round(rand_range(-8, -32))
+		var y := round(rand_range(-8, -64))
 		coin.init(x, y)
 		coin.connect("caught", self, "_on_CoinBonus_caught")
 		$Coins.add_child(coin)
