@@ -12,15 +12,15 @@ var velocity_multiplier := 1.0
 var enemy_patterns := Array()
 
 # Options
-var mode_selected := "Normal"
+var mode_selected := "GAME_MODE_NORMAL"
 
 
 func _ready() -> void:
 	# Write user files
-	init_highscore()
+	init_highscore(true)
 	load_enemy_patterns()
 	# Set language
-	TranslationServer.set_locale("en")
+	TranslationServer.set_locale("fr")
 
 # Highscore
 

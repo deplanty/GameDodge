@@ -18,6 +18,7 @@ extends Control
 
 # Satisfying animation to reach the score
 var coin_sum := 0  # To reach the score
+export var coin_spawn_dt := 0.1  # To spawn coins
 onready var coin_scene := preload("res://src/actors/Coin.tscn")
 # Highscore
 var highscores := Dictionary()  # All mode highscores
@@ -37,7 +38,7 @@ func _ready() -> void:
 	$Control/Player/AnimatedSprite.play("right")
 	# Start animation
 	if Globals.score > 0:
-		$Control/SpawnTimer.start(0.2)
+		$Control/SpawnTimer.start(coin_spawn_dt )
 	else:
 		show_after_animation()
 # Signals
@@ -53,9 +54,9 @@ func _on_NameEdit_gui_input(event: InputEvent) -> void:
 
 
 func _on_RestartButton_pressed() -> void:
-	if Globals.mode_selected == "Normal":
+	if Globals.mode_selected == "GAME_MODE_NORMAL":
 		next_scene = "res://src/actors/LevelNormal.tscn"
-	elif Globals.mode_selected == "WTF":
+	elif Globals.mode_selected == "GAME_MODE_WTF":
 		next_scene = "res://src/actors/LevelWTF.tscn"
 	$FadeTransition.fade_in()
 
@@ -67,7 +68,7 @@ func _on_MainMenuButton_pressed() -> void:
 
 func _on_HighscoreButton_pressed() -> void:
 	$FadeTransition.fade_in()
-	next_scene = "res://src/actors/Highscore.tscn"
+	next_scene = "res://src/actors/Leaderboard.tscn"
 
 
 func _on_FadeTransition_animation_finished(anim_name: String) -> void:
@@ -115,13 +116,14 @@ func show_after_animation() -> void:
 	
 	# If score is a highscore
 	if Globals.score > highscore[-1][1]:
-		$ScoreLabel.text = "Nouveau record !"
+		$ScoreLabel.text = "TITLE_NEW_HIGHSCORE"
 		$Name.visible = true
 		$Buttons.visible = false
 		$Name/NameEdit.grab_focus()
 		$Control/Player.set_physics_process(true)
 	# If score is not a highscore
 	else:
+		$ScoreLabel.text = "TITLE_SCORE"
 		$Name.visible = false
 		$Buttons.visible = true
 		$Buttons/RestartButton.grab_focus()

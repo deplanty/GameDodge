@@ -14,7 +14,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 10 )
 
-[node name="EndMenu" type="Control"]
+[node name="GameOver" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
@@ -68,7 +68,7 @@ margin_top = 24.0
 margin_right = 176.0
 margin_bottom = 154.0
 custom_fonts/font = ExtResource( 4 )
-text = "Score"
+text = "TITLE_SCORE"
 align = 1
 valign = 1
 __meta__ = {
@@ -108,10 +108,29 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -120.0
 margin_top = 19.0
+margin_right = 72.0
+margin_bottom = 67.0
+rect_min_size = Vector2( 192, 48 )
+max_length = 16
+clear_button_enabled = true
+placeholder_text = "ENTRY_PSEUDO"
+caret_blink = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="Name"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 72.0
+margin_top = 19.0
 margin_right = 120.0
 margin_bottom = 67.0
-rect_min_size = Vector2( 240, 48 )
-align = 1
+rect_min_size = Vector2( 48, 48 )
+text = "BUTTON_OK"
+clip_text = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -174,6 +193,7 @@ visible = false
 [connection signal="timeout" from="Control/SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
 [connection signal="body_entered" from="Control/AreaJump" to="." method="_on_AreaJump_body_entered"]
 [connection signal="gui_input" from="Name/NameEdit" to="." method="_on_NameEdit_gui_input"]
+[connection signal="pressed" from="Name/Button" to="." method="_on_NameEdit_gui_input"]
 [connection signal="pressed" from="Buttons/RestartButton" to="." method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="Buttons/HBoxContainer/MainMenuButton" to="." method="_on_MainMenuButton_pressed"]
 [connection signal="pressed" from="Buttons/HBoxContainer/HighscoreButton" to="." method="_on_HighscoreButton_pressed"]

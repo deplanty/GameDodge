@@ -38,7 +38,7 @@ func _on_FadeTransition_animation_finished(anim_name: String) -> void:
 
 func set_highscores() -> void:
 	var data = Globals.load_highscores()
-	for mode in ["Normal", "WTF"]:
+	for mode in ["GAME_MODE_NORMAL", "GAME_MODE_WTF"]:
 		for i in data[mode].size():
 			var si := str(i + 1)
 			get_node("TabContainer/"+mode+"/Grid/Name"+si).text = data[mode][i][0]

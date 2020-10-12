@@ -1,6 +1,6 @@
 {
 	"version": "0.10",
-	"Normal": [
+	"GAME_MODE_NORMAL": [
 		[
 			"Brasif",
 			145
@@ -26,7 +26,7 @@
 			27
 		]
 	],
-	"WTF": [
+	"GAME_MODE_WTF": [
 		[
 			"Pierrette",
 			75

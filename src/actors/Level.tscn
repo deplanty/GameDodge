@@ -94,14 +94,16 @@ __meta__ = {
 
 [node name="Instruction" type="Label" parent="Control"]
 anchor_right = 1.0
-margin_top = 64.0
-margin_right = -12.0
-margin_bottom = 115.0
+margin_left = 64.0
+margin_top = 97.0
+margin_right = -64.0
+margin_bottom = 158.0
 custom_fonts/font = ExtResource( 12 )
-text = "Appuyer sur ← ou →
-pour commencer"
+text = "INSTRUCTION_PLAY"
 align = 1
 valign = 1
+autowrap = true
+clip_text = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -217,7 +219,7 @@ margin_right = 272.0
 margin_bottom = 46.0
 rect_min_size = Vector2( 0, 20 )
 custom_fonts/font = ExtResource( 8 )
-text = "Pause"
+text = "TITLE_PAUSE"
 align = 1
 valign = 1
 uppercase = true
@@ -233,7 +235,7 @@ margin_top = 70.0
 margin_right = 272.0
 margin_bottom = 110.0
 rect_min_size = Vector2( 0, 40 )
-text = "Reprendre"
+text = "BUTTON_RESUME"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -244,7 +246,7 @@ margin_top = 120.0
 margin_right = 272.0
 margin_bottom = 160.0
 rect_min_size = Vector2( 0, 40 )
-text = "Recommencer"
+text = "BUTTON_RESTART"
 
 [node name="MainMenuButton" type="Button" parent="PauseMenu/MarginContainer/VBoxContainer"]
 light_mask = 0
@@ -252,7 +254,7 @@ margin_top = 170.0
 margin_right = 272.0
 margin_bottom = 210.0
 rect_min_size = Vector2( 0, 40 )
-text = "Menu principal"
+text = "BUTTON_MAINMENU"
 [connection signal="body_entered" from="World/LavaDetector" to="." method="_on_LavaDetector_body_entered"]
 [connection signal="first_jump" from="Player" to="." method="_on_Player_first_jump"]
 [connection signal="lose_life" from="Player" to="." method="_on_Player_lose_life"]

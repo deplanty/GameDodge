@@ -12,8 +12,8 @@ func _ready() -> void:
 		MusicController.set_volume(-15)
 	$FadeTransition.fade_out()
 	$PlayButton.grab_focus()
-	$SwitchModeButton.set_label("Mode :")
-	$SwitchModeButton.set_list(["Normal", "WTF"], Globals.mode_selected)
+	$SwitchModeButton.set_label("BUTTON_MODE_LABEL")
+	$SwitchModeButton.set_list(["GAME_MODE_NORMAL", "GAME_MODE_WTF"], Globals.mode_selected)
 	
 	$Player.first_move = true
 	$Player.velocity.x = -$Player.speed.x
@@ -22,15 +22,15 @@ func _ready() -> void:
 func _on_PlayButton_pressed() -> void:
 	var mode_selected = $SwitchModeButton.get_selection()
 	Globals.mode_selected = mode_selected
-	if mode_selected == "Normal":
+	if mode_selected == "GAME_MODE_NORMAL":
 		next_scene = "res://src/actors/LevelNormal.tscn"
-	elif mode_selected == "WTF":
+	elif mode_selected == "GAME_MODE_WTF":
 		next_scene = "res://src/actors/LevelWTF.tscn"
 	$FadeTransition.fade_in()
 
 
 func _on_HighscoreButton_pressed() -> void:
-	next_scene = "res://src/actors/Highscore.tscn"
+	next_scene = "res://src/actors/Leaderboard.tscn"
 	$FadeTransition.fade_in()
 
 
