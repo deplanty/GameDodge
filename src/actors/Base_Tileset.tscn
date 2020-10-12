@@ -9,38 +9,38 @@ extents = Vector2( 16, 16 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 16, 16 )
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 17, 16 )
 
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 16, 16 )
 
-[sub_resource type="RectangleShape2D" id=10]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 16, 16 )
-
-[sub_resource type="AtlasTexture" id=3]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=4]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 32, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=5]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 64, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=6]
 flags = 4
 atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 1 )
 region = Rect2( 96, 0, 32, 32 )
 
-[sub_resource type="SpriteFrames" id=7]
+[sub_resource type="SpriteFrames" id=10]
 animations = [ {
-"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
 "loop": true,
 "name": "default",
 "speed": 6.0
@@ -51,7 +51,7 @@ animations = [ {
 [node name="Left" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 centered = false
-hframes = 5
+hframes = 6
 region_rect = Rect2( 0, 0, 32, 32 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Left"]
@@ -64,7 +64,7 @@ shape = SubResource( 1 )
 position = Vector2( 32, 0 )
 texture = ExtResource( 2 )
 centered = false
-hframes = 5
+hframes = 6
 frame = 1
 region_rect = Rect2( 0, 0, 32, 32 )
 
@@ -78,7 +78,7 @@ shape = SubResource( 2 )
 position = Vector2( 64, 0 )
 texture = ExtResource( 2 )
 centered = false
-hframes = 5
+hframes = 6
 frame = 2
 region_rect = Rect2( 0, 0, 32, 32 )
 
@@ -86,13 +86,13 @@ region_rect = Rect2( 0, 0, 32, 32 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Right/StaticBody2D"]
 position = Vector2( 17, 16 )
-shape = SubResource( 8 )
+shape = SubResource( 3 )
 
 [node name="Bottom" type="Sprite" parent="."]
 position = Vector2( 96, 0 )
 texture = ExtResource( 2 )
 centered = false
-hframes = 5
+hframes = 6
 frame = 3
 region_rect = Rect2( 0, 0, 32, 32 )
 
@@ -100,13 +100,13 @@ region_rect = Rect2( 0, 0, 32, 32 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom/StaticBody2D"]
 position = Vector2( 16, 16 )
-shape = SubResource( 9 )
+shape = SubResource( 4 )
 
 [node name="Fill" type="Sprite" parent="."]
 position = Vector2( 128, 0 )
 texture = ExtResource( 2 )
 centered = false
-hframes = 5
+hframes = 6
 frame = 4
 region_rect = Rect2( 0, 0, 32, 32 )
 
@@ -114,11 +114,25 @@ region_rect = Rect2( 0, 0, 32, 32 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Fill/StaticBody2D"]
 position = Vector2( 16, 16 )
-shape = SubResource( 10 )
+shape = SubResource( 5 )
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 160, 0 )
+texture = ExtResource( 2 )
+centered = false
+hframes = 6
+frame = 5
+region_rect = Rect2( 0, 0, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Background"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/StaticBody2D"]
+position = Vector2( 16, 16 )
+shape = SubResource( 5 )
 
 [node name="Lava" type="AnimatedSprite" parent="."]
-position = Vector2( 160, 0 )
-frames = SubResource( 7 )
-frame = 3
+position = Vector2( 192, 0 )
+frames = SubResource( 10 )
+frame = 2
 playing = true
 centered = false
