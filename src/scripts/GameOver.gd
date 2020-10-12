@@ -5,6 +5,7 @@ Explanation:
 At the end of the game, the score is saved globaly.
 When this scene is ready, an animation with coins is played.
 The amount of coins created depends on the score value.
+If the score is 0, it shows the buttons.
 
 After the animation (when the last coin is caught), it checks if it's a new
 highscore.
@@ -26,17 +27,19 @@ var next_scene := String()
 
 func _ready() -> void:
 	$FadeTransition.fade_out()
+	# Load highscore
+	highscores = Globals.load_highscores()
+	highscore = highscores[mode_selected]
 	# Player
 	$Control/Player.velocity = Vector2(0, 0)
 	$Control/Player.first_move = true
 	$Control/Player.set_physics_process(false)
 	$Control/Player/AnimatedSprite.play("right")
 	# Start animation
-	$Control/SpawnTimer.start(0.1)
-	# Highscore
-	highscores = Globals.load_highscores()
-	highscore = highscores[mode_selected]
-
+	if Globals.score > 0:
+		$Control/SpawnTimer.start(0.1)
+	else:
+		show_after_animation()
 # Signals
 
 func _on_NameEdit_gui_input(event: InputEvent) -> void:
