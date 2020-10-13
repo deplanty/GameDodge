@@ -1,14 +1,15 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/scripts/Settings.gd" type="Script" id=1]
 [ext_resource path="res://assets/font/Run.tres" type="DynamicFont" id=2]
-[ext_resource path="res://assets/images/flags_world.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/ui/flags/flag_fr.png" type="Texture" id=3]
 [ext_resource path="res://assets/font/Overpass-Regular_18.tres" type="DynamicFont" id=4]
 [ext_resource path="res://assets/images/ui/sound_effects_on.png" type="Texture" id=5]
 [ext_resource path="res://assets/images/ui/music_on.png" type="Texture" id=6]
 [ext_resource path="res://assets/images/background.png" type="Texture" id=7]
 [ext_resource path="res://assets/images/base_tileset.tres" type="TileSet" id=8]
 [ext_resource path="res://assets/images/ui/home.png" type="Texture" id=9]
+[ext_resource path="res://assets/images/ui/flags/flag_en.png" type="Texture" id=10]
 
 [node name="Settings" type="Control"]
 anchor_right = 1.0
@@ -50,31 +51,30 @@ __meta__ = {
 [node name="Container" type="CenterContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 112.0
 margin_bottom = -32.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBox" type="VBoxContainer" parent="Container"]
-margin_left = 108.0
-margin_top = 163.0
-margin_right = 308.0
-margin_bottom = 301.0
+margin_left = 100.0
+margin_top = 214.0
+margin_right = 316.0
+margin_bottom = 362.0
 custom_constants/separation = 60
 
 [node name="Language" type="HBoxContainer" parent="Container/VBox"]
-margin_right = 200.0
-margin_bottom = 22.0
+margin_right = 216.0
+margin_bottom = 32.0
 custom_constants/separation = 20
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="Container/VBox/Language"]
-margin_top = 1.0
+margin_top = 6.0
 margin_right = 100.0
-margin_bottom = 20.0
+margin_bottom = 25.0
 rect_min_size = Vector2( 100, 0 )
 custom_fonts/font = ExtResource( 4 )
 text = "LABEL_LANGUAGE"
@@ -82,46 +82,37 @@ clip_text = true
 
 [node name="ButtonEn" type="Button" parent="Container/VBox/Language"]
 margin_left = 120.0
-margin_right = 150.0
-margin_bottom = 22.0
-rect_min_size = Vector2( 30, 22 )
+margin_right = 158.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
 mouse_default_cursor_shape = 2
-
-[node name="Sprite" type="Sprite" parent="Container/VBox/Language/ButtonEn"]
-position = Vector2( 15, 11 )
-texture = ExtResource( 3 )
-hframes = 2
+icon = ExtResource( 10 )
 
 [node name="ButtonFr" type="Button" parent="Container/VBox/Language"]
-margin_left = 170.0
-margin_right = 200.0
-margin_bottom = 22.0
-rect_min_size = Vector2( 30, 22 )
+margin_left = 178.0
+margin_right = 216.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
 mouse_default_cursor_shape = 2
-
-[node name="Sprite" type="Sprite" parent="Container/VBox/Language/ButtonFr"]
-position = Vector2( 15, 11 )
-texture = ExtResource( 3 )
-hframes = 2
-frame = 1
+icon = ExtResource( 3 )
 
 [node name="Sound" type="HBoxContainer" parent="Container/VBox"]
-margin_top = 82.0
-margin_right = 200.0
-margin_bottom = 138.0
+margin_top = 92.0
+margin_right = 216.0
+margin_bottom = 148.0
 custom_constants/separation = 20
 alignment = 1
 
 [node name="MusicButton" type="Button" parent="Container/VBox/Sound"]
-margin_left = 28.0
-margin_right = 90.0
+margin_left = 36.0
+margin_right = 98.0
 margin_bottom = 56.0
 mouse_default_cursor_shape = 2
 icon = ExtResource( 6 )
 
 [node name="EffectsButton" type="Button" parent="Container/VBox/Sound"]
-margin_left = 110.0
-margin_right = 172.0
+margin_left = 118.0
+margin_right = 180.0
 margin_bottom = 56.0
 mouse_default_cursor_shape = 2
 icon = ExtResource( 5 )
