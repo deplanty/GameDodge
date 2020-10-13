@@ -27,14 +27,5 @@ func _on_Coin_fall_in_lava() -> void:
 	score_current = int(max(0, score_current - 1))
 	$Control/ScoreContainer/ValueScoreCurrent/.text = str(score_current)
 	# Spawn new coin if no one remains
-	if $Coins.get_child_count() == 0:
-		# FIX: if 2 coins are queue_free() at the same time then child_count == 2
+	if $Coins.get_child_count() <= 1:  # 1: the queue_free() takes some time
 		call_deferred("add_coin")
-
-# Tools
-
-func on_death() -> void:
-	$Player.invulnerability = true
-	Globals.score = score
-	next_scene = "res://src/actors/GameOver.tscn"
-	$Control/FadeTransition.fade_in()
