@@ -141,6 +141,7 @@ occluder = SubResource( 12 )
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 volume_db = -13.0
+bus = "Effects"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/delete = SubResource( 13 )
