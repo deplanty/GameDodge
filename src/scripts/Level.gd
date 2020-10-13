@@ -6,7 +6,9 @@ class_name LevelBase
 onready var coin_scene := preload("res://src/actors/Coin.tscn")
 onready var enemy_scene := preload("res://src/actors/Enemy.tscn")
 var score := 0
+var resume_counter := 3
 var current_enemies := []
+var game_paused := false
 var next_scene := String()
 
 # Porcess
@@ -33,12 +35,13 @@ func _process(delta: float) -> void:
 # Signals
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("jump_left"):
-		$Player.jump_left()
-	elif event.is_action_pressed("jump_right"):
-		$Player.jump_right()
-	elif event.is_action_released("pause"):
-		pause_game()
+	if not game_paused:
+		if event.is_action_pressed("jump_left"):
+			$Player.jump_left()
+		elif event.is_action_pressed("jump_right"):
+			$Player.jump_right()
+		elif event.is_action_released("pause"):
+			_on_PauseButton_pressed()
 
 
 func _on_TouchLeft_pressed() -> void:
@@ -94,29 +97,45 @@ func _on_Player_lose_life() -> void:
 
 func _on_FadeTransition_animation_finished(anim_name) -> void:
 	if anim_name == "fade_in":
-		get_tree().paused = false
 		get_tree().change_scene(next_scene)
 
 
 func _on_PauseButton_pressed() -> void:
-	pause_game()
+	game_paused = true
+	set_all_physics_process(false)
+	$PauseMenu.show()
+	$PauseMenu/MarginContainer/VBoxContainer/ResumeButton.grab_focus()
 
 
 func _on_ResumeButton_pressed() -> void:
-	get_tree().paused = false
 	$PauseMenu.hide()
+	$Control/ResumeCounter.text = str(resume_counter)
+	$Control/ResumeCounter/ResumeTimer.start()
 
 
 func _on_RestartButton_pressed() -> void:
-	get_tree().paused = false
+	$PauseMenu.hide()
 	get_tree().reload_current_scene()
 
 
 func _on_MainMenuButton_pressed() -> void:
-	get_tree().paused = false
 	$PauseMenu.hide()
 	next_scene = "res://src/actors/MainMenu.tscn"
 	$Control/FadeTransition.fade_in()
+
+
+func _on_ResumeTimer_timeout() -> void:
+	resume_counter -= 1
+	if resume_counter > 0:
+		$Control/ResumeCounter.text = str(resume_counter)
+	elif resume_counter == 0:
+		$Control/ResumeCounter.text = "LABEL_RESUME_GO"
+	else:
+		$Control/ResumeCounter.text = ""
+		resume_counter = 3
+		$Control/ResumeCounter/ResumeTimer.stop()
+		game_paused = false
+		set_all_physics_process(true)
 
 # Player
 
@@ -169,7 +188,9 @@ func add_coin() -> void:
 
 # UI
 
-func pause_game() -> void:
-	get_tree().paused = true
-	$PauseMenu.show()
-	$PauseMenu/MarginContainer/VBoxContainer/ResumeButton.grab_focus()
+func set_all_physics_process(state: bool) -> void:
+	$Player.set_physics_process(state)
+	for coin in $Coins.get_children():
+		coin.set_physics_process(state)
+	for enemy in $Enemies.get_children():
+		enemy.set_physics_process(state)

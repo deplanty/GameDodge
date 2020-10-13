@@ -13,7 +13,7 @@
 [ext_resource path="res://src/actors/SwitchButton.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 208, 45 )
+extents = Vector2( 208, 48 )
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -128,13 +128,13 @@ __meta__ = {
 }
 
 [node name="Player" parent="." instance=ExtResource( 8 )]
-position = Vector2( 344, 384 )
+position = Vector2( 339, 384 )
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2( 32, 448 )
+position = Vector2( 0, 445 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 175, 19 )
+position = Vector2( 208, 24 )
 shape = SubResource( 1 )
 
 [node name="FadeTransition" parent="." instance=ExtResource( 9 )]

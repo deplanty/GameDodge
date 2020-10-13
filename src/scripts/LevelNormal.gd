@@ -35,3 +35,9 @@ func add_bonus_coin() -> void:
 		coin.init(x, y)
 		coin.connect("caught", self, "_on_CoinBonus_caught")
 		$Coins.add_child(coin)
+
+
+func set_all_physics_process(state: bool) -> void:
+	.set_all_physics_process(state)
+	for bonus in $Bonus.get_children():
+		bonus.set_physics_process(state)

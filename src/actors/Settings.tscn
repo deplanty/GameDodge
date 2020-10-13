@@ -11,7 +11,6 @@
 [ext_resource path="res://assets/images/ui/home.png" type="Texture" id=9]
 [ext_resource path="res://assets/images/ui/flags/flag_en.png" type="Texture" id=10]
 
-
 [node name="Settings" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -124,9 +123,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -31.0
-margin_top = -120.0
+margin_top = -152.0
 margin_right = 31.0
-margin_bottom = -64.0
+margin_bottom = -96.0
 mouse_default_cursor_shape = 2
 icon = ExtResource( 9 )
 flat = true

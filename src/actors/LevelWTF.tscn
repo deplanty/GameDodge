@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/actors/Torch.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/actors/Player.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/font/Run.tres" type="DynamicFont" id=8]
 [ext_resource path="res://src/actors/Lifebar.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/images/coin_rotated.png" type="Texture" id=10]
+[ext_resource path="res://assets/font/Overpass-Bold_24.tres" type="DynamicFont" id=11]
 [ext_resource path="res://assets/font/Overpass-Regular_18.tres" type="DynamicFont" id=12]
 
 [sub_resource type="OccluderPolygon2D" id=1]
@@ -105,6 +106,25 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ResumeCounter" type="Label" parent="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -152.0
+margin_top = -32.0
+margin_right = 152.0
+margin_bottom = 32.0
+custom_fonts/font = ExtResource( 11 )
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResumeTimer" type="Timer" parent="Control/ResumeCounter"]
+wait_time = 0.5
 
 [node name="Lifebar" parent="Control" instance=ExtResource( 9 )]
 anchor_right = 0.0
@@ -267,6 +287,7 @@ text = "BUTTON_MAINMENU"
 [connection signal="body_entered" from="World/LavaDetector" to="." method="_on_LavaDetector_body_entered"]
 [connection signal="first_jump" from="Player" to="." method="_on_Player_first_jump"]
 [connection signal="lose_life" from="Player" to="." method="_on_Player_lose_life"]
+[connection signal="timeout" from="Control/ResumeCounter/ResumeTimer" to="." method="_on_ResumeTimer_timeout"]
 [connection signal="pressed" from="Control/PauseButton" to="." method="_on_PauseButton_pressed"]
 [connection signal="animation_finished" from="Control/FadeTransition" to="." method="_on_FadeTransition_animation_finished"]
 [connection signal="pressed" from="Control/TouchLeft" to="." method="_on_TouchLeft_pressed"]
