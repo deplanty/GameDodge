@@ -51,10 +51,13 @@ func _on_NameEdit_gui_input(event: InputEvent) -> void:
 func _on_NameButton_pressed() -> void:
 	if $Name/NameEdit.text == "":
 		return
-	add_highscore($Name/NameEdit.text, Globals.score)
 	$Name.visible = false
 	$Buttons.visible = true
 	$Buttons/RestartButton.grab_focus()
+	# Save higscore and player name
+	add_highscore($Name/NameEdit.text, Globals.score)
+	Globals.username = $Name/NameEdit.text
+	Globals.save_settings()
 
 
 func _on_RestartButton_pressed() -> void:
@@ -123,6 +126,7 @@ func show_after_animation() -> void:
 		$ScoreLabel.text = "TITLE_NEW_HIGHSCORE"
 		$Name.visible = true
 		$Buttons.visible = false
+		$Name/NameEdit.text = Globals.username
 		$Name/NameEdit.grab_focus()
 		$Control/Player.set_physics_process(true)
 	# If score is not a highscore
