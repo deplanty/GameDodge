@@ -29,7 +29,7 @@ func _process(delta: float) -> void:
 			break
 	
 	if all_deleted:
-		Globals.velocity_multiplier += 0.02
+		Globals.velocity_multiplier += Globals.parameters.get_value("gameplay", "velocity_multiplier")
 		add_random_pattern()
 
 # Signals
@@ -59,11 +59,7 @@ func _on_Player_first_jump() -> void:
 	Globals.velocity_multiplier = 1.0
 	add_random_pattern()
 	# Create coin
-	var coin = coin_scene.instance()
-	coin.init(192, -8)
-	coin.connect("caught", self, "_on_Coin_caught")
-	coin.connect("fall_in_lava", self, "_on_Coin_fall_in_lava")
-	$Coins.add_child(coin)
+	add_coin()
 	# Start game
 	set_process(true)
 
@@ -177,11 +173,11 @@ func load_pattern(patterns, i: int) -> Array:
 
 # Coin
 
-func add_coin() -> void:
+func add_coin():
+	# Get x and y position
+	# Create coin
 	var coin = coin_scene.instance()
-	var x := round(rand_range(40, 360))
-	var y := round(rand_range(-8, -64))
-	coin.init(x, y)
+	coin.init(get_random_position_spawning())
 	coin.connect("caught", self, "_on_Coin_caught")
 	coin.connect("fall_in_lava", self, "_on_Coin_fall_in_lava")
 	$Coins.add_child(coin)
@@ -194,3 +190,12 @@ func set_all_physics_process(state: bool) -> void:
 		coin.set_physics_process(state)
 	for enemy in $Enemies.get_children():
 		enemy.set_physics_process(state)
+
+# Misc
+
+func get_random_position_spawning() -> Vector2:
+	var w :int= Globals.parameters.get_value("viewport", "width")
+	var cell :int= Globals.parameters.get_value("viewport", "cell_size")
+	var x := round(rand_range(cell + 8, w - cell - 8))
+	var y := round(rand_range(-8, -64))
+	return Vector2(x, y)

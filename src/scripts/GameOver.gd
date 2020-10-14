@@ -87,7 +87,9 @@ func _on_SpawnTimer_timeout() -> void:
 	# If not all coins have spawned
 	if coin_sum < Globals.score:
 		var coin = coin_scene.instance()
-		coin.init($Control/Player.position.x, $Control/Player.position.y - 100)
+		var coords = $Control/Player.position
+		coords.y -= 100
+		coin.init(coords)
 		# If last coin
 		if coin_sum == Globals.score - 1:
 			coin.connect("caught", self, "_on_Coin_caught_last")

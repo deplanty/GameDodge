@@ -2,8 +2,9 @@ extends Node
 
 
 # Paths
-const path_settings_res := "res://assets/settings.ini"
-const path_settings_user := "user://settings.ini"
+const path_game_parameters_res := "res://assets/game_parameters.ini"
+const path_settings_res := "res://assets/user_settings.ini"
+const path_settings_user := "user://user_settings.ini"
 const path_highscore_res := "res://assets/highscore.json"
 const path_highscore_user := "user://highscore.json"
 const path_enemy_patterns := "res://assets/patterns.json"
@@ -12,6 +13,7 @@ const path_enemy_patterns := "res://assets/patterns.json"
 var mode_selected := "GAME_MODE_NORMAL"
 
 # Settings
+var parameters := ConfigFile.new()
 var settings := ConfigFile.new()
 var username := String()
 var music_on := bool()
@@ -25,10 +27,11 @@ var enemy_patterns := Array()
 
 func _ready() -> void:
 	# Write user files
-	init_highscore(true)
+	init_highscore()
 	init_settings()
-	# Load settings
-	var err = settings.load(path_settings_user)
+	# Load settings and parameters
+	parameters.load(path_game_parameters_res)
+	settings.load(path_settings_user)
 	username = settings.get_value("user", "name", "")
 	music_on = settings.get_value("settings", "music", true)
 	sound_fx = settings.get_value("settings", "sound_fx", true)
