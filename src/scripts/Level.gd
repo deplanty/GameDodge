@@ -9,6 +9,7 @@ var score := 0
 var resume_counter := 3
 var current_enemies := []
 var game_paused := false
+var game_state := "pattern"
 var next_scene := String()
 
 # Porcess
@@ -28,7 +29,7 @@ func _process(delta: float) -> void:
 			all_deleted = false
 			break
 	
-	if all_deleted:
+	if all_deleted and game_state == "pattern":
 		Globals.velocity_multiplier += Globals.parameters.get_value("gameplay", "velocity_multiplier")
 		add_random_pattern()
 

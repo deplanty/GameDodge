@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://src/actors/Torch.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/actors/Player.tscn" type="PackedScene" id=2]
@@ -22,6 +22,38 @@ extents = Vector2( 208, 16 )
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 104, 276 )
 
+[sub_resource type="Animation" id=4]
+resource_name = "alert"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.392157, 0, 0, 0 ), Color( 0.392157, 0, 0, 0.392157 ), Color( 0.392157, 0, 0, 0.196078 ), Color( 0.392157, 0, 0, 0.392157 ), Color( 0.392157, 0, 0, 0.196078 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "calm"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.392157, 0, 0, 0.196078 ), Color( 0, 0.392157, 0, 0 ) ]
+}
+
 [node name="Level" type="Node2D"]
 script = ExtResource( 6 )
 
@@ -29,12 +61,25 @@ script = ExtResource( 6 )
 position = Vector2( 208, 304 )
 texture = ExtResource( 7 )
 
-[node name="Bonus" type="Node2D" parent="."]
+[node name="Timers" type="Node2D" parent="."]
 
-[node name="BonusTimer" type="Timer" parent="Bonus"]
+[node name="BonusTimer" type="Timer" parent="Timers"]
+wait_time = 10.0
+
+[node name="RainTimer" type="Timer" parent="Timers"]
 wait_time = 0.5
 
+[node name="EnemyRainTimerStart" type="Timer" parent="Timers"]
+wait_time = 35.0
+
+[node name="EnemyRainTimerStop" type="Timer" parent="Timers"]
+wait_time = 15.0
+
+[node name="Bonus" type="Node2D" parent="."]
+
 [node name="Coins" type="Node2D" parent="."]
+
+[node name="EnemyRain" type="Node2D" parent="."]
 
 [node name="Enemies" type="Node2D" parent="."]
 
@@ -195,6 +240,43 @@ shape = SubResource( 3 )
 position = Vector2( 208, 64 )
 shape = SubResource( 3 )
 
+[node name="Warning" type="Control" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Control/Warning"]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -176.0
+margin_top = 86.0
+margin_right = 176.0
+margin_bottom = 152.0
+custom_fonts/font = ExtResource( 11 )
+custom_colors/font_color = Color( 0.588235, 0.117647, 0.117647, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "LABEL_WARNING"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Control/Warning"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.392157, 0, 0, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WarningAnimation" type="AnimationPlayer" parent="Control/Warning/ColorRect"]
+anims/alert = SubResource( 4 )
+anims/calm = SubResource( 5 )
+
 [node name="PauseMenu" type="Popup" parent="."]
 pause_mode = 2
 light_mask = 0
@@ -276,7 +358,10 @@ margin_right = 272.0
 margin_bottom = 210.0
 rect_min_size = Vector2( 0, 40 )
 text = "BUTTON_MAINMENU"
-[connection signal="timeout" from="Bonus/BonusTimer" to="." method="_on_BonusTimer_timeout"]
+[connection signal="timeout" from="Timers/BonusTimer" to="." method="_on_BonusTimer_timeout"]
+[connection signal="timeout" from="Timers/RainTimer" to="." method="_on_RainTimer_timeout"]
+[connection signal="timeout" from="Timers/EnemyRainTimerStart" to="." method="_on_EnemyRainTimerStart_timeout"]
+[connection signal="timeout" from="Timers/EnemyRainTimerStop" to="." method="_on_EnemyRainTimerStop_timeout"]
 [connection signal="body_entered" from="World/LavaDetector" to="." method="_on_LavaDetector_body_entered"]
 [connection signal="first_jump" from="Player" to="." method="_on_Player_first_jump"]
 [connection signal="lose_life" from="Player" to="." method="_on_Player_lose_life"]
@@ -285,6 +370,7 @@ text = "BUTTON_MAINMENU"
 [connection signal="animation_finished" from="Control/FadeTransition" to="." method="_on_FadeTransition_animation_finished"]
 [connection signal="pressed" from="Control/TouchLeft" to="." method="_on_TouchLeft_pressed"]
 [connection signal="pressed" from="Control/TouchRight" to="." method="_on_TouchRight_pressed"]
+[connection signal="animation_finished" from="Control/Warning/ColorRect/WarningAnimation" to="." method="_on_WarningAnimation_animation_finished"]
 [connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_ResumeButton_pressed"]
 [connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/MainMenuButton" to="." method="_on_MainMenuButton_pressed"]
