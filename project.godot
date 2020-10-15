@@ -9,18 +9,12 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "",
-"class": "GitAPI",
-"language": "NativeScript",
-"path": "res://git_api.gdns"
-}, {
 "base": "Node2D",
 "class": "LevelBase",
 "language": "GDScript",
 "path": "res://src/scripts/Level.gd"
 } ]
 _global_script_class_icons={
-"GitAPI": "",
 "LevelBase": ""
 }
 
@@ -46,7 +40,7 @@ window/stretch/aspect="keep"
 
 [gdnative]
 
-singletons=[ "res://git_api.gdnlib" ]
+singletons=[  ]
 
 [importer_defaults]
 

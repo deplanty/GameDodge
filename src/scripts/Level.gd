@@ -128,10 +128,15 @@ func _on_ResumeTimer_timeout() -> void:
 		$Control/ResumeCounter.text = "LABEL_RESUME_GO"
 	else:
 		$Control/ResumeCounter.text = ""
-		resume_counter = 3
-		$Control/ResumeCounter/ResumeTimer.stop()
-		game_paused = false
-		set_all_physics_process(true)
+		on_resume_game()
+
+# Game
+
+func on_resume_game() -> void:
+	game_paused = false
+	resume_counter = 3
+	$Control/ResumeCounter/ResumeTimer.stop()
+	set_all_physics_process(true)
 
 # Player
 

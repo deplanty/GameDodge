@@ -12,6 +12,12 @@ func _on_Player_first_jump() -> void:
 	$Bonus/BonusTimer.start()
 
 
+func _on_PauseButton_pressed() -> void:
+	._on_PauseButton_pressed()
+	set_bonus_physics_process(false)
+	$Bonus/BonusTimer.paused = true
+
+
 func _on_BonusTimer_timeout() -> void:
 	var bonus := bonus_scene.instance()
 	var coords := get_random_position_spawning()
@@ -23,7 +29,14 @@ func _on_BonusTimer_timeout() -> void:
 func _on_Bonus_caught() -> void:
 	call_deferred("add_bonus_coin")
 
-# Tools
+# Game
+
+func on_resume_game() -> void:
+	.on_resume_game()
+	set_bonus_physics_process(true)
+	$Bonus/BonusTimer.paused = false
+
+# Coins
 
 func add_bonus_coin() -> void:
 	for i in range(5):
@@ -36,7 +49,6 @@ func add_bonus_coin() -> void:
 		$Coins.add_child(coin)
 
 
-func set_all_physics_process(state: bool) -> void:
-	.set_all_physics_process(state)
+func set_bonus_physics_process(state: bool) -> void:
 	for bonus in $Bonus.get_children():
 		bonus.set_physics_process(state)
