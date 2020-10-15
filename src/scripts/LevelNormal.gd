@@ -30,7 +30,7 @@ func _on_BonusTimer_timeout() -> void:
 
 
 func _on_Bonus_caught() -> void:
-	call_deferred("add_bonus_coin")
+	call_deferred("add_bonus_coin", 5)
 
 
 func _on_EnemyRainTimerStart_timeout() -> void:
@@ -54,10 +54,8 @@ func _on_WarningAnimation_animation_finished(anim_name: String) -> void:
 		$Timers/RainTimer.start()
 		$Timers/EnemyRainTimerStop.start()
 	elif anim_name == "calm":
-		$Control/Warning/Label.visible = false
-		$Timers/EnemyRainTimerStart.start()
-		$Timers/BonusTimer.paused = false
-		game_state = "pattern"
+		add_bonus_coin(10)
+		$Timers/EnemyRainRewardTimer.start()
 
 
 func _on_RainTimer_timeout() -> void:
@@ -72,6 +70,13 @@ func _on_EnemyRainTimerStop_timeout() -> void:
 	$Timers/EnemyRainTimerStop.stop()
 	$Control/Warning/ColorRect/WarningAnimation.play("calm")
 
+
+func _on_EnemyRainRewardTimer_timeout() -> void:
+	$Control/Warning/Label.visible = false
+	$Timers/EnemyRainTimerStart.start()
+	$Timers/BonusTimer.paused = false
+	game_state = "pattern"
+
 # Game
 
 func on_resume_game() -> void:
@@ -84,8 +89,8 @@ func on_resume_game() -> void:
 
 # Coins
 
-func add_bonus_coin() -> void:
-	for i in range(5):
+func add_bonus_coin(n: int) -> void:
+	for i in range(n):
 		# Get x and y position
 		var coords := get_random_position_spawning()
 		# Create coin
