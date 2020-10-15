@@ -14,5 +14,6 @@ BUTTON_RESUME;Resume;Reprendre
 BUTTON_OK;Ok;Ok
 LABEL_LANGUAGE;Language;Langue
 LABEL_RESUME_GO;Go!;C'est parti !
+LABEL_WARNING;WARNING!;ATTENTION !
 ENTRY_PSEUDO;Pseudo;Pseudo
 INSTRUCTION_PLAY;Press ← or → to start;Appuyer sur ← ou → pour commencer
