@@ -4,21 +4,32 @@ extends LevelBase
 onready var bonus_scene := preload("res://src/actors/Bonus.tscn")
 onready var coin_bonus_scene := preload("res://src/actors/CoinBonus.tscn")
 
+# Ready
+
+func _ready() -> void:
+	._ready()
+	
+	# Timers
+	$Timers/BonusTimer.wait_time = Globals.parameters.get_value("level_normal", "timer_bonus")
+	$Timers/RainTimerStart.wait_time = Globals.parameters.get_value("level_normal", "timer_rain_start")
+	$Timers/RainTimerDt.wait_time = Globals.parameters.get_value("level_normal", "timer_rain_dt")
+	$Timers/RainTimerStop.wait_time = Globals.parameters.get_value("level_normal", "timer_rain_stop")
+	$Timers/RainRewardTimer.wait_time = Globals.parameters.get_value("level_normal", "timer_rain_reward")
 
 # Signals
 
 func _on_Player_first_jump() -> void:
 	._on_Player_first_jump()
 	$Timers/BonusTimer.start()
-	$Timers/EnemyRainTimerStart.start()
+	$Timers/RainTimerStart.start()
 
 
 func _on_PauseButton_pressed() -> void:
 	._on_PauseButton_pressed()
 	set_bonus_physics_process(false)
 	$Timers/BonusTimer.paused = true
-	$Timers/RainTimer.paused = true
-	$Timers/EnemyRainTimerStart.paused = true
+	$Timers/RainTimerDt.paused = true
+	$Timers/RainTimerStart.paused = true
 
 
 func _on_BonusTimer_timeout() -> void:
@@ -30,10 +41,10 @@ func _on_BonusTimer_timeout() -> void:
 
 
 func _on_Bonus_caught() -> void:
-	call_deferred("add_bonus_coin", 5)
+	call_deferred("add_bonus_coin", Globals.parameters.get_value("level_normal", "coins_bonus"))
 
 
-func _on_EnemyRainTimerStart_timeout() -> void:
+func _on_RainTimerStart_timeout() -> void:
 	"""
 	Stop the bonus timer.
 	TODO: Remove coins and bonus.
@@ -50,30 +61,30 @@ func _on_EnemyRainTimerStart_timeout() -> void:
 func _on_WarningAnimation_animation_finished(anim_name: String) -> void:
 	if anim_name == "alert":
 		$Control/Warning/Label.visible = false
-		$Timers/EnemyRainTimerStart.stop()
-		$Timers/RainTimer.start()
-		$Timers/EnemyRainTimerStop.start()
+		$Timers/RainTimerStart.stop()
+		$Timers/RainTimerDt.start()
+		$Timers/RainTimerStop.start()
 	elif anim_name == "calm":
-		add_bonus_coin(10)
-		$Timers/EnemyRainRewardTimer.start()
+		add_bonus_coin(Globals.parameters.get_value("level_normal", "coins_rain_reward"))
+		$Timers/RainRewardTimer.start()
 
 
-func _on_RainTimer_timeout() -> void:
+func _on_RainTimerDt_timeout() -> void:
 	var enemy := enemy_scene.instance()
 	enemy.position = get_random_position_spawning()
 	enemy.velocity = Vector2(0, 150)
 	$EnemyRain.add_child(enemy)
 
 
-func _on_EnemyRainTimerStop_timeout() -> void:
-	$Timers/RainTimer.stop()
-	$Timers/EnemyRainTimerStop.stop()
+func _on_RainTimerStop_timeout() -> void:
+	$Timers/RainTimerDt.stop()
+	$Timers/RainTimerStop.stop()
 	$Control/Warning/ColorRect/WarningAnimation.play("calm")
 
 
-func _on_EnemyRainRewardTimer_timeout() -> void:
+func _on_RainRewardTimer_timeout() -> void:
 	$Control/Warning/Label.visible = false
-	$Timers/EnemyRainTimerStart.start()
+	$Timers/RainTimerStart.start()
 	$Timers/BonusTimer.paused = false
 	game_state = "pattern"
 
@@ -82,8 +93,8 @@ func _on_EnemyRainRewardTimer_timeout() -> void:
 func on_resume_game() -> void:
 	.on_resume_game()
 	set_bonus_physics_process(true)
-	$Timers/EnemyRainTimerStart.paused = false
-	$Timers/RainTimer.paused = false
+	$Timers/RainTimerStart.paused = false
+	$Timers/RainTimerDt.paused = false
 	if game_state == "rain":
 		$Timers/BonusTimer.paused = false
 

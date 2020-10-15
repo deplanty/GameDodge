@@ -66,16 +66,16 @@ texture = ExtResource( 7 )
 [node name="BonusTimer" type="Timer" parent="Timers"]
 wait_time = 10.0
 
-[node name="RainTimer" type="Timer" parent="Timers"]
+[node name="RainTimerDt" type="Timer" parent="Timers"]
 wait_time = 0.5
 
-[node name="EnemyRainTimerStart" type="Timer" parent="Timers"]
+[node name="RainTimerStart" type="Timer" parent="Timers"]
 wait_time = 35.0
 
-[node name="EnemyRainTimerStop" type="Timer" parent="Timers"]
+[node name="RainTimerStop" type="Timer" parent="Timers"]
 wait_time = 15.0
 
-[node name="EnemyRainRewardTimer" type="Timer" parent="Timers"]
+[node name="RainRewardTimer" type="Timer" parent="Timers"]
 wait_time = 3.0
 
 [node name="Bonus" type="Node2D" parent="."]
@@ -362,10 +362,10 @@ margin_bottom = 210.0
 rect_min_size = Vector2( 0, 40 )
 text = "BUTTON_MAINMENU"
 [connection signal="timeout" from="Timers/BonusTimer" to="." method="_on_BonusTimer_timeout"]
-[connection signal="timeout" from="Timers/RainTimer" to="." method="_on_RainTimer_timeout"]
-[connection signal="timeout" from="Timers/EnemyRainTimerStart" to="." method="_on_EnemyRainTimerStart_timeout"]
-[connection signal="timeout" from="Timers/EnemyRainTimerStop" to="." method="_on_EnemyRainTimerStop_timeout"]
-[connection signal="timeout" from="Timers/EnemyRainRewardTimer" to="." method="_on_EnemyRainRewardTimer_timeout"]
+[connection signal="timeout" from="Timers/RainTimerDt" to="." method="_on_RainTimerDt_timeout"]
+[connection signal="timeout" from="Timers/RainTimerStart" to="." method="_on_RainTimerStart_timeout"]
+[connection signal="timeout" from="Timers/RainTimerStop" to="." method="_on_RainTimerStop_timeout"]
+[connection signal="timeout" from="Timers/RainRewardTimer" to="." method="_on_RainRewardTimer_timeout"]
 [connection signal="body_entered" from="World/LavaDetector" to="." method="_on_LavaDetector_body_entered"]
 [connection signal="first_jump" from="Player" to="." method="_on_Player_first_jump"]
 [connection signal="lose_life" from="Player" to="." method="_on_Player_lose_life"]
