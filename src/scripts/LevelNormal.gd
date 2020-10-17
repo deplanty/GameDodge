@@ -1,6 +1,7 @@
 extends LevelBase
 
 
+onready var enemy_rain_scene := preload("res://src/actors/EnemyRain.tscn")
 onready var bonus_scene := preload("res://src/actors/Bonus.tscn")
 onready var coin_bonus_scene := preload("res://src/actors/CoinBonus.tscn")
 
@@ -73,7 +74,7 @@ func _on_WarningAnimation_animation_finished(anim_name: String) -> void:
 
 
 func _on_RainTimerDt_timeout() -> void:
-	var enemy := enemy_scene.instance()
+	var enemy := enemy_rain_scene.instance()
 	enemy.position = get_random_position_spawning()
 	enemy.velocity = Vector2(0, 150)
 	$EnemyRain.add_child(enemy)

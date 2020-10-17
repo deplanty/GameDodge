@@ -118,7 +118,7 @@ disabled = true
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 light_mask = 0
 frames = SubResource( 12 )
-frame = 2
+frame = 3
 playing = true
 
 [node name="Detector" type="Area2D" parent="."]
