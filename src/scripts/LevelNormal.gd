@@ -97,7 +97,7 @@ func on_resume_game() -> void:
 	set_bonus_physics_process(true)
 	$Timers/RainTimerStart.paused = false
 	$Timers/RainTimerDt.paused = false
-	if game_state == "rain":
+	if game_state == "pattern":
 		$Timers/BonusTimer.paused = false
 
 # Coins
