@@ -32,10 +32,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1, 2, 3, 4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 0.392157, 0, 0, 0 ), Color( 0.392157, 0, 0, 0.392157 ), Color( 0.392157, 0, 0, 0.196078 ), Color( 0.392157, 0, 0, 0.392157 ), Color( 0.392157, 0, 0, 0.196078 ) ]
+"values": [ Color( 0.392157, 0, 0, 0 ), Color( 0.392157, 0, 0, 0.392157 ), Color( 0.392157, 0, 0, 0.196078 ), Color( 0.392157, 0, 0, 0.392157 ), Color( 0.392157, 0, 0, 0.0784314 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=6]
 resource_name = "calm"
 length = 2.0
 tracks/0/type = "value"
@@ -48,7 +48,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 0.392157, 0, 0, 0.196078 ), Color( 0, 0.392157, 0, 0 ) ]
+"values": [ Color( 0.392157, 0, 0, 0.0784314 ), Color( 0.392157, 0, 0, 0 ) ]
 }
 
 [sub_resource type="RectangleShape2D" id=5]
@@ -256,7 +256,7 @@ __meta__ = {
 
 [node name="WarningAnimation" type="AnimationPlayer" parent="Control/Warning/ColorRect"]
 anims/alert = SubResource( 3 )
-anims/calm = SubResource( 4 )
+anims/calm = SubResource( 6 )
 
 [node name="PauseButton" type="Button" parent="Control"]
 anchor_left = 1.0

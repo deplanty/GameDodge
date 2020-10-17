@@ -28,7 +28,6 @@ var next_scene := String()
 
 
 func _ready() -> void:
-	Globals.score = 200
 	$FadeTransition.fade_out()
 	# Load highscore
 	highscores = Globals.load_highscores()
