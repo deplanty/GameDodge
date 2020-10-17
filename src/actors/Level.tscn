@@ -29,6 +29,20 @@ script = ExtResource( 9 )
 position = Vector2( 208, 304 )
 texture = ExtResource( 7 )
 
+[node name="Torches" type="Node2D" parent="."]
+
+[node name="Torch1" parent="Torches" instance=ExtResource( 1 )]
+position = Vector2( 40, 120 )
+
+[node name="Torch2" parent="Torches" instance=ExtResource( 1 )]
+position = Vector2( 376, 192 )
+
+[node name="Torch3" parent="Torches" instance=ExtResource( 1 )]
+position = Vector2( 40, 320 )
+
+[node name="Torch4" parent="Torches" instance=ExtResource( 1 )]
+position = Vector2( 376, 384 )
+
 [node name="Coins" type="Node2D" parent="."]
 
 [node name="Enemies" type="Node2D" parent="."]
@@ -64,20 +78,6 @@ collision_layer = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/LavaDetector"]
 position = Vector2( 208, 600 )
 shape = SubResource( 2 )
-
-[node name="Torches" type="Node2D" parent="."]
-
-[node name="Torch1" parent="Torches" instance=ExtResource( 1 )]
-position = Vector2( 40, 120 )
-
-[node name="Torch2" parent="Torches" instance=ExtResource( 1 )]
-position = Vector2( 376, 192 )
-
-[node name="Torch3" parent="Torches" instance=ExtResource( 1 )]
-position = Vector2( 40, 320 )
-
-[node name="Torch4" parent="Torches" instance=ExtResource( 1 )]
-position = Vector2( 376, 384 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 247, 272 )
