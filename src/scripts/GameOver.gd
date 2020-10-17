@@ -26,8 +26,8 @@ var highscore := Array()  # Current mode highscores
 onready var mode_selected = Globals.mode_selected
 var next_scene := String()
 
+
 func _ready() -> void:
-	Globals.score = 105
 	$FadeTransition.fade_out()
 	# Load highscore
 	highscores = Globals.load_highscores()
