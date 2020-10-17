@@ -28,6 +28,7 @@ var next_scene := String()
 
 
 func _ready() -> void:
+	Globals.score = 200
 	$FadeTransition.fade_out()
 	# Load highscore
 	highscores = Globals.load_highscores()
@@ -42,7 +43,18 @@ func _ready() -> void:
 		$Control/SpawnTimer.start(coin_spawn_dt )
 	else:
 		show_after_animation()
+
 # Signals
+
+
+func _on_SkipAnimationButton_pressed() -> void:
+	$SkipAnimationButton.visible = false
+	for coin in $Control/Coins.get_children():
+		coin.queue_free()
+	$Control/SpawnTimer.stop()
+	$ScoreValue.text = str(Globals.score)
+	show_after_animation()
+
 
 func _on_NameEdit_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("confirm"):

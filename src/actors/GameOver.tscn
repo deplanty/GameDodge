@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/scripts/GameOver.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/background.png" type="Texture" id=2]
@@ -13,6 +13,9 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 10 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 208, 304 )
 
 [node name="GameOver" type="Control"]
 anchor_right = 1.0
@@ -191,6 +194,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="SkipAnimationButton" type="TouchScreenButton" parent="."]
+shape = SubResource( 2 )
+
 [node name="FadeTransition" parent="." instance=ExtResource( 9 )]
 visible = false
 [connection signal="body_entered" from="Control/AreaJump" to="." method="_on_AreaJump_body_entered"]
@@ -200,4 +206,5 @@ visible = false
 [connection signal="pressed" from="Buttons/RestartButton" to="." method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="Buttons/HBoxContainer/MainMenuButton" to="." method="_on_MainMenuButton_pressed"]
 [connection signal="pressed" from="Buttons/HBoxContainer/HighscoreButton" to="." method="_on_HighscoreButton_pressed"]
+[connection signal="pressed" from="SkipAnimationButton" to="." method="_on_SkipAnimationButton_pressed"]
 [connection signal="animation_finished" from="FadeTransition" to="." method="_on_FadeTransition_animation_finished"]
