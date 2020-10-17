@@ -11,11 +11,11 @@ dest_files=[ "res://.import/dirtyjewbs-menuloop.wav-d0e1e8fb1bd900178781a75c7fc3
 
 [params]
 
-force/8_bit=false
+force/8_bit=true
 force/mono=false
 force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop=true
 compress/mode=0
