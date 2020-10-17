@@ -7,8 +7,8 @@ var next_scene := String()
 
 
 func _ready() -> void:
-	if MusicController.current_track != "mainmenu":
-		MusicController.set_track_menu("mainmenu")
+	if MusicController.current_track != "menu":
+		MusicController.set_track_menu("menu")
 	set_highscores()
 	$FadeTransition.fade_out()
 	$Buttons/HBoxContainer/MainMenuButton.grab_focus()

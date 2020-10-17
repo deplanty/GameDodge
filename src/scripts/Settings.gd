@@ -9,8 +9,8 @@ var img_fx_off := load("res://assets/images/ui/sound_fx_off.png")
 
 
 func _ready() -> void:
-	if MusicController.current_track != "mainmenu":
-		MusicController.set_track_menu("mainmenu")
+	if MusicController.current_track != "menu":
+		MusicController.set_track_menu("menu")
 	
 	if Globals.music_on:
 		$Container/VBox/Sound/MusicButton.icon = img_music_on

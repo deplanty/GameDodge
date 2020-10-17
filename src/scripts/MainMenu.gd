@@ -6,8 +6,8 @@ var next_scene := String()
 
 func _ready() -> void:
 	# Set menu music
-	if MusicController.current_track != "mainmenu":
-		MusicController.set_track_menu("mainmenu")
+	if MusicController.current_track != "menu":
+		MusicController.set_track_menu("menu")
 	# Set Interface
 	$FadeTransition.fade_out()
 	$PlayButton.grab_focus()

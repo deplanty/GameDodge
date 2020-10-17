@@ -4,25 +4,18 @@ extends Control
 var time_position := float()
 
 var current_track := String()
-var music_menu := load("res://assets/sounds/dirtyjewbs-menuloop.wav")
-var music_menu_volume := -2
-var music_game := load("res://assets/sounds/rolemu-LaCalahorra.ogg")
-var music_game_volume := -15
+onready var tracks := load_tracks()
 
 
 func set_track_menu(menu):
 	"""
-	menu = [mainmenu, game]
+	menu = [menu, game]
 	"""
 	
 	current_track = menu
-	match menu:
-		"mainmenu":
-			$AudioStreamPlayer.stream = music_menu
-			set_volume(music_menu_volume)
-		"game":
-			$AudioStreamPlayer.stream = music_game
-			set_volume(music_game_volume)
+	var track = tracks[menu]
+	$AudioStreamPlayer.stream = track[0]
+	set_volume(track[1])
 	time_position = 0
 	play()
 
@@ -56,3 +49,18 @@ func set_volume(dB: float=0.0):
 
 func playing() -> bool:
 	return $AudioStreamPlayer.playing
+
+# Import
+
+func load_track_menu(menu: String) -> Array:
+	var track = Globals.parameters.get_value("music", menu)
+	var track_url = "res://assets/sounds/%s" % track
+	var volume = Globals.parameters.get_value("music", "%s_volume" % menu)
+	return [load(track_url), volume]
+
+
+func load_tracks() -> Dictionary:
+	var tracks := Dictionary()
+	tracks["menu"] = load_track_menu("menu")
+	tracks["game"] = load_track_menu("game")
+	return tracks
