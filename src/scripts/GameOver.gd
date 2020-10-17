@@ -35,7 +35,7 @@ func _ready() -> void:
 	$Control/Player.velocity = Vector2(0, 0)
 	$Control/Player.first_move = true
 	$Control/Player.set_physics_process(false)
-	$Control/Player/AnimatedSprite.play("right")
+	$Control/Player.look_right()
 	# Start animation
 	if Globals.score > 0:
 		$Control/SpawnTimer.start(coin_spawn_dt )

@@ -15,7 +15,7 @@ func _ready() -> void:
 	
 	$Player.first_move = true
 	$Player.velocity.x = -$Player.speed.x
-	$Player.set_sprite_direction()
+	$Player.look_left()
 
 # Signals
 

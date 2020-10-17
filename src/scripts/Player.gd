@@ -37,6 +37,15 @@ func _on_Timer_timeout() -> void:
 	set_collision_layer_bit(0, true)
 	set_sprite_direction()
 
+# Look direction
+
+func look_right() -> void:
+	$AnimatedSprite.scale.x = 1
+
+
+func look_left() -> void:
+	$AnimatedSprite.scale.x = -1
+
 # Jump
 
 func jump() -> void:
@@ -47,19 +56,17 @@ func jump() -> void:
 	$AudioJump.play()
 	$AnimatedSprite.frame = 0
 	$JumpAnimation.frame = 0
-	$AnimatedSprite.play("jump")
 	$JumpAnimation.play()
+	set_sprite_direction()
 
 
 func jump_left() -> void:
 	velocity.x = -speed.x
-	set_sprite_direction()
 	jump()
 
 
 func jump_right() -> void:
 	velocity.x = speed.x
-	set_sprite_direction()
 	jump()
 
 # Tools
@@ -68,9 +75,11 @@ func set_sprite_direction() -> void:
 	if invulnerability:
 		return
 	if velocity.x < 0:
-		$AnimatedSprite.scale.x = -1
+		look_left()
+		$AnimatedSprite.play("jump")
 	else:
-		$AnimatedSprite.scale.x = 1
+		look_right()
+		$AnimatedSprite.play("jump")
 
 
 func touch_lava() -> void:
@@ -86,7 +95,7 @@ func lose_life() -> void:
 		$Timer.start(Globals.parameters.get_value("player", "invulnerability_time"))
 		set_collision_layer_bit(0, false)
 		$AnimatedSprite.frame = 0
-		$AnimatedSprite.play("shiny")
+		$AnimatedSprite.play("hurt")
 		$AnimatedSprite/FadeAnimation.play("fade")
 		# Lose  life
 		life -= 1
