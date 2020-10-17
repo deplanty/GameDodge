@@ -15,6 +15,7 @@ func _ready() -> void:
 	
 	$Player.first_move = true
 	$Player.velocity.x = -$Player.speed.x
+	$Player.set_sprite_direction()
 
 # Signals
 
@@ -43,7 +44,7 @@ func _on_HighscoreButton_pressed() -> void:
 
 
 func _on_Area2D_body_entered(body: Node) -> void:
-	$Player.jump_mainmenu()
+	$Player.jump()
 
 
 func _on_FadeTransition_animation_finished(anim_name: String) -> void:

@@ -37,49 +37,40 @@ func _on_Timer_timeout() -> void:
 	set_collision_layer_bit(0, true)
 	set_sprite_direction()
 
+# Jump
+
+func jump() -> void:
+	if not first_move:
+		emit_signal("first_jump")
+	first_move = true
+	velocity.y = -speed.y
+	$AudioJump.play()
+	$AnimatedSprite.frame = 0
+	$JumpAnimation.frame = 0
+	$AnimatedSprite.play("jump")
+	$JumpAnimation.play()
+
+
+func jump_left() -> void:
+	velocity.x = -speed.x
+	set_sprite_direction()
+	jump()
+
+
+func jump_right() -> void:
+	velocity.x = speed.x
+	set_sprite_direction()
+	jump()
+
 # Tools
 
 func set_sprite_direction() -> void:
 	if invulnerability:
 		return
 	if velocity.x < 0:
-		$AnimatedSprite.frame = 0
-		$AnimatedSprite.play("left")
+		$AnimatedSprite.scale.x = -1
 	else:
-		$AnimatedSprite.frame = 0
-		$AnimatedSprite.play("right")
-
-
-func jump() -> void:
-	if not first_move:
-		emit_signal("first_jump")
-	first_move = true
-	$AudioJump.play()
-	set_sprite_direction()
-	$JumpAnimation.frame = 0
-	$JumpAnimation.play()
-
-
-func jump_left() -> void:
-	velocity.x = -speed.x
-	velocity.y = -speed.y
-	jump()
-
-
-func jump_right() -> void:
-	velocity.x = speed.x
-	velocity.y = -speed.y
-	jump()
-
-
-func jump_mainmenu() -> void:
-	"""
-	Jump in the current direction.
-	Used for the title screen.
-	"""
-	
-	velocity.y = -speed.y
-	jump()
+		$AnimatedSprite.scale.x = 1
 
 
 func touch_lava() -> void:

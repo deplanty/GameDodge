@@ -114,7 +114,7 @@ func _on_Coin_caught_last() -> void:
 
 func _on_AreaJump_body_entered(body: Node) -> void:
 	if body == $Control/Player:
-		$Control/Player.jump_mainmenu()
+		$Control/Player.jump()
 
 # Highscore
 
