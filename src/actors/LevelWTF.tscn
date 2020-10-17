@@ -263,6 +263,7 @@ margin_top = 70.0
 margin_right = 272.0
 margin_bottom = 110.0
 rect_min_size = Vector2( 0, 40 )
+mouse_default_cursor_shape = 2
 text = "BUTTON_RESUME"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -274,6 +275,7 @@ margin_top = 120.0
 margin_right = 272.0
 margin_bottom = 160.0
 rect_min_size = Vector2( 0, 40 )
+mouse_default_cursor_shape = 2
 text = "BUTTON_RESTART"
 
 [node name="MainMenuButton" type="Button" parent="PauseMenu/MarginContainer/VBoxContainer"]
@@ -282,6 +284,7 @@ margin_top = 170.0
 margin_right = 272.0
 margin_bottom = 210.0
 rect_min_size = Vector2( 0, 40 )
+mouse_default_cursor_shape = 2
 text = "BUTTON_MAINMENU"
 [connection signal="body_entered" from="World/LavaDetector" to="." method="_on_LavaDetector_body_entered"]
 [connection signal="first_jump" from="Player" to="." method="_on_Player_first_jump"]
