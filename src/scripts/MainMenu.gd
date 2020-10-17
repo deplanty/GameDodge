@@ -5,14 +5,15 @@ var next_scene := String()
 
 
 func _ready() -> void:
-	if not MusicController.playing():
-		MusicController.set_track("res://assets/sounds/rolemu-LaCalahorra.ogg", true)
-		MusicController.set_volume(-15)
+	# Set menu music
+	if MusicController.current_track != "mainmenu":
+		MusicController.set_track_menu("mainmenu")
+	# Set Interface
 	$FadeTransition.fade_out()
 	$PlayButton.grab_focus()
 	$SwitchModeButton.set_label("BUTTON_MODE_LABEL")
 	$SwitchModeButton.set_list(["GAME_MODE_NORMAL", "GAME_MODE_WTF"], Globals.mode_selected)
-	
+	# Set player animation
 	$Player.first_move = true
 	$Player.velocity.x = -$Player.speed.x
 	$Player.look_left()

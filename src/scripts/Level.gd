@@ -15,6 +15,8 @@ var next_scene := String()
 # Porcess
 
 func _ready() -> void:
+	if MusicController.current_track != "game":
+		MusicController.set_track_menu("game")
 	print("New game")
 	$Player.life = Globals.parameters.get_value("player", "life_max")
 	$Control/Lifebar.set_max_life($Player.life)
