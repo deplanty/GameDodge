@@ -46,10 +46,12 @@ func _input(event: InputEvent) -> void:
 
 
 func _on_TouchLeft_pressed() -> void:
+	print("TouchLeft")
 	$Player.jump_left()
 
 
 func _on_TouchRight_pressed() -> void:
+	print("TouchRight")
 	$Player.jump_right()
 
 

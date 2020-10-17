@@ -98,6 +98,10 @@ pause={
  ]
 }
 
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
 [layer_names]
 
 2d_physics/layer_1="player"
@@ -110,6 +114,10 @@ pause={
 
 locale_filter=[ 0, [ "en", "fr" ] ]
 translations=PoolStringArray( "res://assets/translations/translations.en.translation", "res://assets/translations/translations.fr.translation" )
+
+[logging]
+
+file_logging/enable_file_logging=true
 
 [rendering]
 

@@ -181,9 +181,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FadeTransition" parent="Control" instance=ExtResource( 5 )]
-visible = false
-
 [node name="TouchLeft" type="TouchScreenButton" parent="Control"]
 position = Vector2( 0, 64 )
 shape = SubResource( 3 )
@@ -191,6 +188,9 @@ shape = SubResource( 3 )
 [node name="TouchRight" type="TouchScreenButton" parent="Control"]
 position = Vector2( 208, 64 )
 shape = SubResource( 3 )
+
+[node name="FadeTransition" parent="Control" instance=ExtResource( 5 )]
+visible = false
 
 [node name="PauseMenu" type="Popup" parent="."]
 pause_mode = 2
@@ -278,9 +278,9 @@ text = "BUTTON_MAINMENU"
 [connection signal="lose_life" from="Player" to="." method="_on_Player_lose_life"]
 [connection signal="timeout" from="Control/ResumeCounter/ResumeTimer" to="." method="_on_ResumeTimer_timeout"]
 [connection signal="pressed" from="Control/PauseButton" to="." method="_on_PauseButton_pressed"]
-[connection signal="animation_finished" from="Control/FadeTransition" to="." method="_on_FadeTransition_animation_finished"]
 [connection signal="pressed" from="Control/TouchLeft" to="." method="_on_TouchLeft_pressed"]
 [connection signal="pressed" from="Control/TouchRight" to="." method="_on_TouchRight_pressed"]
+[connection signal="animation_finished" from="Control/FadeTransition" to="." method="_on_FadeTransition_animation_finished"]
 [connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_ResumeButton_pressed"]
 [connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/MainMenuButton" to="." method="_on_MainMenuButton_pressed"]

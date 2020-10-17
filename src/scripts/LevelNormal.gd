@@ -16,6 +16,10 @@ func _ready() -> void:
 	$Timers/RainTimerStop.wait_time = Globals.parameters.get_value("level_normal", "timer_rain_stop")
 	$Timers/RainRewardTimer.wait_time = Globals.parameters.get_value("level_normal", "timer_rain_reward")
 
+
+func _process(delta: float) -> void:
+	._process(delta)
+
 # Signals
 
 func _on_Player_first_jump() -> void:
@@ -61,7 +65,6 @@ func _on_RainTimerStart_timeout() -> void:
 func _on_WarningAnimation_animation_finished(anim_name: String) -> void:
 	if anim_name == "alert":
 		$Control/Warning/Label.visible = false
-		$Timers/RainTimerStart.stop()
 		$Timers/RainTimerDt.start()
 		$Timers/RainTimerStop.start()
 	elif anim_name == "calm":
@@ -78,7 +81,6 @@ func _on_RainTimerDt_timeout() -> void:
 
 func _on_RainTimerStop_timeout() -> void:
 	$Timers/RainTimerDt.stop()
-	$Timers/RainTimerStop.stop()
 	$Control/Warning/ColorRect/WarningAnimation.play("calm")
 
 
