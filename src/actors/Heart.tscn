@@ -80,7 +80,7 @@ animations = [ {
 "speed": 10.0
 } ]
 
-[sub_resource type="Animation" id=19]
+[sub_resource type="Animation" id=18]
 resource_name = "expand"
 length = 0.2
 tracks/0/type = "value"
@@ -96,8 +96,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0.1, 0.1 ), Vector2( 2, 2 ) ]
 }
 
-[sub_resource type="Animation" id=18]
-resource_name = "shrink"
+[sub_resource type="Animation" id=19]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:scale")
@@ -112,15 +111,25 @@ tracks/0/keys = {
 "values": [ Vector2( 2, 2 ), Vector2( 0.1, 0.1 ) ]
 }
 
-[node name="Heart" type="AnimatedSprite"]
+[node name="Heart" type="CenterContainer"]
+margin_right = 30.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 30, 26 )
+rect_scale = Vector2( 2, 2 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 15, 13 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 17 )
 animation = "full"
-frame = 5
+frame = 1
 playing = true
-script = ExtResource( 2 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/expand = SubResource( 19 )
-anims/shrink = SubResource( 18 )
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite"]
+anims/expand = SubResource( 18 )
+anims/shrink = SubResource( 19 )
+[connection signal="animation_finished" from="AnimatedSprite/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

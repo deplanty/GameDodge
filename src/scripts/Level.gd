@@ -16,6 +16,8 @@ var next_scene := String()
 
 func _ready() -> void:
 	print("New game")
+	$Player.life = Globals.parameters.get_value("player", "life_max")
+	$Control/Lifebar.set_max_life($Player.life)
 	$Control/FadeTransition.fade_out()
 	# Wait for user to jump once in ordre to start the scene
 	set_process(false)
