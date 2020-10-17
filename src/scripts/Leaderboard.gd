@@ -15,8 +15,12 @@ func _ready() -> void:
 	$TabContainer/Buttons/TabNormal/UnderlineNormal.visible = false
 	$TabContainer/Buttons/TabWTF.set("custom_fonts/font", font_normal)
 	$TabContainer/Buttons/TabWTF/UnderlineWTF.visible = false
-	# Show normal mode leaderboard
-	_on_TabNormal_pressed()
+	# Show current mode leaderboard
+	match Globals.mode_selected:
+		"GAME_MODE_NORMAL":
+			_on_TabNormal_pressed()
+		"GAME_MODE_WTF":
+			_on_TabWTF_pressed()
 
 # Signals
 
