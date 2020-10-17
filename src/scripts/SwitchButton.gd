@@ -1,6 +1,9 @@
 extends Button
 
 
+signal selection_changed
+
+
 var elements := Array()
 var current := 0
 
@@ -16,6 +19,7 @@ func _on_SwitchButton_pressed() -> void:
 	if current >= elements.size():
 		current = 0
 	$HBoxContainer/Selection.text = elements[current]
+	emit_signal("selection_changed")
 
 # Tools
 

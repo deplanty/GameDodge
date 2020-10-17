@@ -29,13 +29,17 @@ func _on_QuitButton_pressed() -> void:
 
 
 func _on_PlayButton_pressed() -> void:
-	var mode_selected = $SwitchModeButton.get_selection()
-	Globals.mode_selected = mode_selected
-	if mode_selected == "GAME_MODE_NORMAL":
-		next_scene = "res://src/actors/LevelNormal.tscn"
-	elif mode_selected == "GAME_MODE_WTF":
-		next_scene = "res://src/actors/LevelWTF.tscn"
+#	Globals.mode_selected = $SwitchModeButton.get_selection()
+	match Globals.mode_selected:
+		"GAME_MODE_NORMAL":
+			next_scene = "res://src/actors/LevelNormal.tscn"
+		"GAME_MODE_WTF":
+			next_scene = "res://src/actors/LevelWTF.tscn"
 	$FadeTransition.fade_in()
+
+
+func _on_SwitchModeButton_selection_changed() -> void:
+	Globals.mode_selected = $SwitchModeButton.get_selection()
 
 
 func _on_HighscoreButton_pressed() -> void:

@@ -142,6 +142,7 @@ visible = false
 [connection signal="pressed" from="OptionButton" to="." method="_on_OptionButton_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="pressed" from="PlayButton" to="." method="_on_PlayButton_pressed"]
+[connection signal="selection_changed" from="SwitchModeButton" to="." method="_on_SwitchModeButton_selection_changed"]
 [connection signal="pressed" from="HighscoreButton" to="." method="_on_HighscoreButton_pressed"]
 [connection signal="first_jump" from="Player" to="." method="_on_Player_first_jump"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
