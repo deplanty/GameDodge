@@ -54,10 +54,10 @@ __meta__ = {
 [node name="Player" parent="Control" instance=ExtResource( 10 )]
 position = Vector2( 16, 24 )
 
-[node name="AreaJump" type="Area2D" parent="Control/Player"]
-position = Vector2( 0, 14 )
+[node name="AreaJump" type="Area2D" parent="Control"]
+position = Vector2( 16, 38 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/Player/AreaJump"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/AreaJump"]
 shape = SubResource( 1 )
 
 [node name="SpawnTimer" type="Timer" parent="Control"]
@@ -193,7 +193,7 @@ __meta__ = {
 
 [node name="FadeTransition" parent="." instance=ExtResource( 9 )]
 visible = false
-[connection signal="body_entered" from="Control/Player/AreaJump" to="." method="_on_AreaJump_body_entered"]
+[connection signal="body_entered" from="Control/AreaJump" to="." method="_on_AreaJump_body_entered"]
 [connection signal="timeout" from="Control/SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
 [connection signal="gui_input" from="Name/NameEdit" to="." method="_on_NameEdit_gui_input"]
 [connection signal="pressed" from="Name/NameButton" to="." method="_on_NameButton_pressed"]

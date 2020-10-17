@@ -130,7 +130,7 @@ position = Vector2( 40, 120 )
 position = Vector2( 376, 192 )
 
 [node name="Torch3" parent="World/Torches" instance=ExtResource( 1 )]
-position = Vector2( 48, 320 )
+position = Vector2( 40, 320 )
 
 [node name="Torch4" parent="World/Torches" instance=ExtResource( 1 )]
 position = Vector2( 376, 384 )
@@ -184,7 +184,6 @@ wait_time = 0.5
 
 [node name="Lifebar" parent="Control" instance=ExtResource( 9 )]
 anchor_right = 0.0
-anchor_bottom = 0.0
 margin_left = 35.0
 margin_top = 8.0
 margin_right = 140.0
