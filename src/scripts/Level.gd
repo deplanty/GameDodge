@@ -59,18 +59,6 @@ func _on_TouchRight_pressed() -> void:
 	$Player.jump_right()
 
 
-func _on_Player_first_jump() -> void:
-	# Hide instructions
-	$Control/Instruction.visible = false
-	# Create enemies
-	Globals.velocity_multiplier = 1.0
-	add_random_pattern()
-	# Create coin
-	add_coin()
-	# Start game
-	set_process(true)
-
-
 func _on_LavaDetector_body_entered(body: Node) -> void:
 	$Player.touch_lava()
 
@@ -90,6 +78,18 @@ func _on_Coin_fall_in_lava() -> void:
 	score = int(max(0, score - 1))
 	$Control/ScoreContainer/ValueScore/.text = str(score)
 	call_deferred("add_coin")
+
+
+func _on_Player_first_jump() -> void:
+	# Hide instructions
+	$Control/Instruction.visible = false
+	# Create enemies
+	Globals.velocity_multiplier = 1.0
+	add_random_pattern()
+	# Create coin
+	add_coin()
+	# Start game
+	set_process(true)
 
 
 func _on_Player_lose_life() -> void:
