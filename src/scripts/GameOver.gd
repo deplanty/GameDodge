@@ -73,10 +73,7 @@ func _on_NameButton_pressed() -> void:
 
 
 func _on_RestartButton_pressed() -> void:
-	if Globals.mode_selected == "GAME_MODE_NORMAL":
-		next_scene = "res://src/actors/LevelNormal.tscn"
-	elif Globals.mode_selected == "GAME_MODE_WTF":
-		next_scene = "res://src/actors/LevelWTF.tscn"
+	next_scene = "res://src/actors/Level.tscn"
 	$FadeTransition.fade_in()
 
 
@@ -134,7 +131,7 @@ func show_after_animation() -> void:
 	"""
 	Show UI elements after the coins animation.
 	"""
-	
+
 	# If score is a highscore
 	if Globals.score > highscore[-1][1]:
 		$ScoreLabel.text = "TITLE_NEW_HIGHSCORE"
@@ -149,9 +146,9 @@ func show_after_animation() -> void:
 		$Name.visible = false
 		$Buttons.visible = true
 		$Buttons/RestartButton.grab_focus()
-	
+
 	$ScoreLabel.visible = true
-	
+
 
 func custom_highscore_sort(a, b):
 	return a[1] > b[1]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://src/actors/Torch.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/actors/Player.tscn" type="PackedScene" id=2]
@@ -19,11 +19,60 @@ polygon = PoolVector2Array( 24, -32, 24, 608, 0, 608, 0, -32 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 208, 16 )
 
+[sub_resource type="Animation" id=4]
+resource_name = "alert_off"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.392157, 0, 0, 0.0784314 ), Color( 0.392157, 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "alert_on"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.392157, 0, 0, 0 ), Color( 0.392157, 0, 0, 0.392157 ), Color( 0.392157, 0, 0, 0.196078 ), Color( 0.392157, 0, 0, 0.392157 ), Color( 0.392157, 0, 0, 0.0784314 ) ]
+}
+
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 104, 276 )
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 9 )
+
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="ResumeTimer" type="Timer" parent="Timers"]
+
+[node name="BonusTimer" type="Timer" parent="Timers"]
+
+[node name="RainStartTimer" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="RainSpawnTimer" type="Timer" parent="Timers"]
+
+[node name="RainStopTimer" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="RainRewardTimer" type="Timer" parent="Timers"]
+one_shot = true
 
 [node name="background" type="Sprite" parent="."]
 position = Vector2( 208, 304 )
@@ -43,7 +92,11 @@ position = Vector2( 40, 320 )
 [node name="Torch4" parent="Torches" instance=ExtResource( 1 )]
 position = Vector2( 376, 384 )
 
+[node name="Bonus" type="Node2D" parent="."]
+
 [node name="Coins" type="Node2D" parent="."]
+
+[node name="EnemyRain" type="Node2D" parent="."]
 
 [node name="Enemies" type="Node2D" parent="."]
 
@@ -125,9 +178,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ResumeTimer" type="Timer" parent="Control/ResumeCounter"]
-wait_time = 0.5
-
 [node name="Lifebar" parent="Control" instance=ExtResource( 6 )]
 anchor_right = 0.0
 margin_left = 35.0
@@ -166,6 +216,55 @@ clip_text = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Filler" type="Control" parent="Control/ScoreContainer"]
+margin_top = 30.0
+margin_right = 20.0
+margin_bottom = 44.0
+
+[node name="ValueScoreMax" type="Label" parent="Control/ScoreContainer"]
+margin_left = 28.0
+margin_top = 30.0
+margin_right = 68.0
+margin_bottom = 44.0
+text = "0"
+
+[node name="Warning" type="Control" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Control/Warning"]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -176.0
+margin_top = 94.0
+margin_right = 176.0
+margin_bottom = 160.0
+custom_fonts/font = ExtResource( 11 )
+custom_colors/font_color = Color( 0.588235, 0.117647, 0.117647, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "LABEL_WARNING"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Control/Warning"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.392157, 0, 0, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WarningAnimation" type="AnimationPlayer" parent="Control/Warning/ColorRect"]
+anims/alert_off = SubResource( 4 )
+anims/alert_on = SubResource( 5 )
 
 [node name="PauseButton" type="Button" parent="Control"]
 anchor_left = 1.0
@@ -275,10 +374,16 @@ margin_bottom = 210.0
 rect_min_size = Vector2( 0, 40 )
 mouse_default_cursor_shape = 2
 text = "BUTTON_MAINMENU"
+[connection signal="timeout" from="Timers/ResumeTimer" to="." method="_on_ResumeTimer_timeout"]
+[connection signal="timeout" from="Timers/BonusTimer" to="." method="_on_BonusTimer_timeout"]
+[connection signal="timeout" from="Timers/RainStartTimer" to="." method="_on_RainStartTimer_timeout"]
+[connection signal="timeout" from="Timers/RainSpawnTimer" to="." method="_on_RainSpawnTimer_timeout"]
+[connection signal="timeout" from="Timers/RainStopTimer" to="." method="_on_RainStopTimer_timeout"]
+[connection signal="timeout" from="Timers/RainRewardTimer" to="." method="_on_RainRewardTimer_timeout"]
 [connection signal="body_entered" from="World/LavaDetector" to="." method="_on_LavaDetector_body_entered"]
 [connection signal="first_jump" from="Player" to="." method="_on_Player_first_jump"]
 [connection signal="lose_life" from="Player" to="." method="_on_Player_lose_life"]
-[connection signal="timeout" from="Control/ResumeCounter/ResumeTimer" to="." method="_on_ResumeTimer_timeout"]
+[connection signal="animation_finished" from="Control/Warning/ColorRect/WarningAnimation" to="." method="_on_WarningAnimation_animation_finished"]
 [connection signal="pressed" from="Control/PauseButton" to="." method="_on_PauseButton_pressed"]
 [connection signal="pressed" from="Control/TouchLeft" to="." method="_on_TouchLeft_pressed"]
 [connection signal="pressed" from="Control/TouchRight" to="." method="_on_TouchRight_pressed"]

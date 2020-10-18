@@ -10,12 +10,12 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node2D",
-"class": "LevelBase",
+"class": "Level",
 "language": "GDScript",
 "path": "res://src/scripts/Level.gd"
 } ]
 _global_script_class_icons={
-"LevelBase": ""
+"Level": ""
 }
 
 [application]

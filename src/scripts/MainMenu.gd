@@ -30,12 +30,7 @@ func _on_QuitButton_pressed() -> void:
 
 
 func _on_PlayButton_pressed() -> void:
-#	Globals.mode_selected = $SwitchModeButton.get_selection()
-	match Globals.mode_selected:
-		"GAME_MODE_NORMAL":
-			next_scene = "res://src/actors/LevelNormal.tscn"
-		"GAME_MODE_WTF":
-			next_scene = "res://src/actors/LevelWTF.tscn"
+	next_scene = "res://src/actors/Level.tscn"
 	$FadeTransition.fade_in()
 
 
@@ -56,6 +51,6 @@ func _on_FadeTransition_animation_finished(anim_name: String) -> void:
 	"""
 	Change scene after the fade transition
 	"""
-	
+
 	if anim_name == "fade_in":
 		get_tree().change_scene(next_scene)
