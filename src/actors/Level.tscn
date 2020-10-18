@@ -19,7 +19,7 @@ polygon = PoolVector2Array( 24, -32, 24, 608, 0, 608, 0, -32 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 208, 16 )
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "alert_off"
 length = 2.0
 tracks/0/type = "value"
@@ -35,7 +35,7 @@ tracks/0/keys = {
 "values": [ Color( 0.392157, 0, 0, 0.0784314 ), Color( 0.392157, 0, 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 resource_name = "alert_on"
 length = 4.0
 tracks/0/type = "value"
@@ -51,7 +51,7 @@ tracks/0/keys = {
 "values": [ Color( 0.392157, 0, 0, 0 ), Color( 0.392157, 0, 0, 0.392157 ), Color( 0.392157, 0, 0, 0.196078 ), Color( 0.392157, 0, 0, 0.392157 ), Color( 0.392157, 0, 0, 0.0784314 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 104, 276 )
 
 [node name="Level" type="Node2D"]
@@ -263,8 +263,8 @@ __meta__ = {
 }
 
 [node name="WarningAnimation" type="AnimationPlayer" parent="Control/Warning/ColorRect"]
-anims/alert_off = SubResource( 4 )
-anims/alert_on = SubResource( 5 )
+anims/alert_off = SubResource( 3 )
+anims/alert_on = SubResource( 4 )
 
 [node name="PauseButton" type="Button" parent="Control"]
 anchor_left = 1.0
@@ -281,11 +281,11 @@ __meta__ = {
 
 [node name="TouchLeft" type="TouchScreenButton" parent="Control"]
 position = Vector2( 0, 64 )
-shape = SubResource( 3 )
+shape = SubResource( 5 )
 
 [node name="TouchRight" type="TouchScreenButton" parent="Control"]
 position = Vector2( 208, 64 )
-shape = SubResource( 3 )
+shape = SubResource( 5 )
 
 [node name="FadeTransition" parent="Control" instance=ExtResource( 5 )]
 visible = false

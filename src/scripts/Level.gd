@@ -52,19 +52,6 @@ func _ready() -> void:
 	# Wait for user to jump once in ordre to start the scene
 	set_process(false)
 
-
-func _process(delta: float) -> void:
-	# Check if all the enemies are deleted
-	var all_deleted = true
-	for e in current_enemies:
-		if is_instance_valid(e):
-			all_deleted = false
-			break
-
-	if all_deleted and game_state == "pattern":
-		Globals.velocity_multiplier += Globals.parameters.get_value("gameplay", "velocity_multiplier")
-		add_random_pattern()
-
 # User events
 
 func _input(event: InputEvent) -> void:
@@ -157,6 +144,43 @@ func _on_Player_lose_life() -> void:
 	$Control/Lifebar.set_life($Player.life)
 	if $Player.life <= 0:
 		on_death()
+
+# Pattern
+
+func _on_Enemy_tree_exited() -> void:
+	if $Enemies.get_child_count() <= 0:
+		Globals.velocity_multiplier += Globals.parameters.get_value("gameplay", "velocity_multiplier")
+		add_random_pattern()
+
+
+func add_random_pattern() -> void:
+	"""
+	Add a random pattern on the scene
+	"""
+
+	print("Enemy speed multiplier: ", Globals.velocity_multiplier)
+	var i = round(rand_range(0, Globals.enemy_patterns.size() - 1))
+	current_enemies = load_pattern(Globals.enemy_patterns, i)
+	for e in current_enemies:
+		$Enemies.add_child(e)
+
+
+func load_pattern(patterns, i: int) -> Array:
+	"""
+	Load a single pattern
+	"""
+
+	var array = []
+	for enemy in patterns[i]:
+		var p = Vector2(enemy["position"][0], enemy["position"][1])
+		var v = Vector2(enemy["velocity"][0], enemy["velocity"][1])
+		var e = enemy_scene.instance()
+		e.position = p
+		e.velocity = v * Globals.velocity_multiplier
+		e.connect("tree_exited", self, "_on_Enemy_tree_exited")
+		array.append(e)
+
+	return array
 
 # Rain
 
@@ -322,36 +346,6 @@ func on_death() -> void:
 			Globals.score = score_max
 	next_scene = "res://src/actors/GameOver.tscn"
 	$Control/FadeTransition.fade_in()
-
-# Patterns
-
-func add_random_pattern() -> void:
-	"""
-	Add a random pattern on the scene
-	"""
-
-	print("Enemy speed multiplier: ", Globals.velocity_multiplier)
-	var i = round(rand_range(0, Globals.enemy_patterns.size() - 1))
-	current_enemies = load_pattern(Globals.enemy_patterns, i)
-	for e in current_enemies:
-		$Enemies.add_child(e)
-
-
-func load_pattern(patterns, i: int) -> Array:
-	"""
-	Load a single pattern
-	"""
-
-	var array = []
-	for enemy in patterns[i]:
-		var p = Vector2(enemy["position"][0], enemy["position"][1])
-		var v = Vector2(enemy["velocity"][0], enemy["velocity"][1])
-		var e = enemy_scene.instance()
-		e.position = p
-		e.velocity = v * Globals.velocity_multiplier
-		array.append(e)
-
-	return array
 
 # Misc
 
