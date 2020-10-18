@@ -9,7 +9,7 @@ export var velocity := Vector2(0, 150)
 
 func _physics_process(delta: float) -> void:
 	move_and_slide(velocity)
-	
+
 	if position.y > Globals.parameters.get_value("viewport", "height"):
 		queue_free()
 

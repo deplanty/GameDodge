@@ -50,7 +50,7 @@ func init_settings(force: bool=false) -> void:
 	If the setiings does not exist, copy the file to the user location.
 	Force the replacement of the current settings if needed.
 	"""
-	
+
 	var dir := Directory.new()
 	if dir.file_exists(path_settings_user) and not force:
 		return
@@ -72,7 +72,7 @@ func init_highscore(force: bool=false) -> void:
 	If the highscore does not exist, copy the file to the user location.
 	Force the replacement of the current highscore if needed.
 	"""
-	
+
 	var dir := Directory.new()
 	if dir.file_exists(path_highscore_user) and not force:
 		return
@@ -85,7 +85,7 @@ func load_highscores() -> Dictionary:
 	file.open(path_highscore_user, file.READ)
 	var data := JSON.parse(file.get_as_text())
 	file.close()
-	
+
 	return data.result
 
 

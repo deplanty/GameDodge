@@ -16,7 +16,7 @@ func _ready() -> void:
 			})
 		patterns.append(pattern)
 	print("Done!")
-	
+
 	var fid := File.new()
 	fid.open("res://assets/patterns.json", fid.WRITE)
 	fid.store_line(JSON.print(patterns, "\t"))

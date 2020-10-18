@@ -31,7 +31,7 @@ func _on_TabNormal_pressed() -> void:
 	"""
 	Show the Normal mode leaderboard.
 	"""
-	
+
 	$TabContainer/Buttons/TabNormal.set("custom_fonts/font", font_big)
 	$TabContainer/GAME_MODE_NORMAL.visible = true
 	$TabContainer/Buttons/TabNormal/UnderlineNormal.visible = true
@@ -44,7 +44,7 @@ func _on_TabWTF_pressed() -> void:
 	"""
 	Show the WTF mode leaderboard.
 	"""
-	
+
 	$TabContainer/Buttons/TabNormal.set("custom_fonts/font", font_normal)
 	$TabContainer/GAME_MODE_NORMAL.visible = false
 	$TabContainer/Buttons/TabNormal/UnderlineNormal.visible = false

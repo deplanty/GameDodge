@@ -11,7 +11,7 @@ func set_track_menu(menu):
 	"""
 	menu = [menu, game]
 	"""
-	
+
 	current_track = menu
 	var track = tracks[menu]
 	$AudioStreamPlayer.stream = track[0]

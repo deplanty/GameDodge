@@ -12,7 +12,7 @@ func _physics_process(delta: float) -> void:
 	# Bounce on wall
 	if is_on_wall():
 		velocity.x *= -1
-	
+
 	# Delete when on lava
 	if is_on_floor():
 		queue_free()
@@ -33,5 +33,5 @@ func _on_ExplosionTimer_timeout() -> void:
 	"""
 	After an explosion.
 	"""
-	
+
 	queue_free()

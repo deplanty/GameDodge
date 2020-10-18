@@ -13,7 +13,7 @@ func _on_SwitchButton_pressed() -> void:
 	"""
 	Select next element.
 	"""
-	
+
 	# Cycle
 	current += 1
 	if current >= elements.size():
@@ -32,10 +32,10 @@ func set_list(list: Array, index=0) -> void:
 	Set the list and the current element.
 	'current' can be an integer or an element of the list.
 	"""
-	
+
 	elements.clear()
 	elements = list
-	
+
 	if typeof(index) == TYPE_INT:
 		current = index
 	else:
