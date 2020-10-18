@@ -66,13 +66,13 @@ func _on_RainTimerStart_timeout() -> void:
 func _on_WarningAnimation_animation_finished(anim_name: String) -> void:
 	if anim_name == "alert":
 		$Control/Warning/Label.visible = false
-		for torch in $World/Torches.get_children():
+		for torch in $Torches.get_children():
 			torch.set_alert(true)
 		$Timers/RainTimerDt.start()
 		$Timers/RainTimerStop.start()
 	elif anim_name == "calm":
 		add_bonus_coin(Globals.parameters.get_value("level_normal", "coins_rain_reward"))
-		for torch in $World/Torches.get_children():
+		for torch in $Torches.get_children():
 			torch.set_alert(false)
 		$Timers/RainRewardTimer.start()
 

@@ -35,7 +35,7 @@ tracks/0/keys = {
 "values": [ Color( 0.392157, 0, 0, 0 ), Color( 0.392157, 0, 0, 0.392157 ), Color( 0.392157, 0, 0, 0.196078 ), Color( 0.392157, 0, 0, 0.392157 ), Color( 0.392157, 0, 0, 0.0784314 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=4]
 resource_name = "calm"
 length = 2.0
 tracks/0/type = "value"
@@ -256,7 +256,7 @@ __meta__ = {
 
 [node name="WarningAnimation" type="AnimationPlayer" parent="Control/Warning/ColorRect"]
 anims/alert = SubResource( 3 )
-anims/calm = SubResource( 6 )
+anims/calm = SubResource( 4 )
 
 [node name="PauseButton" type="Button" parent="Control"]
 anchor_left = 1.0
