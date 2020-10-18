@@ -24,7 +24,7 @@ func _on_Detector_body_entered(body: Node) -> void:
 		$AnimationPlayer.play("delete")
 		$Particles2D/Timer.start()
 		$Particles2D.emitting = true
-		$LightOccluder2D.visible = false
+		$LightOccluder2D.hide()
 		$Detector.disconnect("body_entered", self, "_on_Detector_body_entered")
 		emit_signal("caught")
 

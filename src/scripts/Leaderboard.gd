@@ -14,12 +14,12 @@ func _ready() -> void:
 	$Buttons/HBoxContainer/MainMenuButton.grab_focus()
 	# Set fonts on buttons
 	$TabContainer/Buttons/TabNormal.set("custom_fonts/font", font_normal)
-	$TabContainer/Buttons/TabNormal/UnderlineNormal.visible = false
+	$TabContainer/Buttons/TabNormal/UnderlineNormal.hide()
 	$TabContainer/Buttons/TabWTF.set("custom_fonts/font", font_normal)
-	$TabContainer/Buttons/TabWTF/UnderlineWTF.visible = false
+	$TabContainer/Buttons/TabWTF/UnderlineWTF.hide()
 	# Show current mode leaderboard
-	print(Globals.mode_selected)
-	match Globals.mode_selected:
+	print(Globals.game_mode_selected)
+	match Globals.game_mode_selected:
 		"GAME_MODE_NORMAL":
 			_on_TabNormal_pressed()
 		"GAME_MODE_WTF":
@@ -33,11 +33,11 @@ func _on_TabNormal_pressed() -> void:
 	"""
 
 	$TabContainer/Buttons/TabNormal.set("custom_fonts/font", font_big)
-	$TabContainer/GAME_MODE_NORMAL.visible = true
-	$TabContainer/Buttons/TabNormal/UnderlineNormal.visible = true
+	$TabContainer/GAME_MODE_NORMAL.show()
+	$TabContainer/Buttons/TabNormal/UnderlineNormal.show()
 	$TabContainer/Buttons/TabWTF.set("custom_fonts/font", font_normal)
-	$TabContainer/GAME_MODE_WTF.visible = false
-	$TabContainer/Buttons/TabWTF/UnderlineWTF.visible = false
+	$TabContainer/GAME_MODE_WTF.hide()
+	$TabContainer/Buttons/TabWTF/UnderlineWTF.hide()
 
 
 func _on_TabWTF_pressed() -> void:
@@ -46,11 +46,11 @@ func _on_TabWTF_pressed() -> void:
 	"""
 
 	$TabContainer/Buttons/TabNormal.set("custom_fonts/font", font_normal)
-	$TabContainer/GAME_MODE_NORMAL.visible = false
-	$TabContainer/Buttons/TabNormal/UnderlineNormal.visible = false
+	$TabContainer/GAME_MODE_NORMAL.hide()
+	$TabContainer/Buttons/TabNormal/UnderlineNormal.hide()
 	$TabContainer/Buttons/TabWTF.set("custom_fonts/font", font_big)
-	$TabContainer/GAME_MODE_WTF.visible = true
-	$TabContainer/Buttons/TabWTF/UnderlineWTF.visible = true
+	$TabContainer/GAME_MODE_WTF.show()
+	$TabContainer/Buttons/TabWTF/UnderlineWTF.show()
 
 
 func _on_MainMenuButton_pressed() -> void:

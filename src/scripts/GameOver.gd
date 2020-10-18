@@ -23,7 +23,7 @@ onready var coin_scene := preload("res://src/actors/Coin.tscn")
 # Highscore
 var highscores := Dictionary()  # All mode highscores
 var highscore := Array()  # Current mode highscores
-onready var mode_selected = Globals.mode_selected
+onready var game_mode_selected = Globals.game_mode_selected
 var next_scene := String()
 
 
@@ -31,7 +31,7 @@ func _ready() -> void:
 	$FadeTransition.fade_out()
 	# Load highscore
 	highscores = Globals.load_highscores()
-	highscore = highscores[mode_selected]
+	highscore = highscores[game_mode_selected]
 	# Player
 	$Control/Player.velocity = Vector2(0, 0)
 	$Control/Player.first_move = true
@@ -47,7 +47,7 @@ func _ready() -> void:
 
 
 func _on_SkipAnimationButton_pressed() -> void:
-	$SkipAnimationButton.visible = false
+	$SkipAnimationButton.hide()
 	for coin in $Control/Coins.get_children():
 		coin.queue_free()
 	$Control/SpawnTimer.stop()
@@ -63,8 +63,8 @@ func _on_NameEdit_gui_input(event: InputEvent) -> void:
 func _on_NameButton_pressed() -> void:
 	if $Name/NameEdit.text == "":
 		return
-	$Name.visible = false
-	$Buttons.visible = true
+	$Name.hide()
+	$Buttons.show()
 	$Buttons/RestartButton.grab_focus()
 	# Save higscore and player name
 	add_highscore($Name/NameEdit.text, Globals.score)
@@ -135,19 +135,19 @@ func show_after_animation() -> void:
 	# If score is a highscore
 	if Globals.score > highscore[-1][1]:
 		$ScoreLabel.text = "TITLE_NEW_HIGHSCORE"
-		$Name.visible = true
-		$Buttons.visible = false
+		$Name.show()
+		$Buttons.hide()
 		$Name/NameEdit.text = Globals.username
 		$Name/NameEdit.grab_focus()
 		$Control/Player.set_physics_process(true)
 	# If score is not a highscore
 	else:
 		$ScoreLabel.text = "TITLE_SCORE"
-		$Name.visible = false
-		$Buttons.visible = true
+		$Name.hide()
+		$Buttons.show()
 		$Buttons/RestartButton.grab_focus()
 
-	$ScoreLabel.visible = true
+	$ScoreLabel.show()
 
 
 func custom_highscore_sort(a, b):
@@ -160,5 +160,5 @@ func add_highscore(name: String, score: int) -> void:
 	highscore.sort_custom(self, "custom_highscore_sort")
 	highscore.pop_back()
 	# Write highscores
-	highscores[mode_selected] = highscore
+	highscores[game_mode_selected] = highscore
 	Globals.save_highscores(highscores)

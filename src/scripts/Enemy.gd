@@ -24,7 +24,7 @@ func _physics_process(delta: float) -> void:
 func _on_Detector_body_entered(body: Node) -> void:
 	if body.name == "Player":
 		body.lose_life()
-		$Sprite.visible = false
+		$Sprite.hide()
 		$Explosion.emitting = true
 		$Explosion/ExplosionTimer.start()
 

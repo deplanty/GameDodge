@@ -10,7 +10,7 @@ const path_highscore_user := "user://highscore.json"
 const path_enemy_patterns := "res://assets/patterns.json"
 
 # Mode
-var mode_selected := "GAME_MODE_NORMAL"
+var game_mode_selected := "GAME_MODE_NORMAL"
 
 # Settings
 var parameters := ConfigFile.new()

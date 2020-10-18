@@ -12,7 +12,7 @@ func _ready() -> void:
 	$FadeTransition.fade_out()
 	$PlayButton.grab_focus()
 	$SwitchModeButton.set_label("BUTTON_MODE_LABEL")
-	$SwitchModeButton.set_list(["GAME_MODE_NORMAL", "GAME_MODE_WTF"], Globals.mode_selected)
+	$SwitchModeButton.set_list(["GAME_MODE_NORMAL", "GAME_MODE_WTF"], Globals.game_mode_selected)
 	# Set player animation
 	$Player.first_move = true
 	$Player.velocity.x = -$Player.speed.x
@@ -35,7 +35,7 @@ func _on_PlayButton_pressed() -> void:
 
 
 func _on_SwitchModeButton_selection_changed() -> void:
-	Globals.mode_selected = $SwitchModeButton.get_selection()
+	Globals.game_mode_selected = $SwitchModeButton.get_selection()
 
 
 func _on_HighscoreButton_pressed() -> void:

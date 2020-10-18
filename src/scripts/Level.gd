@@ -18,9 +18,8 @@ var game_state := "pattern"
 var next_scene := String()
 
 # Parameters
-# TODO: Use a parameter script?
-var game_coin = 1
-var game_bonus = true
+var game_coin = 0
+var game_bonus = false
 var game_pattern = false
 var game_rain = false
 
@@ -139,7 +138,7 @@ func _on_FadeTransition_animation_finished(anim_name) -> void:
 
 func _on_Player_first_jump() -> void:
 	# Hide instructions
-	$Control/Instruction.visible = false
+	$Control/Instruction.hide()
 	# Create enemies
 	Globals.velocity_multiplier = 1.0
 	add_random_pattern()
@@ -173,7 +172,7 @@ func _on_RainStartTimer_timeout() -> void:
 	if game_bonus:
 		$Timers/BonusTimer.paused = true
 
-	$Control/Warning/Label.visible = true
+	$Control/Warning/Label.show()
 	$Control/Warning/ColorRect/WarningAnimation.play("alert_on")
 	game_state = "rain"
 
@@ -186,7 +185,7 @@ func _on_WarningAnimation_animation_finished(anim_name: String) -> void:
 
 	# Step 2
 	if anim_name == "alert_on":
-		$Control/Warning/Label.visible = false
+		$Control/Warning/Label.hide()
 		for torch in $Torches.get_children():
 			torch.set_alert(true)
 		$Timers/RainSpawnTimer.start()
@@ -224,7 +223,7 @@ func _on_RainRewardTimer_timeout() -> void:
 	Step 6: spawn patterns.
 	"""
 
-	$Control/Warning/Label.visible = false
+	$Control/Warning/Label.hide()
 	$Timers/RainStartTimer.start()
 	$Timers/BonusTimer.paused = false
 	game_state = "pattern"
@@ -367,9 +366,9 @@ func load_game_mode(mode: String) -> void:
 	game_bonus = Globals.parameters.get_value(mode, "game_bonus")
 
 	if mode == "level_normal":
-		$Control/ScoreContainer/ValueScoreMax.visible = false
+		$Control/ScoreContainer/ValueScoreMax.hide()
 	elif mode == "level_wtf":
-		$Control/ScoreContainer/ValueScoreMax.visible = true
+		$Control/ScoreContainer/ValueScoreMax.show()
 
 
 func set_all_physics_process(state: bool) -> void:
