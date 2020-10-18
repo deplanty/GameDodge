@@ -42,7 +42,7 @@ func _ready() -> void:
 	$Timers/RainRewardTimer.wait_time = Globals.parameters.get_value("level_normal", "timer_rain_reward")
 
 	# Game mode dependent
-	match Globals.mode_selected:
+	match Globals.game_mode_selected:
 		"GAME_MODE_NORMAL":
 			load_game_mode("level_normal")
 		"GAME_MODE_WTF":
@@ -237,7 +237,7 @@ func _on_Coin_caught() -> void:
 	call_deferred("add_coins", game_coin)
 
 	# Game mode dependent
-	if Globals.mode_selected == "GAME_MODE_WTF":
+	if Globals.game_mode_selected == "GAME_MODE_WTF":
 		score_max = int(max(score_max, score))
 		$Control/ScoreContainer/ValueScoreMax.text = str(score_max)
 
@@ -247,7 +247,7 @@ func _on_CoinBonus_caught() -> void:
 	$Control/ScoreContainer/ValueScore.text = str(score)
 
 	# Game mode dependent
-	if Globals.mode_selected == "GAME_MODE_WTF":
+	if Globals.game_mode_selected == "GAME_MODE_WTF":
 		score_max = int(max(score_max, score))
 		$Control/ScoreContainer/ValueScoreMax.text = str(score_max)
 
@@ -316,7 +316,11 @@ func on_resume_game() -> void:
 
 func on_death() -> void:
 	$Player.invulnerability = true
-	Globals.score = score
+	match Globals.game_mode_selected:
+		"GAME_MODE_NORMAL":
+			Globals.score = score
+		"GAME_MODE_WTF":
+			Globals.score = score_max
 	next_scene = "res://src/actors/GameOver.tscn"
 	$Control/FadeTransition.fade_in()
 
