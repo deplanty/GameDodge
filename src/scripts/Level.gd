@@ -148,8 +148,7 @@ func _on_Player_lose_life() -> void:
 # Pattern
 
 func _on_Enemy_tree_exited() -> void:
-	if $Enemies.get_child_count() <= 0:
-		Globals.velocity_multiplier += Globals.parameters.get_value("gameplay", "velocity_multiplier")
+	if game_state == "pattern" and $Enemies.get_child_count() <= 0:
 		add_random_pattern()
 
 
@@ -163,6 +162,8 @@ func add_random_pattern() -> void:
 	current_enemies = load_pattern(Globals.enemy_patterns, i)
 	for e in current_enemies:
 		$Enemies.add_child(e)
+	# Increase speed for next pattern
+	Globals.velocity_multiplier += Globals.parameters.get_value("gameplay", "velocity_multiplier")
 
 
 func load_pattern(patterns, i: int) -> Array:
@@ -251,6 +252,7 @@ func _on_RainRewardTimer_timeout() -> void:
 	$Timers/RainStartTimer.start()
 	$Timers/BonusTimer.paused = false
 	game_state = "pattern"
+	add_random_pattern()
 
 # Coins
 
