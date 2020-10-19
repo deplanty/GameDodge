@@ -260,7 +260,6 @@ func _on_Coin_caught() -> void:
 	score += 1
 	$Control/ScoreContainer/ValueScore.text = str(score)
 	call_deferred("add_coins", game_coin)
-
 	# Game mode dependent
 	if Globals.game_mode_selected == "GAME_MODE_WTF":
 		score_max = int(max(score_max, score))
@@ -270,7 +269,6 @@ func _on_Coin_caught() -> void:
 func _on_CoinBonus_caught() -> void:
 	score += 1
 	$Control/ScoreContainer/ValueScore.text = str(score)
-
 	# Game mode dependent
 	if Globals.game_mode_selected == "GAME_MODE_WTF":
 		score_max = int(max(score_max, score))
@@ -294,6 +292,17 @@ func add_coins(n: int):
 		coin.connect("fall_in_lava", self, "_on_Coin_fall_in_lava")
 		$Coins.add_child(coin)
 
+
+func add_bonus_coins(n: int) -> void:
+	for i in range(n):
+		# Get x and y position
+		var coords := get_random_position_spawning()
+		# Create coin
+		var coin = coin_bonus_scene.instance()
+		coin.init(coords)
+		coin.connect("caught", self, "_on_CoinBonus_caught")
+		$Bonus.add_child(coin)
+
 # Bonus
 
 func _on_BonusTimer_timeout() -> void:
@@ -306,18 +315,6 @@ func _on_BonusTimer_timeout() -> void:
 
 func _on_Bonus_caught() -> void:
 	call_deferred("add_bonus_coins", Globals.parameters.get_value("level_normal", "coins_bonus"))
-
-# Bonus coin
-
-func add_bonus_coins(n: int) -> void:
-	for i in range(n):
-		# Get x and y position
-		var coords := get_random_position_spawning()
-		# Create coin
-		var coin = coin_bonus_scene.instance()
-		coin.init(coords)
-		coin.connect("caught", self, "_on_CoinBonus_caught")
-		$Coins.add_child(coin)
 
 # Lava
 
