@@ -96,9 +96,9 @@ position = Vector2( 376, 384 )
 
 [node name="Coins" type="Node2D" parent="."]
 
-[node name="EnemyRain" type="Node2D" parent="."]
+[node name="Rain" type="Node2D" parent="."]
 
-[node name="Enemies" type="Node2D" parent="."]
+[node name="Pattern" type="Node2D" parent="."]
 
 [node name="World" type="Node2D" parent="."]
 

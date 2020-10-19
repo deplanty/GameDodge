@@ -33,12 +33,6 @@ func _ready() -> void:
 	# Set player
 	$Player.life = Globals.parameters.get_value("player", "life_max")
 	$Control/Lifebar.set_max_life($Player.life)
-	# Set timers
-	$Timers/BonusTimer.wait_time = Globals.parameters.get_value("level_normal", "timer_bonus")
-	$Timers/RainStartTimer.wait_time = Globals.parameters.get_value("level_normal", "timer_rain_start")
-	$Timers/RainSpawnTimer.wait_time = Globals.parameters.get_value("level_normal", "timer_rain_dt")
-	$Timers/RainStopTimer.wait_time = Globals.parameters.get_value("level_normal", "timer_rain_stop")
-	$Timers/RainRewardTimer.wait_time = Globals.parameters.get_value("level_normal", "timer_rain_reward")
 
 	# Game mode dependent
 	match Globals.game_mode_selected:
@@ -148,7 +142,7 @@ func _on_Player_lose_life() -> void:
 # Pattern
 
 func _on_Enemy_tree_exited() -> void:
-	if game_state == "pattern" and $Enemies.get_child_count() <= 0:
+	if game_state == "pattern" and $Pattern.get_child_count() <= 0:
 		add_random_pattern()
 
 
@@ -161,7 +155,7 @@ func add_random_pattern() -> void:
 	var i = round(rand_range(0, Globals.enemy_patterns.size() - 1))
 	current_enemies = load_pattern(Globals.enemy_patterns, i)
 	for e in current_enemies:
-		$Enemies.add_child(e)
+		$Pattern.add_child(e)
 	# Increase speed for next pattern
 	Globals.velocity_multiplier += Globals.parameters.get_value("gameplay", "velocity_multiplier")
 
@@ -231,7 +225,7 @@ func _on_RainSpawnTimer_timeout() -> void:
 	var enemy := enemy_rain_scene.instance()
 	enemy.position = get_random_position_spawning()
 	enemy.velocity = Vector2(0, 150)
-	$EnemyRain.add_child(enemy)
+	$Rain.add_child(enemy)
 
 
 func _on_RainStopTimer_timeout() -> void:
@@ -360,6 +354,12 @@ func load_game_mode(mode: String) -> void:
 
 	if mode == "level_normal":
 		$Control/ScoreContainer/ValueScoreMax.hide()
+		# Set timers
+		$Timers/BonusTimer.wait_time = Globals.parameters.get_value("level_normal", "timer_bonus")
+		$Timers/RainStartTimer.wait_time = Globals.parameters.get_value("level_normal", "timer_rain_start")
+		$Timers/RainSpawnTimer.wait_time = Globals.parameters.get_value("level_normal", "timer_rain_dt")
+		$Timers/RainStopTimer.wait_time = Globals.parameters.get_value("level_normal", "timer_rain_stop")
+		$Timers/RainRewardTimer.wait_time = Globals.parameters.get_value("level_normal", "timer_rain_reward")
 	elif mode == "level_wtf":
 		$Control/ScoreContainer/ValueScoreMax.show()
 
@@ -374,10 +374,10 @@ func set_all_physics_process(state: bool) -> void:
 	for bonus in $Bonus.get_children():
 		bonus.set_physics_process(state)
 	# Pattern
-	for enemy in $Enemies.get_children():
+	for enemy in $Pattern.get_children():
 		enemy.set_physics_process(state)
 	# Rain
-	for enemy in $EnemyRain.get_children():
+	for enemy in $Rain.get_children():
 		enemy.set_physics_process(state)
 
 
