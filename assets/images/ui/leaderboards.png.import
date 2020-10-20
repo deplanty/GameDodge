@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/home.png-2e2775273923affab7726a1cfb71ddd9.stex"
+path="res://.import/leaderboards.png-7609bc3f190d77d2aa23e17a07dc28df.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/ui/home.png"
-dest_files=[ "res://.import/home.png-2e2775273923affab7726a1cfb71ddd9.stex" ]
+source_file="res://assets/images/ui/leaderboards.png"
+dest_files=[ "res://.import/leaderboards.png-7609bc3f190d77d2aa23e17a07dc28df.stex" ]
 
 [params]
 

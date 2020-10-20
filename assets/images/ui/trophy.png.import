@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/trophee.png-a11037330f3788f80af7afbe796ee605.stex"
+path="res://.import/trophy.png-e81af1ea055f708aa2c2c9b2108a2f1d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/ui/trophee.png"
-dest_files=[ "res://.import/trophee.png-a11037330f3788f80af7afbe796ee605.stex" ]
+source_file="res://assets/images/ui/trophy.png"
+dest_files=[ "res://.import/trophy.png-e81af1ea055f708aa2c2c9b2108a2f1d.stex" ]
 
 [params]
 
