@@ -28,7 +28,7 @@ config/icon="res://icon.png"
 
 Globals="*res://src/scripts/Globals.gd"
 MusicController="*res://src/actors/MusicController.tscn"
-Bbcode="*res://src/scripts/Bbcode.gd"
+Stats="*res://src/scripts/Stats.gd"
 
 [display]
 

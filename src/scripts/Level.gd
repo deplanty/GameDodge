@@ -1,7 +1,7 @@
 extends Node2D
 class_name Level
 
-# Sceness
+# Scenes
 
 onready var enemy_scene := preload("res://src/actors/Enemy.tscn")
 onready var enemy_rain_scene := preload("res://src/actors/EnemyRain.tscn")
@@ -41,6 +41,9 @@ func _ready() -> void:
 		"GAME_MODE_WTF":
 			load_game_mode("level_wtf")
 
+	# Reset stats
+	Stats.reset()
+
 	# Fade out to display the game
 	$Control/FadeTransition.fade_out()
 	# Wait for user to jump once in ordre to start the scene
@@ -59,13 +62,13 @@ func _input(event: InputEvent) -> void:
 
 
 func _on_TouchLeft_pressed() -> void:
-	print("TouchLeft")
-	$Player.jump_left()
+	if not game_paused:
+		$Player.jump_left()
 
 
 func _on_TouchRight_pressed() -> void:
-	print("TouchRight")
-	$Player.jump_right()
+	if not game_paused:
+		$Player.jump_right()
 
 # Pause menu
 
@@ -143,12 +146,13 @@ func _on_Player_lose_life() -> void:
 
 func _on_Enemy_tree_exited() -> void:
 	if game_state == "pattern" and $Pattern.get_child_count() <= 0:
+		Stats.patterns_dodged += 1
 		add_random_pattern()
 
 
 func add_random_pattern() -> void:
 	"""
-	Add a random pattern on the scene
+	Add a random pattern on the scene.
 	"""
 
 	print("Enemy speed multiplier: ", Globals.velocity_multiplier)
@@ -162,7 +166,7 @@ func add_random_pattern() -> void:
 
 func load_pattern(patterns, i: int) -> Array:
 	"""
-	Load a single pattern
+	Load a single pattern.
 	"""
 
 	var array = []
@@ -242,9 +246,13 @@ func _on_RainRewardTimer_timeout() -> void:
 	Step 6: spawn patterns.
 	"""
 
+	# Reset timers
 	$Control/Warning/Label.hide()
 	$Timers/RainStartTimer.start()
 	$Timers/BonusTimer.paused = false
+	# Yayyyy!
+	Stats.rain_dodged += 1
+	# Spawn patterns
 	game_state = "pattern"
 	add_random_pattern()
 
@@ -252,6 +260,7 @@ func _on_RainRewardTimer_timeout() -> void:
 
 func _on_Coin_caught() -> void:
 	score += 1
+	Stats.coins_caught += 1
 	$Control/ScoreContainer/ValueScore.text = str(score)
 	call_deferred("add_coins", game_coin)
 	# Game mode dependent
@@ -262,6 +271,7 @@ func _on_Coin_caught() -> void:
 
 func _on_CoinBonus_caught() -> void:
 	score += 1
+	Stats.bonus_coins_caught += 1
 	$Control/ScoreContainer/ValueScore.text = str(score)
 	# Game mode dependent
 	if Globals.game_mode_selected == "GAME_MODE_WTF":
@@ -271,10 +281,15 @@ func _on_CoinBonus_caught() -> void:
 
 func _on_Coin_fall_in_lava() -> void:
 	score = int(max(0, score - 1))
+	Stats.coins_lost += 1
 	$Control/ScoreContainer/ValueScore.text = str(score)
 	# Spawn a coin if count <= 1 because queue_free() takes some time
 	if $Coins.get_child_count() <= 1:
 		call_deferred("add_coins", 1)
+
+
+func _on_CoinBonus_fall_in_lava() -> void:
+	Stats.bonus_coins_lost += 1
 
 
 func add_coins(n: int):
@@ -295,6 +310,7 @@ func add_bonus_coins(n: int) -> void:
 		var coin = coin_bonus_scene.instance()
 		coin.init(coords)
 		coin.connect("caught", self, "_on_CoinBonus_caught")
+		coin.connect("fall_in_lava", self, "_on_CoinBonus_fall_in_lava")
 		$Bonus.add_child(coin)
 
 # Bonus
@@ -304,11 +320,17 @@ func _on_BonusTimer_timeout() -> void:
 	var coords := get_random_position_spawning()
 	bonus.init(coords)
 	bonus.connect("caught", self, "_on_Bonus_caught")
+	bonus.connect("fall_in_lava", self, "_on_Bonus_fall_in_lava")
 	$Bonus.add_child(bonus)
 
 
 func _on_Bonus_caught() -> void:
+	Stats.bonus_caught += 1
 	call_deferred("add_bonus_coins", Globals.parameters.get_value("level_normal", "coins_bonus"))
+
+
+func _on_Bonus_fall_in_lava() -> void:
+	Stats.bonus_lost += 1
 
 # Lava
 

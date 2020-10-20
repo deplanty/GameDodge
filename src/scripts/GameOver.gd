@@ -28,7 +28,6 @@ var next_scene := String()
 
 
 func _ready() -> void:
-	$FadeTransition.fade_out()
 	# Load highscore
 	highscores = Globals.load_highscores()
 	highscore = highscores[game_mode_selected]
@@ -43,8 +42,18 @@ func _ready() -> void:
 	else:
 		show_after_animation()
 
-# Signals
+	$FadeTransition.fade_out()
 
+	print("Patterns esquivés : ", Stats.patterns_dodged)
+	print("Pluies évitées : ", Stats.rain_dodged)
+	print("Pièces attrapées : ", Stats.coins_caught)
+	print("Pièces perdues : ", Stats.coins_lost)
+	print("Pièces bonus attrapées : ", Stats.bonus_coins_caught)
+	print("Bonus attrapés : ", Stats.bonus_caught)
+	print("Pièces bonus perdues : ", Stats.bonus_coins_lost)
+	print("Bonus perdus : ", Stats.bonus_lost)
+
+# Signals
 
 func _on_SkipAnimationButton_pressed() -> void:
 	$SkipAnimationButton.hide()
