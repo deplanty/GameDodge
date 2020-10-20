@@ -251,7 +251,7 @@ func _on_RainRewardTimer_timeout() -> void:
 	$Timers/RainStartTimer.start()
 	$Timers/BonusTimer.paused = false
 	# Yayyyy!
-	Stats.rain_dodged += 1
+	Stats.rains_dodged += 1
 	# Spawn patterns
 	game_state = "pattern"
 	add_random_pattern()

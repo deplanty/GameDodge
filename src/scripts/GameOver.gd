@@ -31,6 +31,8 @@ func _ready() -> void:
 	# Load highscore
 	highscores = Globals.load_highscores()
 	highscore = highscores[game_mode_selected]
+	# Load stats
+	set_stats()
 	# Player
 	$Control/Player.velocity = Vector2(0, 0)
 	$Control/Player.first_move = true
@@ -45,7 +47,7 @@ func _ready() -> void:
 	$FadeTransition.fade_out()
 
 	print("Patterns esquivés : ", Stats.patterns_dodged)
-	print("Pluies évitées : ", Stats.rain_dodged)
+	print("Pluies évitées : ", Stats.rains_dodged)
 	print("Pièces attrapées : ", Stats.coins_caught)
 	print("Pièces perdues : ", Stats.coins_lost)
 	print("Pièces bonus attrapées : ", Stats.bonus_coins_caught)
@@ -62,6 +64,13 @@ func _on_SkipAnimationButton_pressed() -> void:
 	$Control/SpawnTimer.stop()
 	$ScoreValue.text = str(Globals.score)
 	show_after_animation()
+
+
+func _on_StatsToggleButton_toggled(button_pressed: bool) -> void:
+	if button_pressed:
+		$StatsPopup.show()
+	else:
+		$StatsPopup.hide()
 
 
 func _on_NameEdit_gui_input(event: InputEvent) -> void:
@@ -171,3 +180,34 @@ func add_highscore(name: String, score: int) -> void:
 	# Write highscores
 	highscores[game_mode_selected] = highscore
 	Globals.save_highscores(highscores)
+
+# Statistics
+
+func set_stats() -> void:
+	add_stats_line("LABEL_STATS_PATTERNS_DODGED", Stats.patterns_dodged)
+	add_stats_line("LABEL_STATS_RAINS_DODGED", Stats.rains_dodged)
+	add_stats_line("LABEL_STATS_COINS_CAUGHT", Stats.coins_caught)
+	add_stats_line("LABEL_STATS_COINS_LOST", Stats.coins_lost)
+	add_stats_line("LABEL_STATS_COINS_BONUS_CAUGHT", Stats.bonus_coins_caught)
+	add_stats_line("LABEL_STATS_COINS_BONUS_LOST", Stats.bonus_coins_lost)
+	add_stats_line("LABEL_STATS_BONUS_CAUGHT", Stats.bonus_caught)
+	add_stats_line("LABEL_STATS_BONUS_LOST", Stats.bonus_lost)
+
+	# If at least one coin or bonus have been lost
+	if Stats.coins_lost + Stats.bonus_coins_lost + Stats.bonus_lost > 0:
+		var total := Stats.coins_caught + Stats.coins_lost
+		total += Stats.bonus_coins_caught + Stats.bonus_coins_lost
+		total += Stats.bonus_lost * Globals.parameters.get_value("level_normal", "coins_bonus")
+		add_stats_line("", "")
+		add_stats_line("LABEL_STATS_TAUNT", total, true)
+
+func add_stats_line(text: String, value, autowrap: bool=false) -> void:
+	var label = Label.new()
+	label.text = text
+	label.autowrap = autowrap
+	label.rect_min_size.x = 175
+	$StatsPopup/CenterContainer/Grid.add_child(label)
+
+	var label_value = Label.new()
+	label_value.text = str(value)
+	$StatsPopup/CenterContainer/Grid.add_child(label_value)

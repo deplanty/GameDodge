@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/images/base_tileset.tres" type="TileSet" id=4]
 [ext_resource path="res://assets/font/Run_40.tres" type="DynamicFont" id=5]
 [ext_resource path="res://assets/images/ui/shutdown.png" type="Texture" id=6]
-[ext_resource path="res://assets/images/ui/trophee.png" type="Texture" id=7]
+[ext_resource path="res://assets/images/ui/leaderboards.png" type="Texture" id=7]
 [ext_resource path="res://src/actors/Player.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/actors/FadeTransition.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/images/ui/gear.png" type="Texture" id=10]
@@ -115,11 +115,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -45.0
-margin_top = -172.0
-margin_right = -13.0
-margin_bottom = -144.0
-rect_scale = Vector2( 3, 3 )
+margin_left = -31.0
+margin_top = -168.0
+margin_right = 31.0
+margin_bottom = -112.0
 mouse_default_cursor_shape = 2
 icon = ExtResource( 7 )
 flat = true

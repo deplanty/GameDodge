@@ -17,3 +17,12 @@ LABEL_RESUME_GO;Go!;C'est parti !
 LABEL_WARNING;WARNING!;ATTENTION !
 ENTRY_PSEUDO;Pseudo;Pseudo
 INSTRUCTION_PLAY;Press ← or → to start;Appuyer sur ← ou → pour commencer
+LABEL_STATS_PATTERNS_DODGED;Patterns dodged;Patterns esquivés
+LABEL_STATS_RAINS_DODGED;Rains dodged;Pluies évitées
+LABEL_STATS_COINS_CAUGHT;Coins caught;Pièces attrapées
+LABEL_STATS_COINS_LOST;Coins lost;Pièces perdues
+LABEL_STATS_COINS_BONUS_CAUGHT;Bonus coins caught;Pièces bonus attrapées
+LABEL_STATS_COINS_BONUS_LOST;Bonus coins lost;Pièces bonus perdues
+LABEL_STATS_BONUS_CAUGHT;Bonus caught;Bonus attrapés
+LABEL_STATS_BONUS_LOST;Bonus lost;Bonus perdus
+LABEL_STATS_TAUNT;Look at your score if you didn't suck at this game:;Voilà ton score si tu n'étais pas nul à ce jeu :

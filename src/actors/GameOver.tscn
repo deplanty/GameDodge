@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/scripts/GameOver.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/background.png" type="Texture" id=2]
@@ -7,9 +7,10 @@
 [ext_resource path="res://assets/images/base_tileset.tres" type="TileSet" id=5]
 [ext_resource path="res://assets/images/ui/reload.png" type="Texture" id=6]
 [ext_resource path="res://assets/font/Overpass-Regular_40.tres" type="DynamicFont" id=7]
-[ext_resource path="res://assets/images/ui/trophee.png" type="Texture" id=8]
+[ext_resource path="res://assets/images/ui/leaderboards.png" type="Texture" id=8]
 [ext_resource path="res://src/actors/FadeTransition.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/actors/Player.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/images/ui/information.png" type="Texture" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 10 )
@@ -141,15 +142,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Buttons" type="Control" parent="."]
-visible = false
+[node name="Buttons" type="Popup" parent="."]
+visible = true
 margin_left = 48.0
 margin_top = 320.0
 margin_right = 368.0
 margin_bottom = 504.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="RestartButton" type="Button" parent="Buttons"]
 anchor_left = 0.5
@@ -165,26 +163,38 @@ flat = true
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -54.0
-custom_constants/separation = 80
+margin_top = -56.0
+custom_constants/separation = 40
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="StatsToggleButton" type="Button" parent="Buttons/HBoxContainer"]
+margin_left = 28.0
+margin_right = 90.0
+margin_bottom = 56.0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+icon = ExtResource( 11 )
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="MainMenuButton" type="Button" parent="Buttons/HBoxContainer"]
-margin_left = 60.0
-margin_right = 120.0
-margin_bottom = 54.0
+margin_left = 130.0
+margin_right = 192.0
+margin_bottom = 56.0
 rect_min_size = Vector2( 60, 54 )
 mouse_default_cursor_shape = 2
 icon = ExtResource( 3 )
 flat = true
 
 [node name="HighscoreButton" type="Button" parent="Buttons/HBoxContainer"]
-margin_left = 200.0
-margin_right = 260.0
-margin_bottom = 54.0
+margin_left = 232.0
+margin_right = 292.0
+margin_bottom = 56.0
 rect_min_size = Vector2( 60, 54 )
 mouse_default_cursor_shape = 2
 icon = ExtResource( 8 )
@@ -193,6 +203,42 @@ expand_icon = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="StatsPopup" type="Popup" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -144.0
+margin_top = -176.0
+margin_right = 144.0
+margin_bottom = 144.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="StatsPopup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="StatsPopup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Grid" type="GridContainer" parent="StatsPopup/CenterContainer"]
+margin_left = 144.0
+margin_top = 160.0
+margin_right = 144.0
+margin_bottom = 160.0
+custom_constants/vseparation = 10
+custom_constants/hseparation = 10
+columns = 2
 
 [node name="SkipAnimationButton" type="TouchScreenButton" parent="."]
 shape = SubResource( 2 )
@@ -204,6 +250,7 @@ visible = false
 [connection signal="gui_input" from="Name/NameEdit" to="." method="_on_NameEdit_gui_input"]
 [connection signal="pressed" from="Name/NameButton" to="." method="_on_NameButton_pressed"]
 [connection signal="pressed" from="Buttons/RestartButton" to="." method="_on_RestartButton_pressed"]
+[connection signal="toggled" from="Buttons/HBoxContainer/StatsToggleButton" to="." method="_on_StatsToggleButton_toggled"]
 [connection signal="pressed" from="Buttons/HBoxContainer/MainMenuButton" to="." method="_on_MainMenuButton_pressed"]
 [connection signal="pressed" from="Buttons/HBoxContainer/HighscoreButton" to="." method="_on_HighscoreButton_pressed"]
 [connection signal="pressed" from="SkipAnimationButton" to="." method="_on_SkipAnimationButton_pressed"]
