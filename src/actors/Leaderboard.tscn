@@ -432,9 +432,7 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = -16.0
 margin_bottom = 100.0
-text = "Cette action est définitive
-
-Etes-vous sûr de vouloir remettre à zéro les scores ?"
+text = "LABEL_RESET_LEADERBOARD"
 align = 1
 valign = 1
 autowrap = true
@@ -462,14 +460,14 @@ margin_left = 69.0
 margin_right = 129.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 60, 40 )
-text = "Oui"
+text = "LABEL_YES"
 
 [node name="NoButton" type="Button" parent="PopupConfirmReset/Buttons"]
 margin_left = 159.0
 margin_right = 219.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 60, 40 )
-text = "Non"
+text = "LABEL_NO"
 
 [node name="FadeTransition" parent="." instance=ExtResource( 5 )]
 visible = false
