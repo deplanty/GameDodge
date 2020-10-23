@@ -17,13 +17,16 @@ func _ready() -> void:
 	$TabContainer/Buttons/TabNormal/UnderlineNormal.hide()
 	$TabContainer/Buttons/TabWTF.set("custom_fonts/font", font_normal)
 	$TabContainer/Buttons/TabWTF/UnderlineWTF.hide()
+	$TabContainer/Buttons/TabRain.set("custom_fonts/font", font_normal)
+	$TabContainer/Buttons/TabRain/UnderlineRain.hide()
 	# Show current mode leaderboard
-	print(Globals.game_mode_selected)
 	match Globals.game_mode_selected:
 		"GAME_MODE_NORMAL":
 			_on_TabNormal_pressed()
 		"GAME_MODE_WTF":
 			_on_TabWTF_pressed()
+		"GAME_MODE_RAIN":
+			_on_TabRain_pressed()
 
 # Signals
 
@@ -38,6 +41,9 @@ func _on_TabNormal_pressed() -> void:
 	$TabContainer/Buttons/TabWTF.set("custom_fonts/font", font_normal)
 	$TabContainer/GAME_MODE_WTF.hide()
 	$TabContainer/Buttons/TabWTF/UnderlineWTF.hide()
+	$TabContainer/Buttons/TabRain.set("custom_fonts/font", font_normal)
+	$TabContainer/GAME_MODE_RAIN.hide()
+	$TabContainer/Buttons/TabRain/UnderlineRain.hide()
 
 
 func _on_TabWTF_pressed() -> void:
@@ -51,6 +57,25 @@ func _on_TabWTF_pressed() -> void:
 	$TabContainer/Buttons/TabWTF.set("custom_fonts/font", font_big)
 	$TabContainer/GAME_MODE_WTF.show()
 	$TabContainer/Buttons/TabWTF/UnderlineWTF.show()
+	$TabContainer/Buttons/TabRain.set("custom_fonts/font", font_normal)
+	$TabContainer/GAME_MODE_RAIN.hide()
+	$TabContainer/Buttons/TabRain/UnderlineRain.hide()
+
+
+func _on_TabRain_pressed() -> void:
+	"""
+	Show the Rain mode leaderboard.
+	"""
+
+	$TabContainer/Buttons/TabNormal.set("custom_fonts/font", font_normal)
+	$TabContainer/GAME_MODE_NORMAL.hide()
+	$TabContainer/Buttons/TabNormal/UnderlineNormal.hide()
+	$TabContainer/Buttons/TabWTF.set("custom_fonts/font", font_normal)
+	$TabContainer/GAME_MODE_WTF.hide()
+	$TabContainer/Buttons/TabWTF/UnderlineWTF.hide()
+	$TabContainer/Buttons/TabRain.set("custom_fonts/font", font_big)
+	$TabContainer/GAME_MODE_RAIN.show()
+	$TabContainer/Buttons/TabRain/UnderlineRain.show()
 
 
 func _on_MainMenuButton_pressed() -> void:
@@ -80,7 +105,7 @@ func _on_FadeTransition_animation_finished(anim_name: String) -> void:
 
 func set_highscores() -> void:
 	var data = Globals.load_highscores()
-	for mode in ["GAME_MODE_NORMAL", "GAME_MODE_WTF"]:
+	for mode in ["GAME_MODE_NORMAL", "GAME_MODE_WTF", "GAME_MODE_RAIN"]:
 		for i in data[mode].size():
 			var si := str(i + 1)
 			get_node("TabContainer/"+mode+"/Grid/Name"+si).text = data[mode][i][0]

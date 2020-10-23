@@ -42,6 +42,8 @@ func _ready() -> void:
 			load_game_mode("level_normal")
 		"GAME_MODE_WTF":
 			load_game_mode("level_wtf")
+		"GAME_MODE_RAIN":
+			load_game_mode("level_rain")
 
 	# Reset stats
 	Stats.reset()
@@ -125,7 +127,8 @@ func _on_Player_first_jump() -> void:
 	$Control/Instruction.hide()
 	# Create enemies
 	Globals.velocity_multiplier = 1.0
-	add_random_pattern()
+	if game_pattern:
+		add_random_pattern()
 	# Create coin
 	add_coins(1)
 	# Set timers
@@ -255,7 +258,8 @@ func _on_RainRewardTimer_timeout() -> void:
 	Stats.rains_dodged += 1
 	# Spawn patterns
 	game_state = "pattern"
-	add_random_pattern()
+	if game_pattern:
+		add_random_pattern()
 
 # Coins
 
@@ -344,10 +348,11 @@ func on_death() -> void:
 	Stats.duration_msec = OS.get_ticks_msec() - game_start_time - game_pause_time_total
 	$Player.invulnerability = true
 	match Globals.game_mode_selected:
-		"GAME_MODE_NORMAL":
-			Globals.score = score
 		"GAME_MODE_WTF":
 			Globals.score = score_max
+		_:
+			Globals.score = score
+
 	next_scene = "res://src/actors/GameOver.tscn"
 	$Control/FadeTransition.fade_in()
 
@@ -366,13 +371,20 @@ func load_game_mode(mode: String) -> void:
 	if mode == "level_normal":
 		$Control/ScoreContainer/ValueScoreMax.hide()
 		# Set timers
-		$Timers/BonusTimer.wait_time = Globals.parameters.get_value("level_normal", "timer_bonus")
-		$Timers/RainStartTimer.wait_time = Globals.parameters.get_value("level_normal", "timer_rain_start")
-		$Timers/RainSpawnTimer.wait_time = Globals.parameters.get_value("level_normal", "timer_rain_dt")
-		$Timers/RainStopTimer.wait_time = Globals.parameters.get_value("level_normal", "timer_rain_stop")
-		$Timers/RainRewardTimer.wait_time = Globals.parameters.get_value("level_normal", "timer_rain_reward")
+		$Timers/BonusTimer.wait_time = Globals.parameters.get_value(mode, "timer_bonus")
+		$Timers/RainStartTimer.wait_time = Globals.parameters.get_value(mode, "timer_rain_start")
+		$Timers/RainSpawnTimer.wait_time = Globals.parameters.get_value(mode, "timer_rain_dt")
+		$Timers/RainStopTimer.wait_time = Globals.parameters.get_value(mode, "timer_rain_stop")
+		$Timers/RainRewardTimer.wait_time = Globals.parameters.get_value(mode, "timer_rain_reward")
 	elif mode == "level_wtf":
 		$Control/ScoreContainer/ValueScoreMax.show()
+	elif mode == "level_rain":
+		$Control/ScoreContainer/ValueScoreMax.hide()
+		# Set timers
+		$Timers/RainStartTimer.wait_time = Globals.parameters.get_value(mode, "timer_rain_start")
+		$Timers/RainSpawnTimer.wait_time = Globals.parameters.get_value(mode, "timer_rain_dt")
+		$Timers/RainStopTimer.wait_time = Globals.parameters.get_value(mode, "timer_rain_stop")
+		$Timers/RainRewardTimer.wait_time = Globals.parameters.get_value(mode, "timer_rain_reward")
 
 
 func set_all_physics_process(state: bool) -> void:

@@ -51,5 +51,31 @@
 			"Antoine",
 			20
 		]
+	],
+	"GAME_MODE_RAIN": [
+		[
+			"Brasif",
+			100
+		],
+		[
+			"Jeanne",
+			10
+		],
+		[
+			"Pierre",
+			9
+		],
+		[
+			"Marie",
+			8
+		],
+		[
+			"Eric",
+			7
+		],
+		[
+			"Antoine",
+			6
+		]
 	]
 }

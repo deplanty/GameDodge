@@ -31,6 +31,7 @@ func _ready() -> void:
 	# Load highscore
 	highscores = Globals.load_highscores()
 	highscore = highscores[game_mode_selected]
+	print(highscore)
 	# Load stats
 	set_stats()
 	# Player
@@ -45,15 +46,6 @@ func _ready() -> void:
 		show_after_animation()
 
 	$FadeTransition.fade_out()
-
-	print("Patterns esquivés : ", Stats.patterns_dodged)
-	print("Pluies évitées : ", Stats.rains_dodged)
-	print("Pièces attrapées : ", Stats.coins_caught)
-	print("Pièces perdues : ", Stats.coins_lost)
-	print("Pièces bonus attrapées : ", Stats.bonus_coins_caught)
-	print("Bonus attrapés : ", Stats.bonus_caught)
-	print("Pièces bonus perdues : ", Stats.bonus_coins_lost)
-	print("Bonus perdus : ", Stats.bonus_lost)
 
 # Signals
 
