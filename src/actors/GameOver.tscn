@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/scripts/GameOver.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/background.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://src/actors/FadeTransition.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/actors/Player.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/images/ui/information.png" type="Texture" id=11]
+[ext_resource path="res://assets/font/Overpass-Bold_24.tres" type="DynamicFont" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 10 )
@@ -143,7 +144,6 @@ __meta__ = {
 }
 
 [node name="Buttons" type="Popup" parent="."]
-visible = true
 margin_left = 48.0
 margin_top = 320.0
 margin_right = 368.0
@@ -175,7 +175,6 @@ margin_left = 28.0
 margin_right = 90.0
 margin_bottom = 56.0
 mouse_default_cursor_shape = 2
-toggle_mode = true
 icon = ExtResource( 11 )
 flat = true
 __meta__ = {
@@ -212,7 +211,7 @@ anchor_bottom = 0.5
 margin_left = -144.0
 margin_top = -176.0
 margin_right = 144.0
-margin_bottom = 144.0
+margin_bottom = 208.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -224,21 +223,48 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CenterContainer" type="CenterContainer" parent="StatsPopup"]
+[node name="Title" type="Label" parent="StatsPopup"]
 anchor_right = 1.0
-anchor_bottom = 1.0
+margin_top = 8.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 12 )
+text = "LABEL_STATS_POPUP"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Grid" type="GridContainer" parent="StatsPopup/CenterContainer"]
-margin_left = 144.0
-margin_top = 160.0
-margin_right = 144.0
-margin_bottom = 160.0
+[node name="Container" type="ScrollContainer" parent="StatsPopup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 64.0
+margin_right = -24.0
+margin_bottom = -64.0
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Grid" type="GridContainer" parent="StatsPopup/Container"]
 custom_constants/vseparation = 10
 custom_constants/hseparation = 10
 columns = 2
+
+[node name="PopupCloseButton" type="Button" parent="StatsPopup"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -72.0
+margin_top = -48.0
+margin_right = 72.0
+margin_bottom = -8.0
+text = "BUTTON_OK"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="SkipAnimationButton" type="TouchScreenButton" parent="."]
 shape = SubResource( 2 )
@@ -250,8 +276,9 @@ visible = false
 [connection signal="gui_input" from="Name/NameEdit" to="." method="_on_NameEdit_gui_input"]
 [connection signal="pressed" from="Name/NameButton" to="." method="_on_NameButton_pressed"]
 [connection signal="pressed" from="Buttons/RestartButton" to="." method="_on_RestartButton_pressed"]
-[connection signal="toggled" from="Buttons/HBoxContainer/StatsToggleButton" to="." method="_on_StatsToggleButton_toggled"]
+[connection signal="pressed" from="Buttons/HBoxContainer/StatsToggleButton" to="." method="_on_StatsToggleButton_pressed"]
 [connection signal="pressed" from="Buttons/HBoxContainer/MainMenuButton" to="." method="_on_MainMenuButton_pressed"]
 [connection signal="pressed" from="Buttons/HBoxContainer/HighscoreButton" to="." method="_on_HighscoreButton_pressed"]
+[connection signal="pressed" from="StatsPopup/PopupCloseButton" to="." method="_on_PopupCloseButton_pressed"]
 [connection signal="pressed" from="SkipAnimationButton" to="." method="_on_SkipAnimationButton_pressed"]
 [connection signal="animation_finished" from="FadeTransition" to="." method="_on_FadeTransition_animation_finished"]

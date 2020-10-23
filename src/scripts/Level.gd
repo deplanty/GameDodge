@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 class_name Level
 
 # Scenes
@@ -15,6 +15,7 @@ var resume_counter := 3
 var current_enemies := []
 var game_paused := false
 var game_state := "pattern"
+var game_start_time := 0
 var next_scene := String()
 
 # Parameters
@@ -135,6 +136,7 @@ func _on_Player_first_jump() -> void:
 		$Timers/RainStartTimer.start()
 	# Start game
 	set_process(true)
+	game_start_time = OS.get_ticks_msec()
 
 
 func _on_Player_lose_life() -> void:
@@ -353,6 +355,7 @@ func on_resume_game() -> void:
 
 
 func on_death() -> void:
+	Stats.duration_msec = OS.get_ticks_msec() - game_start_time
 	$Player.invulnerability = true
 	match Globals.game_mode_selected:
 		"GAME_MODE_NORMAL":

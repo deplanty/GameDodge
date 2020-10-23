@@ -66,11 +66,12 @@ func _on_SkipAnimationButton_pressed() -> void:
 	show_after_animation()
 
 
-func _on_StatsToggleButton_toggled(button_pressed: bool) -> void:
-	if button_pressed:
-		$StatsPopup.show()
-	else:
-		$StatsPopup.hide()
+func _on_StatsToggleButton_pressed() -> void:
+	$StatsPopup.show()
+
+
+func _on_PopupCloseButton_pressed() -> void:
+	$StatsPopup.hide()
 
 
 func _on_NameEdit_gui_input(event: InputEvent) -> void:
@@ -184,8 +185,14 @@ func add_highscore(name: String, score: int) -> void:
 # Statistics
 
 func set_stats() -> void:
+	var s := round(Stats.duration_msec / 1000)
+	var m := int(s / 60)
+	s = s - m * 60
+	add_stats_line("LABEL_STATS_DURATION", "%02d:%02d" % [m, s])
+	add_stats_line("", "")
 	add_stats_line("LABEL_STATS_PATTERNS_DODGED", Stats.patterns_dodged)
 	add_stats_line("LABEL_STATS_RAINS_DODGED", Stats.rains_dodged)
+	add_stats_line("", "")
 	add_stats_line("LABEL_STATS_COINS_CAUGHT", Stats.coins_caught)
 	add_stats_line("LABEL_STATS_COINS_LOST", Stats.coins_lost)
 	add_stats_line("LABEL_STATS_COINS_BONUS_CAUGHT", Stats.bonus_coins_caught)
@@ -205,9 +212,9 @@ func add_stats_line(text: String, value, autowrap: bool=false) -> void:
 	var label = Label.new()
 	label.text = text
 	label.autowrap = autowrap
-	label.rect_min_size.x = 175
-	$StatsPopup/CenterContainer/Grid.add_child(label)
+	label.rect_min_size.x = 170
+	$StatsPopup/Container/Grid.add_child(label)
 
 	var label_value = Label.new()
 	label_value.text = str(value)
-	$StatsPopup/CenterContainer/Grid.add_child(label_value)
+	$StatsPopup/Container/Grid.add_child(label_value)
