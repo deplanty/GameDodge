@@ -13,9 +13,10 @@ var score := 0
 var score_max := 0
 var resume_counter := 3
 var current_enemies := []
-var game_paused := false
 var game_state := "pattern"
 var game_start_time := 0
+var game_pause_time_start := 0
+var game_pause_time_total := 0
 var next_scene := String()
 
 # Parameters
@@ -53,37 +54,28 @@ func _ready() -> void:
 # User events
 
 func _input(event: InputEvent) -> void:
-	if not game_paused:
-		if event.is_action_pressed("jump_left"):
-			$Player.jump_left()
-		elif event.is_action_pressed("jump_right"):
-			$Player.jump_right()
-		elif event.is_action_released("pause"):
-			_on_PauseButton_pressed()
+	if event.is_action_pressed("jump_left"):
+		$Player.jump_left()
+	elif event.is_action_pressed("jump_right"):
+		$Player.jump_right()
+	elif event.is_action_released("pause"):
+		_on_PauseButton_pressed()
 
 
 func _on_TouchLeft_pressed() -> void:
-	if not game_paused:
-		$Player.jump_left()
+	$Player.jump_left()
 
 
 func _on_TouchRight_pressed() -> void:
-	if not game_paused:
-		$Player.jump_right()
+	$Player.jump_right()
 
 # Pause menu
 
 func _on_PauseButton_pressed() -> void:
-	game_paused = true
-	set_all_physics_process(false)
+	get_tree().paused = true
+	game_pause_time_start = OS.get_ticks_msec()
 	$PauseMenu.show()
 	$PauseMenu/MarginContainer/VBoxContainer/ResumeButton.grab_focus()
-	# Pause timers
-	if game_bonus:
-		$Timers/BonusTimer.paused = true
-	if game_rain:
-		$Timers/RainSpawnTimer.paused = true
-		$Timers/RainStartTimer.paused = true
 
 
 func _on_ResumeButton_pressed() -> void:
@@ -93,11 +85,13 @@ func _on_ResumeButton_pressed() -> void:
 
 
 func _on_RestartButton_pressed() -> void:
+	get_tree().paused = false
 	$PauseMenu.hide()
 	get_tree().reload_current_scene()
 
 
 func _on_MainMenuButton_pressed() -> void:
+	get_tree().paused = false
 	$PauseMenu.hide()
 	next_scene = "res://src/actors/MainMenu.tscn"
 	$Control/FadeTransition.fade_in()
@@ -111,7 +105,12 @@ func _on_ResumeTimer_timeout() -> void:
 		$Control/ResumeCounter.text = "LABEL_RESUME_GO"
 	else:
 		$Control/ResumeCounter.text = ""
-		on_resume_game()
+		# Reset resume timer
+		resume_counter = 3
+		$Timers/ResumeTimer.stop()
+		if $Player.first_move:
+			game_pause_time_total += OS.get_ticks_msec() - game_pause_time_start
+		get_tree().paused = false
 
 # Transition
 
@@ -341,21 +340,8 @@ func _on_LavaDetector_body_entered(body: Node) -> void:
 
 # Game
 
-func on_resume_game() -> void:
-	game_paused = false
-	set_all_physics_process(true)
-	# Set timers
-	resume_counter = 3
-	$Timers/ResumeTimer.stop()
-	if game_rain:
-		$Timers/RainStartTimer.paused = false
-		$Timers/RainSpawnTimer.paused = false
-	if game_bonus and game_state == "pattern":
-		$Timers/BonusTimer.paused = false
-
-
 func on_death() -> void:
-	Stats.duration_msec = OS.get_ticks_msec() - game_start_time
+	Stats.duration_msec = OS.get_ticks_msec() - game_start_time - game_pause_time_total
 	$Player.invulnerability = true
 	match Globals.game_mode_selected:
 		"GAME_MODE_NORMAL":
