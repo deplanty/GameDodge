@@ -9,6 +9,11 @@ const path_highscore_res := "res://assets/highscore.json"
 const path_highscore_user := "user://highscore.json"
 const path_enemy_patterns := "res://assets/patterns.json"
 
+# Previous scene
+var previous_scene := String()
+var previous_scene_button := bool()
+var previous_scene_skip := bool()
+
 # Mode
 var game_mode_selected := "GAME_MODE_NORMAL"
 

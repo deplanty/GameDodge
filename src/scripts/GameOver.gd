@@ -40,10 +40,11 @@ func _ready() -> void:
 	$Control/Player.set_physics_process(false)
 	$Control/Player.look_right()
 	# Start animation
-	if Globals.score > 0:
+	if Globals.score > 0 and not Globals.previous_scene_skip:
 		$Control/SpawnTimer.start(coin_spawn_dt )
 	else:
 		show_after_animation()
+		_on_SkipAnimationButton_pressed()
 
 	$FadeTransition.fade_out()
 
@@ -85,21 +86,28 @@ func _on_NameButton_pressed() -> void:
 
 func _on_RestartButton_pressed() -> void:
 	next_scene = "res://src/actors/Level.tscn"
+	Globals.previous_scene_skip = false
+	Globals.previous_scene_button = false
 	$FadeTransition.fade_in()
 
 
 func _on_MainMenuButton_pressed() -> void:
 	next_scene = "res://src/actors/MainMenu.tscn"
+	Globals.previous_scene_skip = false
+	Globals.previous_scene_button = false
 	$FadeTransition.fade_in()
 
 
 func _on_HighscoreButton_pressed() -> void:
 	$FadeTransition.fade_in()
+	Globals.previous_scene_skip = true
+	Globals.previous_scene_button = true
 	next_scene = "res://src/actors/Leaderboard.tscn"
 
 
 func _on_FadeTransition_animation_finished(anim_name: String) -> void:
 	if anim_name == "fade_in":
+		Globals.previous_scene = get_tree().current_scene.filename
 		get_tree().change_scene(next_scene)
 
 

@@ -12,6 +12,11 @@ func _ready() -> void:
 	set_highscores()
 	$FadeTransition.fade_out()
 	$Buttons/HBoxContainer/MainMenuButton.grab_focus()
+	# Set the previous button
+	if Globals.previous_scene_button:
+		$BackButton.show()
+	else:
+		$BackButton.hide()
 	# Set fonts on buttons
 	$TabContainer/Buttons/TabNormal.set("custom_fonts/font", font_normal)
 	$TabContainer/Buttons/TabNormal/UnderlineNormal.hide()
@@ -78,8 +83,14 @@ func _on_TabRain_pressed() -> void:
 	$TabContainer/Buttons/TabRain/UnderlineRain.show()
 
 
+func _on_BackButton_pressed() -> void:
+	next_scene = Globals.previous_scene
+	$FadeTransition.fade_in()
+
+
 func _on_MainMenuButton_pressed() -> void:
 	next_scene = "res://src/actors/MainMenu.tscn"
+	Globals.previous_scene_skip = false
 	$FadeTransition.fade_in()
 
 
@@ -99,6 +110,8 @@ func _on_NoButton_pressed() -> void:
 
 func _on_FadeTransition_animation_finished(anim_name: String) -> void:
 	if anim_name == "fade_in":
+		Globals.previous_scene_button = false
+		Globals.previous_scene = get_tree().current_scene.filename
 		get_tree().change_scene(next_scene)
 
 # Tools

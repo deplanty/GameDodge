@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/images/background.png" type="Texture" id=4]
 [ext_resource path="res://src/actors/FadeTransition.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/images/base_tileset.tres" type="TileSet" id=6]
-[ext_resource path="res://assets/font/Overpass-Regular_18.tres" type="DynamicFont" id=7]
+[ext_resource path="res://assets/images/ui/arrow_left.png" type="Texture" id=7]
 [ext_resource path="res://assets/font/Run.tres" type="DynamicFont" id=8]
 
 [node name="Highscore" type="Control"]
@@ -18,8 +18,8 @@ __meta__ = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="."]
-margin_right = 416.0
-margin_bottom = 608.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 texture = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -483,20 +483,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TabContainer_" type="TabContainer" parent="."]
-visible = false
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = 48.0
-margin_top = -144.0
-margin_right = -48.0
-margin_bottom = 112.0
-custom_fonts/font = ExtResource( 7 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Buttons" type="Control" parent="."]
 margin_left = 48.0
 margin_top = 448.0
@@ -550,6 +536,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="BackButton" type="Button" parent="."]
+visible = false
+margin_left = 32.0
+margin_right = 94.0
+margin_bottom = 56.0
+icon = ExtResource( 7 )
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="PopupConfirmReset" type="PopupDialog" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -593,7 +590,7 @@ __meta__ = {
 }
 
 [node name="YesButton" type="Button" parent="PopupConfirmReset/Buttons"]
-margin_left = 69.0
+margin_left = 51.0
 margin_right = 129.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 60, 40 )
@@ -601,7 +598,7 @@ text = "LABEL_YES"
 
 [node name="NoButton" type="Button" parent="PopupConfirmReset/Buttons"]
 margin_left = 159.0
-margin_right = 219.0
+margin_right = 237.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 60, 40 )
 text = "LABEL_NO"
@@ -613,6 +610,7 @@ visible = false
 [connection signal="pressed" from="TabContainer/Buttons/TabRain" to="." method="_on_TabRain_pressed"]
 [connection signal="pressed" from="Buttons/HBoxContainer/MainMenuButton" to="." method="_on_MainMenuButton_pressed"]
 [connection signal="pressed" from="Buttons/HBoxContainer/ResetButton" to="." method="_on_ResetButton_pressed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]
 [connection signal="pressed" from="PopupConfirmReset/Buttons/YesButton" to="." method="_on_YesButton_pressed"]
 [connection signal="pressed" from="PopupConfirmReset/Buttons/NoButton" to="." method="_on_NoButton_pressed"]
 [connection signal="animation_finished" from="FadeTransition" to="." method="_on_FadeTransition_animation_finished"]
