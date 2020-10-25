@@ -189,20 +189,26 @@ func add_highscore(name: String, score: int) -> void:
 # Statistics
 
 func set_stats() -> void:
+	# Game duration
 	var s := round(Stats.duration_msec / 1000)
 	var m := int(s / 60)
 	s = s - m * 60
 	add_stats_line("LABEL_STATS_DURATION", "%02d:%02d" % [m, s])
+	# Dodges
 	add_stats_line("", "")
-	add_stats_line("LABEL_STATS_PATTERNS_DODGED", Stats.patterns_dodged)
-	add_stats_line("LABEL_STATS_RAINS_DODGED", Stats.rains_dodged)
+	if Globals.parameters.get_value(Globals.game_mode_selected, "game_pattern"):
+		add_stats_line("LABEL_STATS_PATTERNS_DODGED", Stats.patterns_dodged)
+	if Globals.parameters.get_value(Globals.game_mode_selected, "game_rain"):
+		add_stats_line("LABEL_STATS_RAINS_DODGED", Stats.rains_dodged)
+	# Coins
 	add_stats_line("", "")
 	add_stats_line("LABEL_STATS_COINS_CAUGHT", Stats.coins_caught)
 	add_stats_line("LABEL_STATS_COINS_LOST", Stats.coins_lost)
 	add_stats_line("LABEL_STATS_COINS_BONUS_CAUGHT", Stats.bonus_coins_caught)
 	add_stats_line("LABEL_STATS_COINS_BONUS_LOST", Stats.bonus_coins_lost)
-	add_stats_line("LABEL_STATS_BONUS_CAUGHT", Stats.bonus_caught)
-	add_stats_line("LABEL_STATS_BONUS_LOST", Stats.bonus_lost)
+	if Globals.parameters.get_value(Globals.game_mode_selected, "game_bonus"):
+		add_stats_line("LABEL_STATS_BONUS_CAUGHT", Stats.bonus_caught)
+		add_stats_line("LABEL_STATS_BONUS_LOST", Stats.bonus_lost)
 
 	# If at least one coin or bonus have been lost
 	if Stats.coins_lost + Stats.bonus_coins_lost + Stats.bonus_lost > 0:
