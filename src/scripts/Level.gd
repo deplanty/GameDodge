@@ -33,17 +33,11 @@ func _ready() -> void:
 	if MusicController.current_track != "game":
 		MusicController.set_track_menu("game")
 	# Set player
-	$Player.life = Globals.parameters.get_value("player", "life_max")
+	$Player.life = Globals.parameters.get_value(Globals.game_mode_selected, "player_life")
 	$Control/Lifebar.set_max_life($Player.life)
 
 	# Game mode dependent
-	match Globals.game_mode_selected:
-		"GAME_MODE_NORMAL":
-			load_game_mode("level_normal")
-		"GAME_MODE_WTF":
-			load_game_mode("level_wtf")
-		"GAME_MODE_RAIN":
-			load_game_mode("level_rain")
+	load_game_mode()
 
 	# Reset stats
 	Stats.reset()
@@ -165,7 +159,7 @@ func add_random_pattern() -> void:
 	for e in current_enemies:
 		$Pattern.add_child(e)
 	# Increase speed for next pattern
-	Globals.velocity_multiplier += Globals.parameters.get_value("gameplay", "velocity_multiplier")
+	Globals.velocity_multiplier += Globals.parameters.get_value("GAMEPLAY", "velocity_multiplier")
 
 
 func load_pattern(patterns, i: int) -> Array:
@@ -219,7 +213,7 @@ func _on_WarningAnimation_animation_finished(anim_name: String) -> void:
 		$Timers/RainStopTimer.start()
 	# Step 5
 	elif anim_name == "alert_off":
-		add_bonus_coins(Globals.parameters.get_value("level_normal", "coins_rain_reward"))
+		add_bonus_coins(Globals.parameters.get_value(Globals.game_mode_selected, "coins_rain_reward"))
 		for torch in $Torches.get_children():
 			torch.set_alert(false)
 		$Timers/RainRewardTimer.start()
@@ -331,7 +325,7 @@ func _on_BonusTimer_timeout() -> void:
 
 func _on_Bonus_caught() -> void:
 	Stats.bonus_caught += 1
-	call_deferred("add_bonus_coins", Globals.parameters.get_value("level_normal", "coins_bonus"))
+	call_deferred("add_bonus_coins", Globals.parameters.get_value(Globals.game_mode_selected, "coins_bonus"))
 
 
 func _on_Bonus_fall_in_lava() -> void:
@@ -358,17 +352,15 @@ func on_death() -> void:
 
 # Misc
 
-func load_game_mode(mode: String) -> void:
-	"""
-	mode = [level_normal, level_wtf]
-	"""
+func load_game_mode() -> void:
+	var mode = Globals.game_mode_selected
 
 	game_coin = Globals.parameters.get_value(mode, "game_coin")
 	game_pattern = Globals.parameters.get_value(mode, "game_pattern")
 	game_rain = Globals.parameters.get_value(mode, "game_rain")
 	game_bonus = Globals.parameters.get_value(mode, "game_bonus")
 
-	if mode == "level_normal":
+	if mode == "GAME_MODE_NORMAL":
 		$Control/ScoreContainer/ValueScoreMax.hide()
 		# Set timers
 		$Timers/BonusTimer.wait_time = Globals.parameters.get_value(mode, "timer_bonus")
@@ -376,9 +368,9 @@ func load_game_mode(mode: String) -> void:
 		$Timers/RainSpawnTimer.wait_time = Globals.parameters.get_value(mode, "timer_rain_dt")
 		$Timers/RainStopTimer.wait_time = Globals.parameters.get_value(mode, "timer_rain_stop")
 		$Timers/RainRewardTimer.wait_time = Globals.parameters.get_value(mode, "timer_rain_reward")
-	elif mode == "level_wtf":
+	elif mode == "GAME_MODE_WTF":
 		$Control/ScoreContainer/ValueScoreMax.show()
-	elif mode == "level_rain":
+	elif mode == "GAME_MODE_RAIN":
 		$Control/ScoreContainer/ValueScoreMax.hide()
 		# Set timers
 		$Timers/RainStartTimer.wait_time = Globals.parameters.get_value(mode, "timer_rain_start")
@@ -405,8 +397,8 @@ func set_all_physics_process(state: bool) -> void:
 
 
 func get_random_position_spawning() -> Vector2:
-	var w :int= Globals.parameters.get_value("viewport", "width")
-	var cell :int= Globals.parameters.get_value("viewport", "cell_size")
+	var w :int= Globals.parameters.get_value("VIEWPORT", "width")
+	var cell :int= Globals.parameters.get_value("VIEWPORT", "cell_size")
 	var x := round(rand_range(cell + 8, w - cell - 8))
 	var y := round(rand_range(-8, -64))
 	return Vector2(x, y)

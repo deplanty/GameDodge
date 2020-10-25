@@ -53,9 +53,9 @@ func playing() -> bool:
 # Import
 
 func load_track_menu(menu: String) -> Array:
-	var track = Globals.parameters.get_value("music", menu)
+	var track = Globals.parameters.get_value("MUSIC", menu)
 	var track_url = "res://assets/sounds/%s" % track
-	var volume = Globals.parameters.get_value("music", "%s_volume" % menu)
+	var volume = Globals.parameters.get_value("MUSIC", "%s_volume" % menu)
 	return [load(track_url), volume]
 
 

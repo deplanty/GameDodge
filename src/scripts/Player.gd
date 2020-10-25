@@ -6,12 +6,12 @@ signal lose_life
 
 # Movement
 var first_move := false
-onready var gravity :float= Globals.parameters.get_value("gameplay", "gravity")
-onready var speed :Vector2= Globals.parameters.get_value("player", "speed")
+onready var gravity :float= Globals.parameters.get_value("GAMEPLAY", "gravity")
+onready var speed :Vector2= Globals.parameters.get_value("PLAYER", "speed")
 onready var velocity := speed
 
 # Life
-var life := 3
+var life := int()
 var invulnerability := false
 
 
@@ -92,7 +92,7 @@ func lose_life() -> void:
 		$AudioHurt.play()
 		# Set invulnerability
 		invulnerability = true
-		$Timer.start(Globals.parameters.get_value("player", "invulnerability_time"))
+		$Timer.start(Globals.parameters.get_value("PLAYER", "invulnerability_time"))
 		set_collision_layer_bit(0, false)
 		$AnimatedSprite.frame = 0
 		$AnimatedSprite.play("hurt")
