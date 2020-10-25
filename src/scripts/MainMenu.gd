@@ -11,8 +11,6 @@ func _ready() -> void:
 	# Set Interface
 	$FadeTransition.fade_out()
 	$PlayButton.grab_focus()
-	$SwitchModeButton.set_label("BUTTON_MODE_LABEL")
-	$SwitchModeButton.set_list(["GAME_MODE_NORMAL", "GAME_MODE_WTF", "GAME_MODE_RAIN"], Globals.game_mode_selected)
 	# Set player animation
 	$Player.first_move = true
 	$Player.velocity.x = -$Player.speed.x
@@ -30,12 +28,8 @@ func _on_QuitButton_pressed() -> void:
 
 
 func _on_PlayButton_pressed() -> void:
-	next_scene = "res://src/actors/Level.tscn"
+	next_scene = "res://src/actors/ModeSelection.tscn"
 	$FadeTransition.fade_in()
-
-
-func _on_SwitchModeButton_selection_changed() -> void:
-	Globals.game_mode_selected = $SwitchModeButton.get_selection()
 
 
 func _on_HighscoreButton_pressed() -> void:

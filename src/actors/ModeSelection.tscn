@@ -1,0 +1,142 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/images/background.png" type="Texture" id=1]
+[ext_resource path="res://assets/images/modes/mode_wtf.png" type="Texture" id=2]
+[ext_resource path="res://assets/images/modes/mode_normal.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/base_tileset.tres" type="TileSet" id=4]
+[ext_resource path="res://assets/images/modes/mode_rain.png" type="Texture" id=5]
+[ext_resource path="res://src/scripts/ModeSelection.gd" type="Script" id=6]
+[ext_resource path="res://src/actors/FadeTransition.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/font/Run.tres" type="DynamicFont" id=8]
+[ext_resource path="res://assets/font/Overpass-Regular_24.tres" type="DynamicFont" id=9]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 4 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( 0, 2, 0, 12, 4, 0, 65536, 2, 0, 65548, 4, 0, 131072, 2, 0, 131084, 4, 0, 196608, 2, 0, 196620, 4, 0, 262144, 2, 0, 262156, 4, 0, 327680, 2, 0, 327692, 4, 0, 393216, 2, 0, 393228, 4, 0, 458752, 2, 0, 458764, 4, 0, 524288, 2, 0, 524300, 4, 0, 589824, 2, 0, 589836, 4, 0, 655360, 2, 0, 655372, 4, 0, 720896, 2, 0, 720908, 4, 0, 786432, 2, 0, 786444, 4, 0, 851968, 2, 0, 851980, 4, 0, 917504, 2, 0, 917516, 4, 0, 983040, 2, 0, 983052, 4, 0, 1048576, 2, 0, 1048588, 4, 0, 1114112, 2, 0, 1114124, 4, 0, 1179648, 2, 0, 1179649, 0, 0, 1179650, 0, 0, 1179651, 0, 0, 1179652, 0, 0, 1179653, 0, 0, 1179654, 0, 0, 1179655, 0, 0, 1179656, 0, 0, 1179657, 0, 0, 1179658, 0, 0, 1179659, 0, 0, 1179660, 4, 0 )
+
+[node name="Title" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -176.0
+margin_top = 24.0
+margin_right = 176.0
+margin_bottom = 154.0
+custom_fonts/font = ExtResource( 8 )
+text = "TITLE_MODE_SELECTION"
+align = 1
+valign = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -165.0
+margin_top = -150.0
+margin_right = 507.0
+margin_bottom = 678.0
+rect_scale = Vector2( 0.5, 0.5 )
+follow_focus = true
+scroll_vertical_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer"]
+margin_right = 1364.0
+margin_bottom = 614.0
+custom_constants/separation = 40
+
+[node name="NormalButton" type="Button" parent="ScrollContainer/HBoxContainer"]
+margin_right = 428.0
+margin_bottom = 614.0
+mouse_default_cursor_shape = 2
+icon = ExtResource( 3 )
+flat = true
+
+[node name="Label" type="Label" parent="ScrollContainer/HBoxContainer/NormalButton"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = 100.0
+margin_bottom = 124.0
+custom_fonts/font = ExtResource( 9 )
+text = "GAME_MODE_NORMAL"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WTFButton" type="Button" parent="ScrollContainer/HBoxContainer"]
+margin_left = 468.0
+margin_right = 896.0
+margin_bottom = 614.0
+mouse_default_cursor_shape = 2
+icon = ExtResource( 2 )
+flat = true
+
+[node name="Label" type="Label" parent="ScrollContainer/HBoxContainer/WTFButton"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = 100.0
+margin_bottom = 124.0
+custom_fonts/font = ExtResource( 9 )
+text = "GAME_MODE_WTF"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RainButton" type="Button" parent="ScrollContainer/HBoxContainer"]
+margin_left = 936.0
+margin_right = 1364.0
+margin_bottom = 614.0
+mouse_default_cursor_shape = 2
+icon = ExtResource( 5 )
+flat = true
+
+[node name="Label" type="Label" parent="ScrollContainer/HBoxContainer/RainButton"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = 100.0
+margin_bottom = 124.0
+custom_fonts/font = ExtResource( 9 )
+text = "GAME_MODE_RAIN"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FadeTransition" parent="." instance=ExtResource( 7 )]
+visible = false
+[connection signal="pressed" from="ScrollContainer/HBoxContainer/NormalButton" to="." method="_on_NormalButton_pressed"]
+[connection signal="pressed" from="ScrollContainer/HBoxContainer/WTFButton" to="." method="_on_WTFButton_pressed"]
+[connection signal="pressed" from="ScrollContainer/HBoxContainer/RainButton" to="." method="_on_RainButton_pressed"]
+[connection signal="animation_finished" from="FadeTransition" to="." method="_on_FadeTransition_animation_finished"]

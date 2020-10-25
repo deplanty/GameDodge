@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/scripts/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/background.png" type="Texture" id=2]
@@ -10,7 +10,6 @@
 [ext_resource path="res://src/actors/Player.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/actors/FadeTransition.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/images/ui/gear.png" type="Texture" id=10]
-[ext_resource path="res://src/actors/SwitchButton.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/font/Overpass-Regular_18.tres" type="DynamicFont" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -90,26 +89,15 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -27.0
-margin_top = -105.0
+margin_top = -57.0
 margin_right = 33.0
-margin_bottom = -49.0
+margin_bottom = -1.0
 mouse_default_cursor_shape = 2
 icon = ExtResource( 3 )
 flat = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="SwitchModeButton" parent="." instance=ExtResource( 11 )]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -86.5
-margin_top = -4.5
-margin_right = 86.5
-margin_bottom = 36.5
-mouse_default_cursor_shape = 2
 
 [node name="HighscoreButton" type="Button" parent="."]
 anchor_left = 0.5
@@ -182,6 +170,7 @@ margin_left = 57.0
 margin_right = 135.0
 margin_bottom = 43.0
 rect_min_size = Vector2( 60, 40 )
+mouse_default_cursor_shape = 2
 text = "LABEL_YES"
 
 [node name="NoQuitButton" type="Button" parent="QuitPopup/HBoxContainer"]
@@ -189,6 +178,7 @@ margin_left = 165.0
 margin_right = 243.0
 margin_bottom = 43.0
 rect_min_size = Vector2( 60, 40 )
+mouse_default_cursor_shape = 2
 text = "LABEL_NO"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -199,7 +189,6 @@ visible = false
 [connection signal="pressed" from="OptionButton" to="." method="_on_OptionButton_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="pressed" from="PlayButton" to="." method="_on_PlayButton_pressed"]
-[connection signal="selection_changed" from="SwitchModeButton" to="." method="_on_SwitchModeButton_selection_changed"]
 [connection signal="pressed" from="HighscoreButton" to="." method="_on_HighscoreButton_pressed"]
 [connection signal="first_jump" from="Player" to="." method="_on_Player_first_jump"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
