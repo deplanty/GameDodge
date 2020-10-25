@@ -26,7 +26,7 @@ func _on_OptionButton_pressed() -> void:
 
 
 func _on_QuitButton_pressed() -> void:
-	get_tree().quit()
+	$QuitPopup.show()
 
 
 func _on_PlayButton_pressed() -> void:
@@ -41,6 +41,14 @@ func _on_SwitchModeButton_selection_changed() -> void:
 func _on_HighscoreButton_pressed() -> void:
 	next_scene = "res://src/actors/Leaderboard.tscn"
 	$FadeTransition.fade_in()
+
+
+func _on_YesQuitButton_pressed() -> void:
+	get_tree().quit()
+
+
+func _on_NoQuitButton_pressed() -> void:
+	$QuitPopup.hide()
 
 
 func _on_Area2D_body_entered(body: Node) -> void:

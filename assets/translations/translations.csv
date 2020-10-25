@@ -32,3 +32,4 @@ LABEL_STATS_BONUS_CAUGHT;Bonus caught;Bonus attrapés
 LABEL_STATS_BONUS_LOST;Bonus lost;Bonus perdus
 LABEL_STATS_TAUNT;Your score if you caught everything;Ton score si tu avais tout attrapé
 LABEL_RESET_LEADERBOARD;This action can't be undone.\n\nAre you sure you want to reset the leaderboard?;Cette action est définitive.\n\nEtes-vous sûr de vouloir remettre à zéro les scores ?
+LABEL_CONFIRM_QUIT;Do you really want to quit?;Etes-vous sûr de vouloir partir ?
