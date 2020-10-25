@@ -23,15 +23,13 @@ onready var coin_scene := preload("res://src/actors/Coin.tscn")
 # Highscore
 var highscores := Dictionary()  # All mode highscores
 var highscore := Array()  # Current mode highscores
-onready var game_mode_selected = Globals.game_mode_selected
 var next_scene := String()
 
 
 func _ready() -> void:
 	# Load highscore
 	highscores = Globals.load_highscores()
-	highscore = highscores[game_mode_selected]
-	print(highscore)
+	highscore = highscores[Globals.game_mode_selected]
 	# Load stats
 	set_stats()
 	# Player
@@ -166,6 +164,12 @@ func show_after_animation() -> void:
 		$Buttons.show()
 		$Buttons/RestartButton.grab_focus()
 
+	# If we come back from the leaderboard
+	if Globals.previous_scene_skip:
+		$Name.hide()
+		$Buttons.show()
+		$Buttons/RestartButton.grab_focus()
+
 	$ScoreLabel.show()
 
 
@@ -179,7 +183,7 @@ func add_highscore(name: String, score: int) -> void:
 	highscore.sort_custom(self, "custom_highscore_sort")
 	highscore.pop_back()
 	# Write highscores
-	highscores[game_mode_selected] = highscore
+	highscores[Globals.game_mode_selected] = highscore
 	Globals.save_highscores(highscores)
 
 # Statistics
