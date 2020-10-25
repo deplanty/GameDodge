@@ -1,13 +1,14 @@
 KEYS;en;fr
 GAME_NAME;Dodge;Dodge
 GAME_MODE_NORMAL;Normal;Normal
-GAME_MODE_WTF;WTF;WTF
+GAME_MODE_COINSFRENZY;Coins Frenzy;Frénésie de pièces
 GAME_MODE_RAIN;Rain;Pluie
 TITLE_LEADERBOARD;Leaderboard;Meilleurs scores
 TITLE_NEW_HIGHSCORE;New highscore!;Nouveau record !
 TITLE_SCORE;Score;Score
 TITLE_PAUSE;Pause;Pause
 TITLE_SETTINGS;Settings;Options
+TITLE_MODE_SELECTION;Game mode;Mode de jeu
 BUTTON_MODE_LABEL;Mode :;Mode :
 BUTTON_MAINMENU;Main menu;Menu principal
 BUTTON_RESTART;Restart;Recommencer

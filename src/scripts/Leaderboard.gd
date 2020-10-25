@@ -20,16 +20,16 @@ func _ready() -> void:
 	# Set fonts on buttons
 	$TabContainer/Buttons/TabNormal.set("custom_fonts/font", font_normal)
 	$TabContainer/Buttons/TabNormal/UnderlineNormal.hide()
-	$TabContainer/Buttons/TabWTF.set("custom_fonts/font", font_normal)
-	$TabContainer/Buttons/TabWTF/UnderlineWTF.hide()
+	$TabContainer/Buttons/TabFrenzy.set("custom_fonts/font", font_normal)
+	$TabContainer/Buttons/TabFrenzy/UnderlineFrenzy.hide()
 	$TabContainer/Buttons/TabRain.set("custom_fonts/font", font_normal)
 	$TabContainer/Buttons/TabRain/UnderlineRain.hide()
 	# Show current mode leaderboard
 	match Globals.game_mode_selected:
 		"GAME_MODE_NORMAL":
 			_on_TabNormal_pressed()
-		"GAME_MODE_WTF":
-			_on_TabWTF_pressed()
+		"GAME_MODE_COINSFRENZY":
+			_on_TabFrenzy_pressed()
 		"GAME_MODE_RAIN":
 			_on_TabRain_pressed()
 
@@ -43,25 +43,25 @@ func _on_TabNormal_pressed() -> void:
 	$TabContainer/Buttons/TabNormal.set("custom_fonts/font", font_big)
 	$TabContainer/GAME_MODE_NORMAL.show()
 	$TabContainer/Buttons/TabNormal/UnderlineNormal.show()
-	$TabContainer/Buttons/TabWTF.set("custom_fonts/font", font_normal)
-	$TabContainer/GAME_MODE_WTF.hide()
-	$TabContainer/Buttons/TabWTF/UnderlineWTF.hide()
+	$TabContainer/Buttons/TabFrenzy.set("custom_fonts/font", font_normal)
+	$TabContainer/GAME_MODE_COINSFRENZY.hide()
+	$TabContainer/Buttons/TabFrenzy/UnderlineFrenzy.hide()
 	$TabContainer/Buttons/TabRain.set("custom_fonts/font", font_normal)
 	$TabContainer/GAME_MODE_RAIN.hide()
 	$TabContainer/Buttons/TabRain/UnderlineRain.hide()
 
 
-func _on_TabWTF_pressed() -> void:
+func _on_TabFrenzy_pressed() -> void:
 	"""
-	Show the WTF mode leaderboard.
+	Show the Coins Frenzy mode leaderboard.
 	"""
 
 	$TabContainer/Buttons/TabNormal.set("custom_fonts/font", font_normal)
 	$TabContainer/GAME_MODE_NORMAL.hide()
 	$TabContainer/Buttons/TabNormal/UnderlineNormal.hide()
-	$TabContainer/Buttons/TabWTF.set("custom_fonts/font", font_big)
-	$TabContainer/GAME_MODE_WTF.show()
-	$TabContainer/Buttons/TabWTF/UnderlineWTF.show()
+	$TabContainer/Buttons/TabFrenzy.set("custom_fonts/font", font_big)
+	$TabContainer/GAME_MODE_COINSFRENZY.show()
+	$TabContainer/Buttons/TabFrenzy/UnderlineFrenzy.show()
 	$TabContainer/Buttons/TabRain.set("custom_fonts/font", font_normal)
 	$TabContainer/GAME_MODE_RAIN.hide()
 	$TabContainer/Buttons/TabRain/UnderlineRain.hide()
@@ -75,9 +75,9 @@ func _on_TabRain_pressed() -> void:
 	$TabContainer/Buttons/TabNormal.set("custom_fonts/font", font_normal)
 	$TabContainer/GAME_MODE_NORMAL.hide()
 	$TabContainer/Buttons/TabNormal/UnderlineNormal.hide()
-	$TabContainer/Buttons/TabWTF.set("custom_fonts/font", font_normal)
-	$TabContainer/GAME_MODE_WTF.hide()
-	$TabContainer/Buttons/TabWTF/UnderlineWTF.hide()
+	$TabContainer/Buttons/TabFrenzy.set("custom_fonts/font", font_normal)
+	$TabContainer/GAME_MODE_COINSFRENZY.hide()
+	$TabContainer/Buttons/TabFrenzy/UnderlineFrenzy.hide()
 	$TabContainer/Buttons/TabRain.set("custom_fonts/font", font_big)
 	$TabContainer/GAME_MODE_RAIN.show()
 	$TabContainer/Buttons/TabRain/UnderlineRain.show()
@@ -118,7 +118,7 @@ func _on_FadeTransition_animation_finished(anim_name: String) -> void:
 
 func set_highscores() -> void:
 	var data = Globals.load_highscores()
-	for mode in ["GAME_MODE_NORMAL", "GAME_MODE_WTF", "GAME_MODE_RAIN"]:
+	for mode in ["GAME_MODE_NORMAL", "GAME_MODE_COINSFRENZY", "GAME_MODE_RAIN"]:
 		for i in data[mode].size():
 			var si := str(i + 1)
 			get_node("TabContainer/"+mode+"/Grid/Name"+si).text = data[mode][i][0]

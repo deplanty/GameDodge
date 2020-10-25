@@ -32,7 +32,7 @@ var enemy_patterns := Array()
 
 func _ready() -> void:
 	# Write user files
-	init_highscore()
+	init_highscore(true)
 	init_settings()
 	# Load settings and parameters
 	parameters.load(path_game_parameters_res)

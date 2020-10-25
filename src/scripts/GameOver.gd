@@ -214,7 +214,7 @@ func set_stats() -> void:
 	if Stats.coins_lost + Stats.bonus_coins_lost + Stats.bonus_lost > 0:
 		var total := Stats.coins_caught + Stats.coins_lost
 		total += Stats.bonus_coins_caught + Stats.bonus_coins_lost
-		total += Stats.bonus_lost * Globals.parameters.get_value(Globals.game_mode_selected, "coins_bonus")
+		total += Stats.bonus_lost * Globals.parameters.get_value(Globals.game_mode_selected, "coins_bonus", 0)
 		add_stats_line("", "")
 		add_stats_line("LABEL_STATS_TAUNT", total, true)
 
