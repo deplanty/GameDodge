@@ -9,6 +9,8 @@ const path_highscore_res := "res://assets/highscore.json"
 const path_highscore_user := "user://highscore.json"
 const path_shop_res := "res://assets/shop.ini"
 const path_shop_user := "user://shop.ini"
+const path_achievements_res := "res://assets/achievements.ini"
+const path_achievements_user := "user://achievements.ini"
 const path_enemy_patterns := "res://assets/patterns.json"
 
 # Previous scene
@@ -23,6 +25,7 @@ var game_mode_selected := "GAME_MODE_NORMAL"
 var parameters := ConfigFile.new()
 var settings := ConfigFile.new()
 var shop := ConfigFile.new()
+var achievements := ConfigFile.new()
 var username := String()
 var music_on := bool()
 var sound_fx := bool()
@@ -39,14 +42,16 @@ func _ready() -> void:
 	init_highscore(true)
 	init_settings()
 	init_shop(true)
+	init_achievements(true)
 	# Load settings and parameters
 	parameters.load(path_game_parameters_res)
 	settings.load(path_settings_user)
 	username = settings.get_value("user", "name", "")
 	music_on = settings.get_value("settings", "music", true)
 	sound_fx = settings.get_value("settings", "sound_fx", true)
-	# Load the shop
+	# Load the shop and the achievements
 	shop.load(path_shop_user)
+	achievements.load(path_achievements_user)
 	# Set sounds according to settings
 	set_music(music_on)
 	set_sound_fx(sound_fx)
@@ -124,6 +129,24 @@ func init_shop(force: bool=false) -> void:
 
 func save_shop() -> void:
 	shop.save(path_shop_user)
+
+# Achivements
+
+func init_achievements(force: bool=false) -> void:
+	"""
+	If the achievements does not exist, copy the file to the user location.
+	Force the replacement of the current achievements if needed.
+	"""
+
+	var dir := Directory.new()
+	if dir.file_exists(path_achievements_user) and not force:
+		return
+	else:
+		dir.copy(path_achievements_res, path_achievements_user)
+
+
+func save_achievements() -> void:
+	shop.save(path_achievements_user)
 
 # Enemy pattern
 

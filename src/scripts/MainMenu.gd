@@ -34,6 +34,11 @@ func _on_PlayButton_pressed() -> void:
 	$FadeTransition.fade_in()
 
 
+func _on_AchievementsButton_pressed() -> void:
+	next_scene = "res://src/actors/Achievements.tscn"
+	$FadeTransition.fade_in()
+
+
 func _on_HighscoreButton_pressed() -> void:
 	next_scene = "res://src/actors/Leaderboard.tscn"
 	$FadeTransition.fade_in()

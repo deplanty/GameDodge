@@ -1,7 +1,7 @@
 extends ColorRect
 
 
-signal animation_finished
+signal animation_finished(anim_name)
 
 # Signals
 
