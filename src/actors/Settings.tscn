@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/scripts/Settings.gd" type="Script" id=1]
 [ext_resource path="res://assets/font/Run.tres" type="DynamicFont" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/images/base_tileset.tres" type="TileSet" id=8]
 [ext_resource path="res://assets/images/ui/home.png" type="Texture" id=9]
 [ext_resource path="res://assets/images/ui/flags/flag_en.png" type="Texture" id=10]
+[ext_resource path="res://src/actors/FadeTransition.tscn" type="PackedScene" id=11]
 
 [node name="Settings" type="Control"]
 anchor_right = 1.0
@@ -132,8 +133,11 @@ flat = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="FadeTransition" parent="." instance=ExtResource( 11 )]
 [connection signal="pressed" from="Container/VBox/Language/ButtonEn" to="." method="_on_ButtonEn_pressed"]
 [connection signal="pressed" from="Container/VBox/Language/ButtonFr" to="." method="_on_ButtonFr_pressed"]
 [connection signal="pressed" from="Container/VBox/Sound/MusicButton" to="." method="_on_MusicButton_pressed"]
 [connection signal="pressed" from="Container/VBox/Sound/EffectsButton" to="." method="_on_EffectsButton_pressed"]
 [connection signal="pressed" from="MainMenuButton" to="." method="_on_MainMenuButton_pressed"]
+[connection signal="animation_finished" from="FadeTransition" to="." method="_on_FadeTransition_animation_finished"]

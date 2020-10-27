@@ -7,6 +7,8 @@ var img_music_off := load("res://assets/images/ui/music_off.png")
 var img_sound_fx := load("res://assets/images/ui/sound_fx_on.png")
 var img_fx_off := load("res://assets/images/ui/sound_fx_off.png")
 
+var next_scene := String()
+
 
 func _ready() -> void:
 	if MusicController.current_track != "menu":
@@ -21,6 +23,8 @@ func _ready() -> void:
 		$Container/VBox/Sound/EffectsButton.icon = img_sound_fx
 	else:
 		$Container/VBox/Sound/EffectsButton.icon = img_fx_off
+
+	$FadeTransition.fade_out()
 
 # Signals
 
@@ -55,4 +59,10 @@ func _on_EffectsButton_pressed() -> void:
 
 
 func _on_MainMenuButton_pressed() -> void:
-	get_tree().change_scene("res://src/actors/MainMenu.tscn")
+	next_scene = "res://src/actors/MainMenu.tscn"
+	$FadeTransition.fade_in()
+
+
+func _on_FadeTransition_animation_finished(anim_name: String) -> void:
+	if anim_name == "fade_in":
+		get_tree().change_scene(next_scene)

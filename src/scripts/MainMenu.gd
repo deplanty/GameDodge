@@ -50,7 +50,9 @@ func _on_ShopButton_pressed() -> void:
 
 
 func _on_YesQuitButton_pressed() -> void:
-	get_tree().quit()
+	$QuitPopup.hide()
+	next_scene = "quit"
+	$FadeTransition.fade_in()
 
 
 func _on_NoQuitButton_pressed() -> void:
@@ -67,4 +69,7 @@ func _on_FadeTransition_animation_finished(anim_name: String) -> void:
 	"""
 
 	if anim_name == "fade_in":
-		get_tree().change_scene(next_scene)
+		if next_scene == "quit":
+			get_tree().quit()
+		else:
+			get_tree().change_scene(next_scene)
