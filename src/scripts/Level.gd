@@ -25,7 +25,6 @@ var game_bonus = false
 var game_pattern = false
 var game_rain = false
 
-
 # Process
 
 func _ready() -> void:
@@ -36,6 +35,10 @@ func _ready() -> void:
 	$Player.life = Globals.parameters.get_value(Globals.game_mode_selected, "player_life")
 	$Control/Lifebar.set_max_life($Player.life)
 
+	# Game parameters
+	Globals.pattern_velocity_multiplier = 1.0
+	Globals.rain_velocity_multiplier = 1.0
+
 	# Game mode dependent
 	load_game_mode()
 
@@ -44,8 +47,6 @@ func _ready() -> void:
 
 	# Fade out to display the game
 	$Control/FadeTransition.fade_out()
-	# Wait for user to jump once in ordre to start the scene
-	set_process(false)
 
 # User events
 
@@ -120,7 +121,6 @@ func _on_Player_first_jump() -> void:
 	# Hide instructions
 	$Control/Instruction.hide()
 	# Create enemies
-	Globals.velocity_multiplier = 1.0
 	if game_pattern:
 		add_random_pattern()
 	# Create coin
@@ -131,7 +131,6 @@ func _on_Player_first_jump() -> void:
 	if game_rain:
 		$Timers/RainStartTimer.start()
 	# Start game
-	set_process(true)
 	game_start_time = OS.get_ticks_msec()
 
 
@@ -153,13 +152,13 @@ func add_random_pattern() -> void:
 	Add a random pattern on the scene.
 	"""
 
-	print("Enemy speed multiplier: ", Globals.velocity_multiplier)
+	print("Enemy speed multiplier: ", Globals.pattern_velocity_multiplier)
 	var i = round(rand_range(0, Globals.enemy_patterns.size() - 1))
 	current_enemies = load_pattern(Globals.enemy_patterns, i)
 	for e in current_enemies:
 		$Pattern.add_child(e)
 	# Increase speed for next pattern
-	Globals.velocity_multiplier += Globals.parameters.get_value("GAMEPLAY", "velocity_multiplier")
+	Globals.pattern_velocity_multiplier += Globals.parameters.get_value(Globals.game_mode_selected, "pattern_velocity_increase")
 
 
 func load_pattern(patterns, i: int) -> Array:
@@ -173,7 +172,7 @@ func load_pattern(patterns, i: int) -> Array:
 		var v = Vector2(enemy["velocity"][0], enemy["velocity"][1])
 		var e = enemy_scene.instance()
 		e.position = p
-		e.velocity = v * Globals.velocity_multiplier
+		e.velocity = v * Globals.pattern_velocity_multiplier
 		e.connect("tree_exited", self, "_on_Enemy_tree_exited")
 		array.append(e)
 
@@ -186,7 +185,6 @@ func _on_RainStartTimer_timeout() -> void:
 	Step 1: Prepare rain and show warning.
 
 	Stop the bonus timer.
-	TODO: Remove coins and bonus.
 	Start alert animation
 	"""
 
@@ -196,6 +194,8 @@ func _on_RainStartTimer_timeout() -> void:
 	$Control/Warning/Label.show()
 	$Control/Warning/ColorRect/WarningAnimation.play("alert_on")
 	game_state = "rain"
+
+	print("Rain speed multiplier: ", Globals.rain_velocity_multiplier)
 
 
 func _on_WarningAnimation_animation_finished(anim_name: String) -> void:
@@ -226,7 +226,7 @@ func _on_RainSpawnTimer_timeout() -> void:
 
 	var enemy := enemy_rain_scene.instance()
 	enemy.position = get_random_position_spawning()
-	enemy.velocity = Vector2(0, 150)
+	enemy.velocity = Vector2(0, 150) * Globals.rain_velocity_multiplier
 	$Rain.add_child(enemy)
 
 
@@ -237,6 +237,8 @@ func _on_RainStopTimer_timeout() -> void:
 
 	$Timers/RainSpawnTimer.stop()
 	$Control/Warning/ColorRect/WarningAnimation.play("alert_off")
+	Globals.rain_velocity_multiplier += Globals.parameters.get_value(Globals.game_mode_selected, "rain_velocity_increase")
+	$Timers/RainSpawnTimer.wait_time /= Globals.parameters.get_value(Globals.game_mode_selected, "rain_density_increase")
 
 
 func _on_RainRewardTimer_timeout() -> void:
@@ -377,23 +379,6 @@ func load_game_mode() -> void:
 		$Timers/RainSpawnTimer.wait_time = Globals.parameters.get_value(mode, "timer_rain_dt")
 		$Timers/RainStopTimer.wait_time = Globals.parameters.get_value(mode, "timer_rain_stop")
 		$Timers/RainRewardTimer.wait_time = Globals.parameters.get_value(mode, "timer_rain_reward")
-
-
-func set_all_physics_process(state: bool) -> void:
-	# Player
-	$Player.set_physics_process(state)
-	# Coins
-	for coin in $Coins.get_children():
-		coin.set_physics_process(state)
-	# Bonus
-	for bonus in $Bonus.get_children():
-		bonus.set_physics_process(state)
-	# Pattern
-	for enemy in $Pattern.get_children():
-		enemy.set_physics_process(state)
-	# Rain
-	for enemy in $Rain.get_children():
-		enemy.set_physics_process(state)
 
 
 func get_random_position_spawning() -> Vector2:

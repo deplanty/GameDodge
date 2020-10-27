@@ -26,7 +26,8 @@ var sound_fx := bool()
 
 # Variables
 var score := 0
-var velocity_multiplier := 1.0
+var pattern_velocity_multiplier := 1.0
+var rain_velocity_multiplier := 1.0
 var enemy_patterns := Array()
 
 
