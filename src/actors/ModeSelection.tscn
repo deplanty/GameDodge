@@ -66,15 +66,14 @@ __meta__ = {
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer"]
 margin_right = 1364.0
-margin_bottom = 614.0
+margin_bottom = 616.0
 custom_constants/separation = 40
 
-[node name="NormalButton" type="Button" parent="ScrollContainer/HBoxContainer"]
+[node name="NormalButton" type="ToolButton" parent="ScrollContainer/HBoxContainer"]
 margin_right = 428.0
-margin_bottom = 614.0
+margin_bottom = 616.0
 mouse_default_cursor_shape = 2
 icon = ExtResource( 3 )
-flat = true
 
 [node name="Label" type="Label" parent="ScrollContainer/HBoxContainer/NormalButton"]
 anchor_top = 0.5
@@ -93,7 +92,7 @@ __meta__ = {
 [node name="WTFButton" type="Button" parent="ScrollContainer/HBoxContainer"]
 margin_left = 468.0
 margin_right = 896.0
-margin_bottom = 614.0
+margin_bottom = 616.0
 mouse_default_cursor_shape = 2
 icon = ExtResource( 2 )
 flat = true
@@ -105,7 +104,7 @@ anchor_bottom = 0.5
 margin_top = 100.0
 margin_bottom = 124.0
 custom_fonts/font = ExtResource( 9 )
-text = "GAME_MODE_WTF"
+text = "GAME_MODE_COINSFRENZY"
 align = 1
 valign = 1
 __meta__ = {
@@ -115,7 +114,7 @@ __meta__ = {
 [node name="RainButton" type="Button" parent="ScrollContainer/HBoxContainer"]
 margin_left = 936.0
 margin_right = 1364.0
-margin_bottom = 614.0
+margin_bottom = 616.0
 mouse_default_cursor_shape = 2
 icon = ExtResource( 5 )
 flat = true

@@ -11,7 +11,7 @@ func _on_NormalButton_pressed() -> void:
 
 
 func _on_WTFButton_pressed() -> void:
-	Globals.game_mode_selected = "GAME_MODE_WTF"
+	Globals.game_mode_selected = "GAME_MODE_COINSFRENZY"
 	$FadeTransition.fade_in()
 
 

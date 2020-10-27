@@ -263,7 +263,7 @@ func _on_Coin_caught() -> void:
 	$Control/ScoreContainer/ValueScore.text = str(score)
 	call_deferred("add_coins", game_coin)
 	# Game mode dependent
-	if Globals.game_mode_selected == "GAME_MODE_WTF":
+	if Globals.game_mode_selected == "GAME_MODE_COINSFRENZY":
 		score_max = int(max(score_max, score))
 		$Control/ScoreContainer/ValueScoreMax.text = str(score_max)
 
@@ -273,7 +273,7 @@ func _on_CoinBonus_caught() -> void:
 	Stats.bonus_coins_caught += 1
 	$Control/ScoreContainer/ValueScore.text = str(score)
 	# Game mode dependent
-	if Globals.game_mode_selected == "GAME_MODE_WTF":
+	if Globals.game_mode_selected == "GAME_MODE_COINSFRENZY":
 		score_max = int(max(score_max, score))
 		$Control/ScoreContainer/ValueScoreMax.text = str(score_max)
 
@@ -342,7 +342,7 @@ func on_death() -> void:
 	Stats.duration_msec = OS.get_ticks_msec() - game_start_time - game_pause_time_total
 	$Player.invulnerability = true
 	match Globals.game_mode_selected:
-		"GAME_MODE_WTF":
+		"GAME_MODE_COINSFRENZY":
 			Globals.score = score_max
 		_:
 			Globals.score = score
@@ -368,7 +368,7 @@ func load_game_mode() -> void:
 		$Timers/RainSpawnTimer.wait_time = Globals.parameters.get_value(mode, "timer_rain_dt")
 		$Timers/RainStopTimer.wait_time = Globals.parameters.get_value(mode, "timer_rain_stop")
 		$Timers/RainRewardTimer.wait_time = Globals.parameters.get_value(mode, "timer_rain_reward")
-	elif mode == "GAME_MODE_WTF":
+	elif mode == "GAME_MODE_COINSFRENZY":
 		$Control/ScoreContainer/ValueScoreMax.show()
 	elif mode == "GAME_MODE_RAIN":
 		$Control/ScoreContainer/ValueScoreMax.hide()
