@@ -39,6 +39,11 @@ func _on_HighscoreButton_pressed() -> void:
 	$FadeTransition.fade_in()
 
 
+func _on_ShopButton_pressed() -> void:
+	next_scene = "res://src/actors/Shop.tscn"
+	$FadeTransition.fade_in()
+
+
 func _on_YesQuitButton_pressed() -> void:
 	get_tree().quit()
 

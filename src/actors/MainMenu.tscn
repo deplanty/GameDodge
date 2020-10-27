@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/scripts/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/background.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://src/actors/Player.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/actors/FadeTransition.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/images/ui/gear.png" type="Texture" id=10]
+[ext_resource path="res://assets/images/ui/cart.png" type="Texture" id=11]
 [ext_resource path="res://assets/font/Overpass-Regular_18.tres" type="DynamicFont" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -104,12 +105,28 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -31.0
+margin_left = -71.0
 margin_top = -168.0
-margin_right = 31.0
+margin_right = -9.0
 margin_bottom = -112.0
 mouse_default_cursor_shape = 2
 icon = ExtResource( 7 )
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShopButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 9.0
+margin_top = -168.0
+margin_right = 71.0
+margin_bottom = -112.0
+mouse_default_cursor_shape = 2
+icon = ExtResource( 11 )
 flat = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -190,6 +207,7 @@ visible = false
 [connection signal="pressed" from="QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="pressed" from="PlayButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="HighscoreButton" to="." method="_on_HighscoreButton_pressed"]
+[connection signal="pressed" from="ShopButton" to="." method="_on_ShopButton_pressed"]
 [connection signal="first_jump" from="Player" to="." method="_on_Player_first_jump"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="pressed" from="QuitPopup/HBoxContainer/YesQuitButton" to="." method="_on_YesQuitButton_pressed"]
