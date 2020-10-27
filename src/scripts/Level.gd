@@ -46,7 +46,7 @@ func _ready() -> void:
 	Stats.reset()
 
 	# Fade out to display the game
-	$Control/FadeTransition.fade_out()
+	$FadeTransition.fade_out()
 
 # User events
 
@@ -91,7 +91,7 @@ func _on_MainMenuButton_pressed() -> void:
 	get_tree().paused = false
 	$PauseMenu.hide()
 	next_scene = "res://src/actors/MainMenu.tscn"
-	$Control/FadeTransition.fade_in()
+	$FadeTransition.fade_in()
 
 
 func _on_ResumeTimer_timeout() -> void:
@@ -354,7 +354,7 @@ func on_death() -> void:
 	Globals.save_shop()
 
 	next_scene = "res://src/actors/GameOver.tscn"
-	$Control/FadeTransition.fade_in()
+	$FadeTransition.fade_in()
 
 # Misc
 
