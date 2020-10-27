@@ -7,6 +7,8 @@ const path_settings_res := "res://assets/user_settings.ini"
 const path_settings_user := "user://user_settings.ini"
 const path_highscore_res := "res://assets/highscore.json"
 const path_highscore_user := "user://highscore.json"
+const path_shop_res := "res://assets/shop.ini"
+const path_shop_user := "user://shop.ini"
 const path_enemy_patterns := "res://assets/patterns.json"
 
 # Previous scene
@@ -20,6 +22,7 @@ var game_mode_selected := "GAME_MODE_NORMAL"
 # Settings
 var parameters := ConfigFile.new()
 var settings := ConfigFile.new()
+var shop := ConfigFile.new()
 var username := String()
 var music_on := bool()
 var sound_fx := bool()
@@ -35,12 +38,15 @@ func _ready() -> void:
 	# Write user files
 	init_highscore(true)
 	init_settings()
+	init_shop(true)
 	# Load settings and parameters
 	parameters.load(path_game_parameters_res)
 	settings.load(path_settings_user)
 	username = settings.get_value("user", "name", "")
 	music_on = settings.get_value("settings", "music", true)
 	sound_fx = settings.get_value("settings", "sound_fx", true)
+	# Load the shop
+	shop.load(path_shop_user)
 	# Set sounds according to settings
 	set_music(music_on)
 	set_sound_fx(sound_fx)
@@ -100,6 +106,24 @@ func save_highscores(dict: Dictionary) -> void:
 	file.open(path_highscore_user, file.WRITE)
 	file.store_line(JSON.print(dict, "\t"))
 	file.close()
+
+# Shop
+
+func init_shop(force: bool=false) -> void:
+	"""
+	If the shop does not exist, copy the file to the user location.
+	Force the replacement of the current shop if needed.
+	"""
+
+	var dir := Directory.new()
+	if dir.file_exists(path_shop_user) and not force:
+		return
+	else:
+		dir.copy(path_shop_res, path_shop_user)
+
+
+func save_shop() -> void:
+	shop.save(path_shop_user)
 
 # Enemy pattern
 

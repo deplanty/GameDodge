@@ -348,6 +348,10 @@ func on_death() -> void:
 			Globals.score = score_max
 		_:
 			Globals.score = score
+	# Store coins in the inventory
+	var total_coins = Globals.shop.get_value("INVENTORY", "coins")
+	Globals.shop.set_value("INVENTORY", "coins", total_coins + Globals.score)
+	Globals.save_shop()
 
 	next_scene = "res://src/actors/GameOver.tscn"
 	$Control/FadeTransition.fade_in()
