@@ -33,13 +33,11 @@ func _on_ResetButton_pressed() -> void:
 	$PopupConfirmReset.show()
 
 
-func _on_YesButton_pressed() -> void:
-	Globals.init_highscore(true)
-	set_highscores()
-	$PopupConfirmReset.hide()
+func _on_YesNoPopup_pressed_yes_no(yes) -> void:
+	if yes:
+		Globals.init_highscore(true)
+		set_highscores()
 
-
-func _on_NoButton_pressed() -> void:
 	$PopupConfirmReset.hide()
 
 

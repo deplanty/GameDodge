@@ -11,8 +11,8 @@
 [ext_resource path="res://src/actors/FadeTransition.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/images/ui/gear.png" type="Texture" id=10]
 [ext_resource path="res://assets/images/ui/cart.png" type="Texture" id=11]
-[ext_resource path="res://assets/font/Overpass-Regular_18.tres" type="DynamicFont" id=12]
 [ext_resource path="res://assets/images/ui/medal.png" type="Texture" id=13]
+[ext_resource path="res://src/actors/YesNoPopup.tscn" type="PackedScene" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 208, 48 )
@@ -153,64 +153,16 @@ position = Vector2( 0, 445 )
 position = Vector2( 208, 24 )
 shape = SubResource( 1 )
 
-[node name="QuitPopup" type="Popup" parent="."]
+[node name="QuitPopup" parent="." instance=ExtResource( 14 )]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -150.0
-margin_top = -109.0
+margin_top = -90.0
 margin_right = 150.0
-margin_bottom = 77.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Panel" type="Panel" parent="QuitPopup"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="QuitPopup"]
-anchor_right = 1.0
-margin_bottom = 145.0
-custom_fonts/font = ExtResource( 12 )
-text = "LABEL_CONFIRM_QUIT"
-align = 1
-valign = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="QuitPopup"]
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = -51.0
-margin_bottom = -8.0
-custom_constants/separation = 30
-alignment = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="YesQuitButton" type="Button" parent="QuitPopup/HBoxContainer"]
-margin_left = 57.0
-margin_right = 135.0
-margin_bottom = 43.0
-rect_min_size = Vector2( 60, 40 )
-mouse_default_cursor_shape = 2
-text = "LABEL_YES"
-
-[node name="NoQuitButton" type="Button" parent="QuitPopup/HBoxContainer"]
-margin_left = 165.0
-margin_right = 243.0
-margin_bottom = 43.0
-rect_min_size = Vector2( 60, 40 )
-mouse_default_cursor_shape = 2
-text = "LABEL_NO"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+margin_bottom = 90.0
+message = "LABEL_CONFIRM_QUIT"
 
 [node name="FadeTransition" parent="." instance=ExtResource( 9 )]
 visible = false
@@ -222,6 +174,5 @@ visible = false
 [connection signal="pressed" from="ButtonsContainer/ShopButton" to="." method="_on_ShopButton_pressed"]
 [connection signal="first_jump" from="Player" to="." method="_on_Player_first_jump"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
-[connection signal="pressed" from="QuitPopup/HBoxContainer/YesQuitButton" to="." method="_on_YesQuitButton_pressed"]
-[connection signal="pressed" from="QuitPopup/HBoxContainer/NoQuitButton" to="." method="_on_NoQuitButton_pressed"]
+[connection signal="pressed_yes_no" from="QuitPopup" to="." method="_on_QuitPopup_pressed_yes_no"]
 [connection signal="animation_finished" from="FadeTransition" to="." method="_on_FadeTransition_animation_finished"]

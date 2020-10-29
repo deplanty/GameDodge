@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/scripts/Leaderboard.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/ui/reload.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/images/ui/arrow_left.png" type="Texture" id=7]
 [ext_resource path="res://assets/font/Run.tres" type="DynamicFont" id=8]
 [ext_resource path="res://src/actors/WindowLeaderboard.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/actors/YesNoPopup.tscn" type="PackedScene" id=10]
 
 [node name="Highscore" type="Control"]
 anchor_right = 1.0
@@ -173,69 +174,24 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PopupConfirmReset" type="PopupDialog" parent="."]
+[node name="PopupConfirmReset" parent="." instance=ExtResource( 10 )]
+visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -152.0
-margin_top = -76.0
-margin_right = 152.0
-margin_bottom = 76.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="PopupConfirmReset"]
-anchor_right = 1.0
-margin_left = 16.0
-margin_top = 16.0
-margin_right = -16.0
-margin_bottom = 100.0
-text = "LABEL_RESET_LEADERBOARD"
-align = 1
-valign = 1
-autowrap = true
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Buttons" type="HBoxContainer" parent="PopupConfirmReset"]
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 8.0
-margin_top = -48.0
-margin_right = -8.0
-margin_bottom = -8.0
-custom_constants/separation = 30
-alignment = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="YesButton" type="Button" parent="PopupConfirmReset/Buttons"]
-margin_left = 51.0
-margin_right = 129.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 60, 40 )
-text = "LABEL_YES"
-
-[node name="NoButton" type="Button" parent="PopupConfirmReset/Buttons"]
-margin_left = 159.0
-margin_right = 237.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 60, 40 )
-text = "LABEL_NO"
+margin_left = -150.0
+margin_top = -90.0
+margin_right = 150.0
+margin_bottom = 90.0
+message = "LABEL_RESET_LEADERBOARD"
 
 [node name="FadeTransition" parent="." instance=ExtResource( 5 )]
 visible = false
 [connection signal="pressed" from="Buttons/HBoxContainer/MainMenuButton" to="." method="_on_MainMenuButton_pressed"]
 [connection signal="pressed" from="Buttons/HBoxContainer/ResetButton" to="." method="_on_ResetButton_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]
-[connection signal="pressed" from="PopupConfirmReset/Buttons/YesButton" to="." method="_on_YesButton_pressed"]
-[connection signal="pressed" from="PopupConfirmReset/Buttons/NoButton" to="." method="_on_NoButton_pressed"]
+[connection signal="pressed_yes_no" from="PopupConfirmReset" to="." method="_on_YesNoPopup_pressed_yes_no"]
 [connection signal="animation_finished" from="FadeTransition" to="." method="_on_FadeTransition_animation_finished"]
 
 [editable path="Scores/HBox/Normal"]

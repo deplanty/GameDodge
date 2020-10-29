@@ -49,13 +49,11 @@ func _on_ShopButton_pressed() -> void:
 	$FadeTransition.fade_in()
 
 
-func _on_YesQuitButton_pressed() -> void:
-	$QuitPopup.hide()
-	next_scene = "quit"
-	$FadeTransition.fade_in()
+func _on_QuitPopup_pressed_yes_no(yes: bool) -> void:
+	if yes:
+		next_scene = "quit"
+		$FadeTransition.fade_in()
 
-
-func _on_NoQuitButton_pressed() -> void:
 	$QuitPopup.hide()
 
 
