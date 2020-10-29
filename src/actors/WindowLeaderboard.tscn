@@ -1,0 +1,107 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/font/Overpass-Bold_18.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/scripts/WindowLeaderboard.gd" type="Script" id=2]
+[ext_resource path="res://src/actors/WindowLeaderboardLine.tscn" type="PackedScene" id=3]
+
+[node name="WindowLeaderboard" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Scores" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 20.0
+mouse_filter = 1
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Lines" type="VBoxContainer" parent="Scores"]
+anchor_top = -0.034
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 39.992
+margin_right = -10.0
+margin_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_constants/separation = 15
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score1" parent="Scores/Lines" instance=ExtResource( 3 )]
+anchor_right = 0.0
+margin_right = 396.0
+
+[node name="Score2" parent="Scores/Lines" instance=ExtResource( 3 )]
+anchor_right = 0.0
+margin_top = 39.0
+margin_right = 396.0
+margin_bottom = 63.0
+
+[node name="Score3" parent="Scores/Lines" instance=ExtResource( 3 )]
+anchor_right = 0.0
+margin_top = 78.0
+margin_right = 396.0
+margin_bottom = 102.0
+
+[node name="Score4" parent="Scores/Lines" instance=ExtResource( 3 )]
+anchor_right = 0.0
+margin_top = 117.0
+margin_right = 396.0
+margin_bottom = 141.0
+
+[node name="Score5" parent="Scores/Lines" instance=ExtResource( 3 )]
+anchor_right = 0.0
+margin_top = 156.0
+margin_right = 396.0
+margin_bottom = 180.0
+
+[node name="Score6" parent="Scores/Lines" instance=ExtResource( 3 )]
+anchor_right = 0.0
+margin_top = 195.0
+margin_right = 396.0
+margin_bottom = 219.0
+
+[node name="Title" type="ColorRect" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -80.0
+margin_right = 80.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 160, 40 )
+mouse_filter = 1
+color = Color( 0.18, 0.18, 0.18, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Title"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -80.0
+margin_top = -20.0
+margin_right = 80.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 160, 40 )
+mouse_filter = 1
+custom_fonts/font = ExtResource( 1 )
+text = "Title"
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

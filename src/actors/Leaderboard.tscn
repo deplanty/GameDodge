@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/scripts/Leaderboard.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/ui/reload.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/images/base_tileset.tres" type="TileSet" id=6]
 [ext_resource path="res://assets/images/ui/arrow_left.png" type="Texture" id=7]
 [ext_resource path="res://assets/font/Run.tres" type="DynamicFont" id=8]
+[ext_resource path="res://src/actors/WindowLeaderboard.tscn" type="PackedScene" id=9]
 
 [node name="Highscore" type="Control"]
 anchor_right = 1.0
@@ -47,441 +48,65 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TabContainer" type="Control" parent="."]
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = 48.0
-margin_top = -144.0
-margin_right = -48.0
-margin_bottom = 112.0
-rect_min_size = Vector2( 320, 256 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Buttons" type="HBoxContainer" parent="TabContainer"]
+[node name="Scores" type="ScrollContainer" parent="."]
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
+anchor_bottom = 0.5
 margin_left = -176.0
+margin_top = -160.0
 margin_right = 176.0
-margin_bottom = 48.0
-custom_constants/separation = 20
-alignment = 1
+margin_bottom = 320.0
+scroll_vertical_enabled = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TabNormal" type="Button" parent="TabContainer/Buttons"]
-margin_left = 6.0
-margin_right = 106.0
-margin_bottom = 48.0
-rect_min_size = Vector2( 100, 48 )
-mouse_default_cursor_shape = 2
-text = "GAME_MODE_NORMAL"
-flat = true
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="HBox" type="HBoxContainer" parent="Scores"]
+margin_right = 660.0
+margin_bottom = 280.0
+custom_constants/separation = 30
 
-[node name="UnderlineNormal" type="ColorRect" parent="TabContainer/Buttons/TabNormal"]
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = -3.0
-margin_right = -7.62939e-06
-margin_bottom = -3.8147e-06
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Normal" parent="Scores/HBox" instance=ExtResource( 9 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 200.0
+margin_bottom = 280.0
+rect_min_size = Vector2( 200, 280 )
 
-[node name="TabFrenzy" type="Button" parent="TabContainer/Buttons"]
-margin_left = 126.0
-margin_right = 226.0
-margin_bottom = 48.0
-rect_min_size = Vector2( 100, 48 )
-mouse_default_cursor_shape = 2
-text = "GAME_MODE_COINSFRENZY"
-flat = true
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Score1" parent="Scores/HBox/Normal/Scores/Lines" index="0"]
+margin_right = 180.0
 
-[node name="UnderlineFrenzy" type="ColorRect" parent="TabContainer/Buttons/TabFrenzy"]
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = -3.0
-margin_right = -7.62939e-06
-margin_bottom = -3.8147e-06
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Score2" parent="Scores/HBox/Normal/Scores/Lines" index="1"]
+margin_right = 180.0
 
-[node name="TabRain" type="Button" parent="TabContainer/Buttons"]
-margin_left = 246.0
-margin_right = 346.0
-margin_bottom = 48.0
-rect_min_size = Vector2( 100, 48 )
-mouse_default_cursor_shape = 2
-text = "GAME_MODE_RAIN"
-flat = true
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Score3" parent="Scores/HBox/Normal/Scores/Lines" index="2"]
+margin_right = 180.0
 
-[node name="UnderlineRain" type="ColorRect" parent="TabContainer/Buttons/TabRain"]
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = -3.0
-margin_right = -7.62939e-06
-margin_bottom = -3.8147e-06
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Score4" parent="Scores/HBox/Normal/Scores/Lines" index="3"]
+margin_right = 180.0
 
-[node name="GAME_MODE_NORMAL" type="CenterContainer" parent="TabContainer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = 48.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Score5" parent="Scores/HBox/Normal/Scores/Lines" index="4"]
+margin_right = 180.0
 
-[node name="Grid" type="GridContainer" parent="TabContainer/GAME_MODE_NORMAL"]
-margin_left = 92.0
-margin_top = 24.0
-margin_right = 227.0
-margin_bottom = 183.0
-custom_constants/vseparation = 15
-custom_constants/hseparation = 15
-columns = 2
+[node name="Score6" parent="Scores/HBox/Normal/Scores/Lines" index="5"]
+margin_right = 180.0
 
-[node name="Name1" type="Label" parent="TabContainer/GAME_MODE_NORMAL/Grid"]
-margin_right = 80.0
-margin_bottom = 14.0
-rect_min_size = Vector2( 80, 0 )
-text = "Nom 1"
+[node name="CoinsFrenzy" parent="Scores/HBox" instance=ExtResource( 9 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 230.0
+margin_right = 430.0
+margin_bottom = 280.0
+rect_min_size = Vector2( 200, 280 )
 
-[node name="Score1" type="Label" parent="TabContainer/GAME_MODE_NORMAL/Grid"]
-margin_left = 95.0
-margin_right = 135.0
-margin_bottom = 14.0
-rect_min_size = Vector2( 40, 0 )
-text = "0"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Name2" type="Label" parent="TabContainer/GAME_MODE_NORMAL/Grid"]
-margin_top = 29.0
-margin_right = 80.0
-margin_bottom = 43.0
-text = "Nom 2"
-
-[node name="Score2" type="Label" parent="TabContainer/GAME_MODE_NORMAL/Grid"]
-margin_left = 95.0
-margin_top = 29.0
-margin_right = 135.0
-margin_bottom = 43.0
-text = "0"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Name3" type="Label" parent="TabContainer/GAME_MODE_NORMAL/Grid"]
-margin_top = 58.0
-margin_right = 80.0
-margin_bottom = 72.0
-text = "Nom 3"
-
-[node name="Score3" type="Label" parent="TabContainer/GAME_MODE_NORMAL/Grid"]
-margin_left = 95.0
-margin_top = 58.0
-margin_right = 135.0
-margin_bottom = 72.0
-text = "0"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Name4" type="Label" parent="TabContainer/GAME_MODE_NORMAL/Grid"]
-margin_top = 87.0
-margin_right = 80.0
-margin_bottom = 101.0
-text = "Nom 4"
-
-[node name="Score4" type="Label" parent="TabContainer/GAME_MODE_NORMAL/Grid"]
-margin_left = 95.0
-margin_top = 87.0
-margin_right = 135.0
-margin_bottom = 101.0
-text = "0"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Name5" type="Label" parent="TabContainer/GAME_MODE_NORMAL/Grid"]
-margin_top = 116.0
-margin_right = 80.0
-margin_bottom = 130.0
-text = "Nom 5"
-
-[node name="Score5" type="Label" parent="TabContainer/GAME_MODE_NORMAL/Grid"]
-margin_left = 95.0
-margin_top = 116.0
-margin_right = 135.0
-margin_bottom = 130.0
-text = "0"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Name6" type="Label" parent="TabContainer/GAME_MODE_NORMAL/Grid"]
-margin_top = 145.0
-margin_right = 80.0
-margin_bottom = 159.0
-text = "Nom 6"
-
-[node name="Score6" type="Label" parent="TabContainer/GAME_MODE_NORMAL/Grid"]
-margin_left = 95.0
-margin_top = 145.0
-margin_right = 135.0
-margin_bottom = 159.0
-text = "0"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="GAME_MODE_COINSFRENZY" type="CenterContainer" parent="TabContainer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = 48.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Grid" type="GridContainer" parent="TabContainer/GAME_MODE_COINSFRENZY"]
-margin_left = 92.0
-margin_top = 24.0
-margin_right = 227.0
-margin_bottom = 183.0
-custom_constants/vseparation = 15
-custom_constants/hseparation = 15
-columns = 2
-
-[node name="Name1" type="Label" parent="TabContainer/GAME_MODE_COINSFRENZY/Grid"]
-margin_right = 80.0
-margin_bottom = 14.0
-rect_min_size = Vector2( 80, 0 )
-text = "Nom 1"
-
-[node name="Score1" type="Label" parent="TabContainer/GAME_MODE_COINSFRENZY/Grid"]
-margin_left = 95.0
-margin_right = 135.0
-margin_bottom = 14.0
-rect_min_size = Vector2( 40, 0 )
-text = "0"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Name2" type="Label" parent="TabContainer/GAME_MODE_COINSFRENZY/Grid"]
-margin_top = 29.0
-margin_right = 80.0
-margin_bottom = 43.0
-text = "Nom 2"
-
-[node name="Score2" type="Label" parent="TabContainer/GAME_MODE_COINSFRENZY/Grid"]
-margin_left = 95.0
-margin_top = 29.0
-margin_right = 135.0
-margin_bottom = 43.0
-text = "0"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Name3" type="Label" parent="TabContainer/GAME_MODE_COINSFRENZY/Grid"]
-margin_top = 58.0
-margin_right = 80.0
-margin_bottom = 72.0
-text = "Nom 3"
-
-[node name="Score3" type="Label" parent="TabContainer/GAME_MODE_COINSFRENZY/Grid"]
-margin_left = 95.0
-margin_top = 58.0
-margin_right = 135.0
-margin_bottom = 72.0
-text = "0"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Name4" type="Label" parent="TabContainer/GAME_MODE_COINSFRENZY/Grid"]
-margin_top = 87.0
-margin_right = 80.0
-margin_bottom = 101.0
-text = "Nom 4"
-
-[node name="Score4" type="Label" parent="TabContainer/GAME_MODE_COINSFRENZY/Grid"]
-margin_left = 95.0
-margin_top = 87.0
-margin_right = 135.0
-margin_bottom = 101.0
-text = "0"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Name5" type="Label" parent="TabContainer/GAME_MODE_COINSFRENZY/Grid"]
-margin_top = 116.0
-margin_right = 80.0
-margin_bottom = 130.0
-text = "Nom 5"
-
-[node name="Score5" type="Label" parent="TabContainer/GAME_MODE_COINSFRENZY/Grid"]
-margin_left = 95.0
-margin_top = 116.0
-margin_right = 135.0
-margin_bottom = 130.0
-text = "0"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Name6" type="Label" parent="TabContainer/GAME_MODE_COINSFRENZY/Grid"]
-margin_top = 145.0
-margin_right = 80.0
-margin_bottom = 159.0
-text = "Nom 6"
-
-[node name="Score6" type="Label" parent="TabContainer/GAME_MODE_COINSFRENZY/Grid"]
-margin_left = 95.0
-margin_top = 145.0
-margin_right = 135.0
-margin_bottom = 159.0
-text = "0"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="GAME_MODE_RAIN" type="CenterContainer" parent="TabContainer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = 48.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Grid" type="GridContainer" parent="TabContainer/GAME_MODE_RAIN"]
-margin_left = 92.0
-margin_top = 24.0
-margin_right = 227.0
-margin_bottom = 183.0
-custom_constants/vseparation = 15
-custom_constants/hseparation = 15
-columns = 2
-
-[node name="Name1" type="Label" parent="TabContainer/GAME_MODE_RAIN/Grid"]
-margin_right = 80.0
-margin_bottom = 14.0
-rect_min_size = Vector2( 80, 0 )
-text = "Nom 1"
-
-[node name="Score1" type="Label" parent="TabContainer/GAME_MODE_RAIN/Grid"]
-margin_left = 95.0
-margin_right = 135.0
-margin_bottom = 14.0
-rect_min_size = Vector2( 40, 0 )
-text = "0"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Name2" type="Label" parent="TabContainer/GAME_MODE_RAIN/Grid"]
-margin_top = 29.0
-margin_right = 80.0
-margin_bottom = 43.0
-text = "Nom 2"
-
-[node name="Score2" type="Label" parent="TabContainer/GAME_MODE_RAIN/Grid"]
-margin_left = 95.0
-margin_top = 29.0
-margin_right = 135.0
-margin_bottom = 43.0
-text = "0"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Name3" type="Label" parent="TabContainer/GAME_MODE_RAIN/Grid"]
-margin_top = 58.0
-margin_right = 80.0
-margin_bottom = 72.0
-text = "Nom 3"
-
-[node name="Score3" type="Label" parent="TabContainer/GAME_MODE_RAIN/Grid"]
-margin_left = 95.0
-margin_top = 58.0
-margin_right = 135.0
-margin_bottom = 72.0
-text = "0"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Name4" type="Label" parent="TabContainer/GAME_MODE_RAIN/Grid"]
-margin_top = 87.0
-margin_right = 80.0
-margin_bottom = 101.0
-text = "Nom 4"
-
-[node name="Score4" type="Label" parent="TabContainer/GAME_MODE_RAIN/Grid"]
-margin_left = 95.0
-margin_top = 87.0
-margin_right = 135.0
-margin_bottom = 101.0
-text = "0"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Name5" type="Label" parent="TabContainer/GAME_MODE_RAIN/Grid"]
-margin_top = 116.0
-margin_right = 80.0
-margin_bottom = 130.0
-text = "Nom 5"
-
-[node name="Score5" type="Label" parent="TabContainer/GAME_MODE_RAIN/Grid"]
-margin_left = 95.0
-margin_top = 116.0
-margin_right = 135.0
-margin_bottom = 130.0
-text = "0"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Name6" type="Label" parent="TabContainer/GAME_MODE_RAIN/Grid"]
-margin_top = 145.0
-margin_right = 80.0
-margin_bottom = 159.0
-text = "Nom 6"
-
-[node name="Score6" type="Label" parent="TabContainer/GAME_MODE_RAIN/Grid"]
-margin_left = 95.0
-margin_top = 145.0
-margin_right = 135.0
-margin_bottom = 159.0
-text = "0"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Rain" parent="Scores/HBox" instance=ExtResource( 9 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 460.0
+margin_right = 660.0
+margin_bottom = 280.0
+rect_min_size = Vector2( 200, 280 )
 
 [node name="Buttons" type="Control" parent="."]
 margin_left = 48.0
@@ -606,12 +231,11 @@ text = "LABEL_NO"
 
 [node name="FadeTransition" parent="." instance=ExtResource( 5 )]
 visible = false
-[connection signal="pressed" from="TabContainer/Buttons/TabNormal" to="." method="_on_TabNormal_pressed"]
-[connection signal="pressed" from="TabContainer/Buttons/TabFrenzy" to="." method="_on_TabFrenzy_pressed"]
-[connection signal="pressed" from="TabContainer/Buttons/TabRain" to="." method="_on_TabRain_pressed"]
 [connection signal="pressed" from="Buttons/HBoxContainer/MainMenuButton" to="." method="_on_MainMenuButton_pressed"]
 [connection signal="pressed" from="Buttons/HBoxContainer/ResetButton" to="." method="_on_ResetButton_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]
 [connection signal="pressed" from="PopupConfirmReset/Buttons/YesButton" to="." method="_on_YesButton_pressed"]
 [connection signal="pressed" from="PopupConfirmReset/Buttons/NoButton" to="." method="_on_NoButton_pressed"]
 [connection signal="animation_finished" from="FadeTransition" to="." method="_on_FadeTransition_animation_finished"]
+
+[editable path="Scores/HBox/Normal"]
