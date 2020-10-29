@@ -1,18 +1,34 @@
-extends Control
+extends Node
 
 
-var next_scene := String()
+var _cfg := ConfigFile.new()
 
+# Achievements variables
+
+var first_time_hit_msec := 0
+var only_coins_bonus := true
+
+# Functions
 
 func _ready() -> void:
-	$FadeTransition.fade_out()
+	_cfg.load(Globals.path_achievements_user)
+
+# Tools
+
+func reset() -> void:
+	first_time_hit_msec = 0
+	only_coins_bonus = true
 
 
-func _on_BackButton_pressed() -> void:
-	next_scene = "res://src/actors/MainMenu.tscn"
-	$FadeTransition.fade_in()
+func validate(section: String):
+	_cfg.set_value(section, "done", true)
+	save()
+
+# ConfigFile functions
+
+func save() -> void:
+	_cfg.save(Globals.path_achievements_user)
 
 
-func _on_FadeTransition_animation_finished(anim_name: String) -> void:
-	if anim_name == "fade_in":
-		get_tree().change_scene(next_scene)
+func get_value(section: String, key: String, default=null):
+	return _cfg.get_value(section, key, default)

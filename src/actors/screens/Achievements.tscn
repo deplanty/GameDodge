@@ -4,8 +4,9 @@
 [ext_resource path="res://assets/images/ui/arrow_left.png" type="Texture" id=2]
 [ext_resource path="res://assets/images/background.png" type="Texture" id=3]
 [ext_resource path="res://assets/images/base_tileset.tres" type="TileSet" id=4]
-[ext_resource path="res://src/scripts/Achievements.gd" type="Script" id=5]
+[ext_resource path="res://src/scripts/ScreenAchievements.gd" type="Script" id=5]
 [ext_resource path="res://src/actors/FadeTransition.tscn" type="PackedScene" id=6]
+
 
 [node name="Achievements" type="Control"]
 anchor_right = 1.0

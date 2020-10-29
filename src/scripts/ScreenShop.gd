@@ -18,5 +18,5 @@ func _on_FadeTransition_animation_finished(anim_name: String) -> void:
 
 
 func _on_BackButton_pressed() -> void:
-	next_scene = "res://src/actors/MainMenu.tscn"
+	next_scene = "res://src/actors/screens/MainMenu.tscn"
 	$FadeTransition.fade_in()

@@ -21,7 +21,7 @@ func _ready() -> void:
 # Signals
 
 func _on_OptionButton_pressed() -> void:
-	next_scene = "res://src/actors/Settings.tscn"
+	next_scene = "res://src/actors/screens/Settings.tscn"
 	$FadeTransition.fade_in()
 
 
@@ -30,22 +30,22 @@ func _on_QuitButton_pressed() -> void:
 
 
 func _on_PlayButton_pressed() -> void:
-	next_scene = "res://src/actors/ModeSelection.tscn"
+	next_scene = "res://src/actors/screens/ModeSelection.tscn"
 	$FadeTransition.fade_in()
 
 
 func _on_AchievementsButton_pressed() -> void:
-	next_scene = "res://src/actors/Achievements.tscn"
+	next_scene = "res://src/actors/screens/Achievements.tscn"
 	$FadeTransition.fade_in()
 
 
 func _on_HighscoreButton_pressed() -> void:
-	next_scene = "res://src/actors/Leaderboard.tscn"
+	next_scene = "res://src/actors/screens/Leaderboard.tscn"
 	$FadeTransition.fade_in()
 
 
 func _on_ShopButton_pressed() -> void:
-	next_scene = "res://src/actors/Shop.tscn"
+	next_scene = "res://src/actors/screens/Shop.tscn"
 	$FadeTransition.fade_in()
 
 

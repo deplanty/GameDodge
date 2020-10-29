@@ -24,7 +24,7 @@ func _on_BackButton_pressed() -> void:
 
 
 func _on_MainMenuButton_pressed() -> void:
-	next_scene = "res://src/actors/MainMenu.tscn"
+	next_scene = "res://src/actors/screens/MainMenu.tscn"
 	Globals.previous_scene_skip = false
 	$FadeTransition.fade_in()
 

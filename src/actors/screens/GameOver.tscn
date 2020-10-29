@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://src/scripts/GameOver.gd" type="Script" id=1]
+[ext_resource path="res://src/scripts/ScreenGameOver.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/background.png" type="Texture" id=2]
 [ext_resource path="res://assets/images/ui/home.png" type="Texture" id=3]
 [ext_resource path="res://assets/font/Run.tres" type="DynamicFont" id=4]
@@ -12,6 +12,7 @@
 [ext_resource path="res://src/actors/Player.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/images/ui/information.png" type="Texture" id=11]
 [ext_resource path="res://assets/font/Overpass-Bold_24.tres" type="DynamicFont" id=12]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 10 )

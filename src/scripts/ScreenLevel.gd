@@ -1,5 +1,4 @@
 extends Control
-class_name Level
 
 # Scenes
 
@@ -42,8 +41,9 @@ func _ready() -> void:
 	# Game mode dependent
 	load_game_mode()
 
-	# Reset stats
+	# Reset parameters
 	Stats.reset()
+	Achievements.reset()
 
 	# Fade out to display the game
 	$FadeTransition.fade_out()
@@ -90,7 +90,7 @@ func _on_RestartButton_pressed() -> void:
 func _on_MainMenuButton_pressed() -> void:
 	get_tree().paused = false
 	$PauseMenu.hide()
-	next_scene = "res://src/actors/MainMenu.tscn"
+	next_scene = "res://src/actors/screens/MainMenu.tscn"
 	$FadeTransition.fade_in()
 
 
@@ -138,6 +138,10 @@ func _on_Player_lose_life() -> void:
 	$Control/Lifebar.set_life($Player.life)
 	if $Player.life <= 0:
 		on_death()
+
+	if Achievements.first_time_hit_msec == 0:
+		Achievements.first_time_hit_msec = OS.get_ticks_msec() - game_start_time
+		prints("Time first hit:", Achievements.first_time_hit_msec / 1000, "s")
 
 # Pattern
 
@@ -268,6 +272,8 @@ func _on_Coin_caught() -> void:
 	if Globals.game_mode_selected == "GAME_MODE_COINSFRENZY":
 		score_max = int(max(score_max, score))
 		$Control/ScoreContainer/ValueScoreMax.text = str(score_max)
+	# Achievements
+	Achievements.only_coins_bonus = false
 
 
 func _on_CoinBonus_caught() -> void:
@@ -353,7 +359,7 @@ func on_death() -> void:
 	Globals.shop.set_value("INVENTORY", "coins", total_coins + Globals.score)
 	Globals.save_shop()
 
-	next_scene = "res://src/actors/GameOver.tscn"
+	next_scene = "res://src/actors/screens/GameOver.tscn"
 	$FadeTransition.fade_in()
 
 # Misc

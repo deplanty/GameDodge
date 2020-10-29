@@ -44,6 +44,17 @@ func _ready() -> void:
 		show_after_animation()
 		_on_SkipAnimationButton_pressed()
 
+	# Check for achievements
+	if Achievements.only_coins_bonus:
+		if Globals.score > Achievements.get_value("only_coins_bonus_1", "threshold"):
+			print("only_coins_bonus_1: DONE")
+		if Globals.score > Achievements.get_value("only_coins_bonus_2", "threshold"):
+			print("only_coins_bonus_1: DONE")
+		if Globals.score > Achievements.get_value("only_coins_bonus_3", "threshold"):
+			print("only_coins_bonus_1: DONE")
+		if Globals.score > Achievements.get_value("only_coins_bonus_4", "threshold"):
+			print("only_coins_bonus_1: DONE")
+
 	$FadeTransition.fade_out()
 
 # Signals
@@ -83,14 +94,14 @@ func _on_NameButton_pressed() -> void:
 
 
 func _on_RestartButton_pressed() -> void:
-	next_scene = "res://src/actors/Level.tscn"
+	next_scene = "res://src/actors/screens/Level.tscn"
 	Globals.previous_scene_skip = false
 	Globals.previous_scene_button = false
 	$FadeTransition.fade_in()
 
 
 func _on_MainMenuButton_pressed() -> void:
-	next_scene = "res://src/actors/MainMenu.tscn"
+	next_scene = "res://src/actors/screens/MainMenu.tscn"
 	Globals.previous_scene_skip = false
 	Globals.previous_scene_button = false
 	$FadeTransition.fade_in()
@@ -100,7 +111,7 @@ func _on_HighscoreButton_pressed() -> void:
 	$FadeTransition.fade_in()
 	Globals.previous_scene_skip = true
 	Globals.previous_scene_button = true
-	next_scene = "res://src/actors/Leaderboard.tscn"
+	next_scene = "res://src/actors/screens/Leaderboard.tscn"
 
 
 func _on_FadeTransition_animation_finished(anim_name: String) -> void:

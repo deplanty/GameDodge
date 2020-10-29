@@ -10,19 +10,19 @@ func _ready() -> void:
 
 func _on_NormalButton_pressed() -> void:
 	Globals.game_mode_selected = "GAME_MODE_NORMAL"
-	next_scene = "res://src/actors/Level.tscn"
+	next_scene = "res://src/actors/screens/Level.tscn"
 	$FadeTransition.fade_in()
 
 
 func _on_WTFButton_pressed() -> void:
 	Globals.game_mode_selected = "GAME_MODE_COINSFRENZY"
-	next_scene = "res://src/actors/Level.tscn"
+	next_scene = "res://src/actors/screens/Level.tscn"
 	$FadeTransition.fade_in()
 
 
 func _on_RainButton_pressed() -> void:
 	Globals.game_mode_selected = "GAME_MODE_RAIN"
-	next_scene = "res://src/actors/Level.tscn"
+	next_scene = "res://src/actors/screens/Level.tscn"
 	$FadeTransition.fade_in()
 
 
@@ -32,5 +32,5 @@ func _on_FadeTransition_animation_finished(anim_name: String) -> void:
 
 
 func _on_BackButton_pressed() -> void:
-	next_scene = "res://src/actors/MainMenu.tscn"
+	next_scene = "res://src/actors/screens/MainMenu.tscn"
 	$FadeTransition.fade_in()

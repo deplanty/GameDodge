@@ -25,7 +25,6 @@ var game_mode_selected := "GAME_MODE_NORMAL"
 var parameters := ConfigFile.new()
 var settings := ConfigFile.new()
 var shop := ConfigFile.new()
-var achievements := ConfigFile.new()
 var username := String()
 var music_on := bool()
 var sound_fx := bool()
@@ -42,7 +41,7 @@ func _ready() -> void:
 	init_highscore()
 	init_settings()
 	init_shop()
-	init_achievements()
+	init_achievements(true)
 	# Load settings and parameters
 	parameters.load(path_game_parameters_res)
 	settings.load(path_settings_user)
@@ -51,7 +50,6 @@ func _ready() -> void:
 	sound_fx = settings.get_value("settings", "sound_fx", true)
 	# Load the shop and the achievements
 	shop.load(path_shop_user)
-	achievements.load(path_achievements_user)
 	# Set sounds according to settings
 	set_music(music_on)
 	set_sound_fx(sound_fx)
@@ -143,10 +141,6 @@ func init_achievements(force: bool=false) -> void:
 		return
 	else:
 		dir.copy(path_achievements_res, path_achievements_user)
-
-
-func save_achievements() -> void:
-	shop.save(path_achievements_user)
 
 # Enemy pattern
 

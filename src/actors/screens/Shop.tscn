@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://src/scripts/Shop.gd" type="Script" id=1]
+[ext_resource path="res://src/scripts/ScreenShop.gd" type="Script" id=1]
 [ext_resource path="res://assets/font/Run.tres" type="DynamicFont" id=2]
 [ext_resource path="res://assets/images/ui/arrow_left.png" type="Texture" id=3]
 [ext_resource path="res://assets/images/background.png" type="Texture" id=4]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/font/Overpass-Regular_18.tres" type="DynamicFont" id=6]
 [ext_resource path="res://assets/images/coin_rotated.png" type="Texture" id=7]
 [ext_resource path="res://assets/images/base_tileset.tres" type="TileSet" id=8]
+
 
 [node name="Shop" type="Control"]
 anchor_right = 1.0

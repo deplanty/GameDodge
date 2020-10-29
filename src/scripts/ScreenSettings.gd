@@ -59,7 +59,7 @@ func _on_EffectsButton_pressed() -> void:
 
 
 func _on_MainMenuButton_pressed() -> void:
-	next_scene = "res://src/actors/MainMenu.tscn"
+	next_scene = "res://src/actors/screens/MainMenu.tscn"
 	$FadeTransition.fade_in()
 
 
