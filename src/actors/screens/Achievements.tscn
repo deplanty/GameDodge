@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/font/Run.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/images/ui/arrow_left.png" type="Texture" id=2]
@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/images/base_tileset.tres" type="TileSet" id=4]
 [ext_resource path="res://src/scripts/ScreenAchievements.gd" type="Script" id=5]
 [ext_resource path="res://src/actors/FadeTransition.tscn" type="PackedScene" id=6]
-
+[ext_resource path="res://src/actors/WindowAchievements.tscn" type="PackedScene" id=7]
 
 [node name="Achievements" type="Control"]
 anchor_right = 1.0
@@ -42,6 +42,9 @@ text = "TITLE_ACHIEVEMENTS"
 align = 1
 valign = 1
 clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="BackButton" type="Button" parent="."]
 margin_left = 32.0
@@ -50,6 +53,16 @@ margin_bottom = 56.0
 mouse_default_cursor_shape = 2
 icon = ExtResource( 2 )
 flat = true
+
+[node name="WindowAchievements" parent="." instance=ExtResource( 7 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -168.0
+margin_top = -150.0
+margin_right = 168.0
+margin_bottom = 184.0
 
 [node name="FadeTransition" parent="." instance=ExtResource( 6 )]
 visible = false

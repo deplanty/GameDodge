@@ -1,0 +1,116 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/images/coin_rotated.png" type="Texture" id=1]
+[ext_resource path="res://src/scripts/WindowAchievementsLine.gd" type="Script" id=2]
+[ext_resource path="res://assets/font/Overpass-Regular_12.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/font/Overpass-Bold_14.tres" type="DynamicFont" id=4]
+[ext_resource path="res://assets/images/ui/medal_single.png" type="Texture" id=5]
+
+[node name="WindowAchievementsLine" type="Control"]
+anchor_right = 1.0
+rect_min_size = Vector2( 250, 64 )
+mouse_filter = 1
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Border" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+color = Color( 0.4, 0.346667, 0.08, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = -1.99997
+margin_bottom = -2.0
+rect_min_size = Vector2( 150, 0 )
+mouse_filter = 1
+color = Color( 0.156863, 0.156863, 0.156863, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="ColorRect"]
+anchor_right = 0.694
+margin_left = 6.0
+margin_right = 0.071991
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 4 )
+text = "Title Pookie"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Description" type="Label" parent="ColorRect"]
+anchor_top = 0.5
+anchor_right = 0.694
+anchor_bottom = 0.5
+margin_left = 6.0
+margin_top = -10.0
+margin_right = 0.071991
+margin_bottom = 24.0
+rect_min_size = Vector2( 200, 0 )
+mouse_filter = 1
+custom_fonts/font = ExtResource( 3 )
+text = "Bla bla bla pookie"
+valign = 1
+autowrap = true
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Medal" type="TextureRect" parent="ColorRect"]
+anchor_left = 0.735165
+anchor_top = 0.516667
+anchor_right = 0.735165
+anchor_bottom = 0.517
+margin_left = -24.888
+margin_top = -25.0
+margin_right = 25.112
+margin_bottom = 24.98
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Coin" type="TextureRect" parent="ColorRect"]
+anchor_left = 0.834582
+anchor_top = 0.5
+anchor_right = 0.834582
+anchor_bottom = 0.5
+margin_left = -9.84802
+margin_top = -13.0
+margin_right = 10.152
+margin_bottom = 13.0
+rect_min_size = Vector2( 20, 26 )
+texture = ExtResource( 1 )
+stretch_mode = 3
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Reward" type="Label" parent="ColorRect"]
+anchor_left = 0.888
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 0.143951
+margin_top = -24.0
+margin_right = -3.05176e-05
+margin_bottom = 24.0
+mouse_filter = 1
+text = "40"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

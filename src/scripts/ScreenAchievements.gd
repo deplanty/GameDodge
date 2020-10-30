@@ -5,6 +5,16 @@ var next_scene := String()
 
 
 func _ready() -> void:
+	# Add achievements on screen
+	for achievement in Achievements.get_all():
+#		if Achievements.get_value(achievement, "done"):
+			var title :String= achievement
+			var description :String= "%s_DESC" % achievement
+			var reward :int= Achievements.get_value(achievement, "reward")
+			var done :bool= Achievements.get_value(achievement, "done")
+			$WindowAchievements.add_line(title, description, reward, done)
+
+	# Show screen
 	$FadeTransition.fade_out()
 
 

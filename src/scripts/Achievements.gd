@@ -15,10 +15,23 @@ func _ready() -> void:
 	_cfg.load(Globals.path_achievements_user)
 
 
+func get_all() -> Array:
+	var all := Array()
+	for family in _cfg.get_value("FAMILIES", "all"):
+		var index := 1
+		var section := "%s_%d" % [family, index]
+		while _cfg.has_section(section):
+			all.push_back(section)
+			index += 1
+			section = "%s_%d" % [family, index]
+
+	return all
+
+
 func check_all() -> Array:
 	# Returns an array of all the completed achievements
 	var done := Array()
-	for family in _cfg.get_value("families", "all"):
+	for family in _cfg.get_value("FAMILIES", "all"):
 		var section = check_family(family)
 		if section:
 			done.push_back(section)
@@ -55,12 +68,12 @@ func check_section(section) -> bool:
 		return false
 
 	# Check which variable is used
-	var variable = 0
+	var variable = INF
 	match _cfg.get_value(section, "variable"):
 		"coins_bonus":
 			variable = only_coins_bonus_max
 		"first_hit":
-			variable = first_time_hit_msec
+			variable = first_time_hit_msec / 1000  # convert to secs
 
 	# Check if completed
 	if variable >= get_value(section, "threshold"):
