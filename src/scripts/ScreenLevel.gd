@@ -273,7 +273,7 @@ func _on_Coin_caught() -> void:
 		score_max = int(max(score_max, score))
 		$Control/ScoreContainer/ValueScoreMax.text = str(score_max)
 	# Achievements
-	Achievements.only_coins_bonus = false
+	Achievements.only_coins_bonus = 0
 
 
 func _on_CoinBonus_caught() -> void:
@@ -284,6 +284,12 @@ func _on_CoinBonus_caught() -> void:
 	if Globals.game_mode_selected == "GAME_MODE_COINSFRENZY":
 		score_max = int(max(score_max, score))
 		$Control/ScoreContainer/ValueScoreMax.text = str(score_max)
+	# Achievements
+	Achievements.only_coins_bonus += 1
+	Achievements.only_coins_bonus_max = max(
+		Achievements.only_coins_bonus,
+		Achievements.only_coins_bonus_max
+	)
 
 
 func _on_Coin_fall_in_lava() -> void:

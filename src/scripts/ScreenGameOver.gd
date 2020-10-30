@@ -45,15 +45,7 @@ func _ready() -> void:
 		_on_SkipAnimationButton_pressed()
 
 	# Check for achievements
-	if Achievements.only_coins_bonus:
-		if Globals.score > Achievements.get_value("only_coins_bonus_1", "threshold"):
-			print("only_coins_bonus_1: DONE")
-		if Globals.score > Achievements.get_value("only_coins_bonus_2", "threshold"):
-			print("only_coins_bonus_1: DONE")
-		if Globals.score > Achievements.get_value("only_coins_bonus_3", "threshold"):
-			print("only_coins_bonus_1: DONE")
-		if Globals.score > Achievements.get_value("only_coins_bonus_4", "threshold"):
-			print("only_coins_bonus_1: DONE")
+	var achivements_completed = Achievements.check_all()
 
 	$FadeTransition.fade_out()
 
