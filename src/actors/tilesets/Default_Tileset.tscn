@@ -133,6 +133,6 @@ shape = SubResource( 5 )
 [node name="Lava" type="AnimatedSprite" parent="."]
 position = Vector2( 192, 0 )
 frames = SubResource( 10 )
-frame = 3
+frame = 1
 playing = true
 centered = false

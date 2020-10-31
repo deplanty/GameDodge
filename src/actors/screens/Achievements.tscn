@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/font/Run.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/images/ui/arrow_left.png" type="Texture" id=2]
 [ext_resource path="res://assets/images/background.png" type="Texture" id=3]
-[ext_resource path="res://assets/images/base_tileset.tres" type="TileSet" id=4]
+[ext_resource path="res://assets/images/tilesets/default.tres" type="TileSet" id=4]
 [ext_resource path="res://src/scripts/ScreenAchievements.gd" type="Script" id=5]
 [ext_resource path="res://src/actors/FadeTransition.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/actors/WindowAchievements.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/scripts/GameTileMap.gd" type="Script" id=8]
 
 [node name="Achievements" type="Control"]
 anchor_right = 1.0
@@ -28,7 +29,8 @@ __meta__ = {
 tile_set = ExtResource( 4 )
 cell_size = Vector2( 32, 32 )
 format = 1
-tile_data = PoolIntArray( 0, 2, 0, 12, 4, 0, 65536, 2, 0, 65548, 4, 0, 131072, 2, 0, 131084, 4, 0, 196608, 2, 0, 196620, 4, 0, 262144, 2, 0, 262156, 4, 0, 327680, 2, 0, 327692, 4, 0, 393216, 2, 0, 393228, 4, 0, 458752, 2, 0, 458764, 4, 0, 524288, 2, 0, 524300, 4, 0, 589824, 2, 0, 589836, 4, 0, 655360, 2, 0, 655372, 4, 0, 720896, 2, 0, 720908, 4, 0, 786432, 2, 0, 786444, 4, 0, 851968, 2, 0, 851980, 4, 0, 917504, 2, 0, 917516, 4, 0, 983040, 2, 0, 983052, 4, 0, 1048576, 2, 0, 1048588, 4, 0, 1114112, 2, 0, 1114124, 4, 0, 1179648, 2, 0, 1179649, 0, 0, 1179650, 0, 0, 1179651, 0, 0, 1179652, 0, 0, 1179653, 0, 0, 1179654, 0, 0, 1179655, 0, 0, 1179656, 0, 0, 1179657, 0, 0, 1179658, 0, 0, 1179659, 0, 0, 1179660, 4, 0 )
+tile_data = PoolIntArray( 0, 0, 0, 12, 2, 0, 65536, 0, 0, 65548, 2, 0, 131072, 0, 0, 131084, 2, 0, 196608, 0, 0, 196620, 2, 0, 262144, 0, 0, 262156, 2, 0, 327680, 0, 0, 327692, 2, 0, 393216, 0, 0, 393228, 2, 0, 458752, 0, 0, 458764, 2, 0, 524288, 0, 0, 524300, 2, 0, 589824, 0, 0, 589836, 2, 0, 655360, 0, 0, 655372, 2, 0, 720896, 0, 0, 720908, 2, 0, 786432, 0, 0, 786444, 2, 0, 851968, 0, 0, 851980, 2, 0, 917504, 0, 0, 917516, 2, 0, 983040, 0, 0, 983052, 2, 0, 1048576, 0, 0, 1048588, 2, 0, 1114112, 0, 0, 1114124, 2, 0, 1179648, 0, 0, 1179649, 6, 0, 1179650, 6, 0, 1179651, 6, 0, 1179652, 6, 0, 1179653, 6, 0, 1179654, 6, 0, 1179655, 6, 0, 1179656, 6, 0, 1179657, 6, 0, 1179658, 6, 0, 1179659, 6, 0, 1179660, 2, 0 )
+script = ExtResource( 8 )
 
 [node name="Title" type="Label" parent="."]
 anchor_left = 0.5

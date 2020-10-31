@@ -8,6 +8,8 @@ func _ready() -> void:
 	# Set the total amount of coins
 	var total_coins = Globals.shop.get_value("INVENTORY", "coins")
 	$CoinsContainer/CoinsLabel.text = str(total_coins)
+	# Set the shop
+	set_shop()
 	# Show the screen
 	$FadeTransition.fade_out()
 
@@ -20,3 +22,48 @@ func _on_FadeTransition_animation_finished(anim_name: String) -> void:
 func _on_BackButton_pressed() -> void:
 	next_scene = "res://src/actors/screens/MainMenu.tscn"
 	$FadeTransition.fade_in()
+
+
+func _on_SelectButton_pressed(row: int, skin_name: String) -> void:
+	prints(row, skin_name)
+	Globals.tileset_name = skin_name
+	Globals.tileset = load("res://assets/images/tilesets/%s.tres" % skin_name)
+	for i in $Grid.get_child_count() / 2:
+		if i == row:
+			$Grid.get_child(i * 2 + 1).text = "Selected"
+		else:
+			$Grid.get_child(i * 2 + 1).text = "Select"
+
+	$TileMap.tile_set = Globals.tileset
+
+	Globals.settings.set_value("skins", "world", skin_name)
+	Globals.save_settings()
+
+# Tools
+
+func set_shop() -> void:
+	# Remove grid
+	for child in $Grid.get_children():
+		child.queue_free()
+
+	var world_skins := Globals.shop.get_section_keys("WORLD_SKINS")
+	var row := 0
+	for skin_name in world_skins:
+		# Label
+		var label := Label.new()
+		label.text = skin_name
+		$Grid.add_child(label)
+		# Button
+		var price = Globals.shop.get_value("WORLD_SKINS", skin_name)
+		var button := Button.new()
+		if price > 0:
+			button.text = "Buy %d" % price
+		else:
+			if Globals.tileset_name == skin_name:
+				button.text = "Selected"
+			else:
+				button.text = "Select"
+		button.connect("pressed", self, "_on_SelectButton_pressed", [row, skin_name])
+		$Grid.add_child(button)
+
+		row += 1

@@ -29,6 +29,9 @@ var username := String()
 var music_on := bool()
 var sound_fx := bool()
 
+var tileset_name :String
+var tileset :Resource
+
 # Variables
 var score := 0
 var pattern_velocity_multiplier := 1.0
@@ -40,7 +43,7 @@ func _ready() -> void:
 	# Write user files
 	init_highscore()
 	init_settings()
-	init_shop()
+	init_shop(true)
 	init_achievements()
 	# Load settings and parameters
 	parameters.load(path_game_parameters_res)
@@ -48,6 +51,8 @@ func _ready() -> void:
 	username = settings.get_value("user", "name", "")
 	music_on = settings.get_value("settings", "music", true)
 	sound_fx = settings.get_value("settings", "sound_fx", true)
+	tileset_name = settings.get_value("skins", "world", "default")
+	tileset = load("res://assets/images/tilesets/%s.tres" % tileset_name)
 	# Load the shop and the achievements
 	shop.load(path_shop_user)
 	# Set sounds according to settings
