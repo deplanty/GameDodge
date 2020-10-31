@@ -41,7 +41,7 @@ func _ready() -> void:
 	init_highscore()
 	init_settings()
 	init_shop()
-	init_achievements(true)
+	init_achievements()
 	# Load settings and parameters
 	parameters.load(path_game_parameters_res)
 	settings.load(path_settings_user)

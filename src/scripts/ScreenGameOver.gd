@@ -13,6 +13,7 @@ If it's a new highscore, it makes the player jump and it shows an entry.
 If it's not a highscore; it shows the buttons.
 """
 
+
 extends Control
 
 
@@ -30,9 +31,6 @@ var next_scene := String()
 
 
 func _ready() -> void:
-	Globals.score = 30
-	Achievements.only_coins_bonus_max = 20
-	Achievements.first_time_hit_msec = 60000
 	# Load highscore
 	highscores = Globals.load_highscores()
 	highscore = highscores[Globals.game_mode_selected]
@@ -187,6 +185,7 @@ func show_after_animation() -> void:
 
 
 func show_achievements():
+	# Show the achievements one after another
 	for achievement in achievements_completed:
 		var title :String= achievement
 		var description :String= "%s_DESC" % achievement
@@ -241,6 +240,7 @@ func set_stats() -> void:
 		total += Stats.bonus_lost * Globals.parameters.get_value(Globals.game_mode_selected, "coins_bonus", 0)
 		add_stats_line("", "")
 		add_stats_line("LABEL_STATS_TAUNT", total, true)
+
 
 func add_stats_line(text: String, value, autowrap: bool=false) -> void:
 	var label = Label.new()
