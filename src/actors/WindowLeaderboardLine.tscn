@@ -2,19 +2,38 @@
 
 [ext_resource path="res://src/scripts/WindowLeaderboardLine.gd" type="Script" id=1]
 
-[node name="WindowLeaderboardLine" type="ColorRect"]
+[node name="WindowLeaderboardLine" type="Control"]
 anchor_right = 1.0
-margin_right = 3.05176e-05
-margin_bottom = 24.0
 rect_min_size = Vector2( 0, 24 )
 mouse_filter = 1
-color = Color( 0.1, 0.1, 0.1, 1 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LabelLeft" type="Label" parent="."]
+[node name="Border" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+color = Color( 0.4, 0.346667, 0.08, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fill" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = 1.0
+margin_right = -1.0
+margin_bottom = -1.0
+mouse_filter = 1
+color = Color( 0.101961, 0.101961, 0.101961, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LabelLeft" type="Label" parent="Fill"]
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_right = -10.0
@@ -26,7 +45,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LabelRight" type="Label" parent="."]
+[node name="LabelRight" type="Label" parent="Fill"]
 anchor_left = 0.5
 anchor_right = 1.0
 anchor_bottom = 1.0

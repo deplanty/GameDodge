@@ -1,6 +1,6 @@
-extends ColorRect
+extends Control
 
 
 func set_labels(left: String, right: String) -> void:
-	$LabelLeft.text = left
-	$LabelRight.text = right
+	$Fill/LabelLeft.text = left
+	$Fill/LabelRight.text = right
