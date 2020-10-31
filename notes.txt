@@ -1,0 +1,9 @@
+[Maximum game parameters reached]
+Date = 31/10/2020 13:00
+Enemy speed multiplier = 1.98
+Rain speed multiplier = 2
+Game duration = 5:44
+Patterns dodged = 44
+Rain dodged = 5
+Bonus coins caught = 153 (witout catching normal coins)
+Bonus caught = 21
