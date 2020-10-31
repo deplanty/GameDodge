@@ -23,10 +23,16 @@ onready var coin_scene := preload("res://src/actors/Coin.tscn")
 # Highscore
 var highscores := Dictionary()  # All mode highscores
 var highscore := Array()  # Current mode highscores
+# Achievements
+var achievement_popup_scene := preload("res://src/actors/popups/AchievementPopup.tscn")
+var achievements_completed := Array()
 var next_scene := String()
 
 
 func _ready() -> void:
+	Globals.score = 30
+	Achievements.only_coins_bonus_max = 20
+	Achievements.first_time_hit_msec = 60000
 	# Load highscore
 	highscores = Globals.load_highscores()
 	highscore = highscores[Globals.game_mode_selected]
@@ -45,7 +51,7 @@ func _ready() -> void:
 		_on_SkipAnimationButton_pressed()
 
 	# Check for achievements
-	var achivements_completed = Achievements.check_all()
+	achievements_completed = Achievements.check_all()
 
 	$FadeTransition.fade_out()
 
@@ -145,7 +151,7 @@ func _on_AreaJump_body_entered(body: Node) -> void:
 	if body == $Control/Player:
 		$Control/Player.jump()
 
-# Highscore
+# Show
 
 func show_after_animation() -> void:
 	"""
@@ -173,8 +179,23 @@ func show_after_animation() -> void:
 		$Buttons.show()
 		$Buttons/RestartButton.grab_focus()
 
+	# Show achievements
+	print("Show achievements")
+	show_achievements()
+
 	$ScoreLabel.show()
 
+
+func show_achievements():
+	for achievement in achievements_completed:
+		var title :String= achievement
+		var description :String= "%s_DESC" % achievement
+		var line := achievement_popup_scene.instance()
+		line.set_labels(title, description)
+		$Achievements.add_child(line)
+		yield(line, "fade_out")
+
+# Highscore
 
 func custom_highscore_sort(a, b):
 	return a[1] > b[1]

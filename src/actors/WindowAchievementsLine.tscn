@@ -44,7 +44,7 @@ margin_left = 6.0
 margin_right = 0.071991
 margin_bottom = 20.0
 custom_fonts/font = ExtResource( 4 )
-text = "Title Pookie"
+text = "Lorem ipsum dolor sit amet"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -61,7 +61,7 @@ margin_bottom = 24.0
 rect_min_size = Vector2( 200, 0 )
 mouse_filter = 1
 custom_fonts/font = ExtResource( 3 )
-text = "Bla bla bla pookie"
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 valign = 1
 autowrap = true
 clip_text = true
