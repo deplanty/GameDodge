@@ -21,9 +21,6 @@ extends Control
 var coin_sum := 0  # To reach the score
 export var coin_spawn_dt := 0.1  # To spawn coins
 onready var coin_scene := preload("res://src/actors/Coin.tscn")
-# Highscore
-var highscores := Dictionary()  # All mode highscores
-var highscore := Array()  # Current mode highscores
 # Achievements
 var achievement_popup_scene := preload("res://src/actors/popups/AchievementPopup.tscn")
 var achievements_completed := Array()
@@ -31,9 +28,6 @@ var next_scene := String()
 
 
 func _ready() -> void:
-	# Load highscore
-	highscores = Globals.load_highscores()
-	highscore = highscores[Globals.game_mode_selected]
 	# Load stats
 	set_stats()
 	# Player
@@ -84,9 +78,8 @@ func _on_NameButton_pressed() -> void:
 	$Buttons.show()
 	$Buttons/RestartButton.grab_focus()
 	# Save higscore and player name
-	add_highscore($Name/NameEdit.text, Globals.score)
-	Globals.username = $Name/NameEdit.text
-	Globals.save_settings()
+	Leaderboards.add_entry(Globals.game_mode_selected, $Name/NameEdit.text, Globals.score)
+	SettingsUser.set_value("user", "name", $Name/NameEdit.text)
 
 
 func _on_RestartButton_pressed() -> void:
@@ -156,12 +149,14 @@ func show_after_animation() -> void:
 	Show UI elements after the coins animation.
 	"""
 
-	# If score is a highscore
-	if Globals.score > highscore[-1][1]:
+	var leaderboard = Leaderboards.get_leaderboard(Globals.game_mode_selected)
+
+	# If score is a highscore (at least superior than the lowest)
+	if Globals.score > leaderboard[-1][1]:
 		$ScoreLabel.text = "TITLE_NEW_HIGHSCORE"
 		$Name.show()
 		$Buttons.hide()
-		$Name/NameEdit.text = Globals.username
+		$Name/NameEdit.text = SettingsUser.get_value("user", "name")
 		$Name/NameEdit.grab_focus()
 		$Control/Player.set_physics_process(true)
 	# If score is not a highscore
@@ -194,21 +189,6 @@ func show_achievements():
 		$Achievements.add_child(line)
 		yield(line, "fade_out")
 
-# Highscore
-
-func custom_highscore_sort(a, b):
-	return a[1] > b[1]
-
-
-func add_highscore(name: String, score: int) -> void:
-	# Add current score and sort them
-	highscore.append([name, score])
-	highscore.sort_custom(self, "custom_highscore_sort")
-	highscore.pop_back()
-	# Write highscores
-	highscores[Globals.game_mode_selected] = highscore
-	Globals.save_highscores(highscores)
-
 # Statistics
 
 func set_stats() -> void:
@@ -219,9 +199,9 @@ func set_stats() -> void:
 	add_stats_line("LABEL_STATS_DURATION", "%02d:%02d" % [m, s])
 	# Dodges
 	add_stats_line("", "")
-	if Globals.parameters.get_value(Globals.game_mode_selected, "game_pattern"):
+	if Settings.get_value(Globals.game_mode_selected, "game_pattern"):
 		add_stats_line("LABEL_STATS_PATTERNS_DODGED", Stats.patterns_dodged)
-	if Globals.parameters.get_value(Globals.game_mode_selected, "game_rain"):
+	if Settings.get_value(Globals.game_mode_selected, "game_rain"):
 		add_stats_line("LABEL_STATS_RAINS_DODGED", Stats.rains_dodged)
 	# Coins
 	add_stats_line("", "")
@@ -229,7 +209,7 @@ func set_stats() -> void:
 	add_stats_line("LABEL_STATS_COINS_LOST", Stats.coins_lost)
 	add_stats_line("LABEL_STATS_COINS_BONUS_CAUGHT", Stats.bonus_coins_caught)
 	add_stats_line("LABEL_STATS_COINS_BONUS_LOST", Stats.bonus_coins_lost)
-	if Globals.parameters.get_value(Globals.game_mode_selected, "game_bonus"):
+	if Settings.get_value(Globals.game_mode_selected, "game_bonus"):
 		add_stats_line("LABEL_STATS_BONUS_CAUGHT", Stats.bonus_caught)
 		add_stats_line("LABEL_STATS_BONUS_LOST", Stats.bonus_lost)
 
@@ -237,7 +217,7 @@ func set_stats() -> void:
 	if Stats.coins_lost + Stats.bonus_coins_lost + Stats.bonus_lost > 0:
 		var total := Stats.coins_caught + Stats.coins_lost
 		total += Stats.bonus_coins_caught + Stats.bonus_coins_lost
-		total += Stats.bonus_lost * Globals.parameters.get_value(Globals.game_mode_selected, "coins_bonus", 0)
+		total += Stats.bonus_lost * Settings.get_value(Globals.game_mode_selected, "coins_bonus", 0)
 		add_stats_line("", "")
 		add_stats_line("LABEL_STATS_TAUNT", total, true)
 

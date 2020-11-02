@@ -5,7 +5,7 @@ var next_scene := String()
 
 
 func _ready() -> void:
-	if MusicController.current_track != "menu":
+	if MusicController.track_current != "menu":
 		MusicController.set_track_menu("menu")
 	set_highscores()
 	$FadeTransition.fade_out()
@@ -35,7 +35,7 @@ func _on_ResetButton_pressed() -> void:
 
 func _on_YesNoPopup_pressed_yes_no(yes) -> void:
 	if yes:
-		Globals.init_highscore(true)
+		Leaderboards.init(true)
 		set_highscores()
 
 	$PopupConfirmReset.hide()
@@ -50,7 +50,7 @@ func _on_FadeTransition_animation_finished(anim_name: String) -> void:
 # Tools
 
 func set_highscores() -> void:
-	var data = Globals.load_highscores()
+	var data = Leaderboards.get_all()
 	$Scores/HBox/Normal.set_title("GAME_MODE_NORMAL")
 	$Scores/HBox/Normal.set_array(data["GAME_MODE_NORMAL"])
 	$Scores/HBox/CoinsFrenzy.set_title("GAME_MODE_COINSFRENZY")

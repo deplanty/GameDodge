@@ -6,7 +6,7 @@ var next_scene := String()
 
 func _ready() -> void:
 	# Set menu music
-	if MusicController.current_track != "menu":
+	if MusicController.track_current != "menu":
 		MusicController.set_track_menu("menu")
 	# Set Interface
 	$FadeTransition.fade_out()
@@ -16,7 +16,7 @@ func _ready() -> void:
 	$Player.velocity.x = -$Player.speed.x
 	$Player.look_left()
 
-	print("Total coins: ", Globals.shop.get_value("INVENTORY", "coins"))
+	print("Total coins: ", Shop.get_value("INVENTORY", "coins"))
 
 # Signals
 

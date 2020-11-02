@@ -1,6 +1,7 @@
 extends Node
 
-
+const path_res := "res://assets/achievements.ini"
+const path_user := "user://achievements.ini"
 var _cfg := ConfigFile.new()
 
 # Achievements variables
@@ -11,8 +12,19 @@ var only_coins_bonus_max := 0
 
 # Functions
 
-func _ready() -> void:
-	_cfg.load(Globals.path_achievements_user)
+func init(force: bool=false) -> void:
+	"""
+	If the achievements does not exist, copy the file to the user location.
+	Force the replacement of the current achievements if needed.
+	"""
+
+	var dir := Directory.new()
+	if dir.file_exists(path_user) and not force:
+		pass
+	else:
+		dir.copy(path_res, path_user)
+
+	_cfg.load(path_user)
 
 
 func get_all() -> Array:
@@ -93,14 +105,13 @@ func completed(section: String):
 	_cfg.set_value(section, "done", true)
 	save()
 	# Store reward coins in the inventory
-	var total_coins = Globals.shop.get_value("INVENTORY", "coins")
-	Globals.shop.set_value("INVENTORY", "coins", total_coins + _cfg.get_value(section, "reward"))
-	Globals.save_shop()
+	var total_coins = Shop.get_value("INVENTORY", "coins")
+	Shop.set_value("INVENTORY", "coins", total_coins + _cfg.get_value(section, "reward"))
 
 # ConfigFile functions
 
 func save() -> void:
-	_cfg.save(Globals.path_achievements_user)
+	_cfg.save(path_user)
 
 
 func get_value(section: String, key: String, default=null):

@@ -11,7 +11,7 @@ export var velocity := Vector2(0, 100)
 func _physics_process(delta: float) -> void:
 	move_and_slide(velocity)
 
-	if position.y > Globals.parameters.get_value("VIEWPORT", "height"):
+	if position.y > Settings.get_value("VIEWPORT", "height"):
 		emit_signal("fall_in_lava")
 		queue_free()
 

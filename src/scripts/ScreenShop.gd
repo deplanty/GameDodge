@@ -6,7 +6,7 @@ var next_scene := String()
 
 func _ready() -> void:
 	# Set the total amount of coins
-	var total_coins = Globals.shop.get_value("INVENTORY", "coins")
+	var total_coins = Shop.get_value("INVENTORY", "coins")
 	$CoinsContainer/CoinsLabel.text = str(total_coins)
 	# Set the shop
 	set_shop()
@@ -36,8 +36,7 @@ func _on_SelectButton_pressed(row: int, skin_name: String) -> void:
 
 	$TileMap.tile_set = Globals.tileset
 
-	Globals.settings.set_value("skins", "world", skin_name)
-	Globals.save_settings()
+	SettingsUser.set_value("skins", "world", skin_name)
 
 # Tools
 
@@ -46,7 +45,7 @@ func set_shop() -> void:
 	for child in $Grid.get_children():
 		child.queue_free()
 
-	var world_skins := Globals.shop.get_section_keys("WORLD_SKINS")
+	var world_skins := Shop.get_world_skins()
 	var row := 0
 	for skin_name in world_skins:
 		# Label
@@ -54,7 +53,7 @@ func set_shop() -> void:
 		label.text = skin_name
 		$Grid.add_child(label)
 		# Button
-		var price = Globals.shop.get_value("WORLD_SKINS", skin_name)
+		var price = Shop.get_value("WORLD_SKINS", skin_name)
 		var button := Button.new()
 		if price > 0:
 			button.text = "Buy %d" % price

@@ -28,10 +28,10 @@ var game_rain = false
 
 func _ready() -> void:
 	# Set music
-	if MusicController.current_track != "game":
+	if MusicController.track_current != "game":
 		MusicController.set_track_menu("game")
 	# Set player
-	$Player.life = Globals.parameters.get_value(Globals.game_mode_selected, "player_life")
+	$Player.life = Settings.get_value(Globals.game_mode_selected, "player_life")
 	$Control/Lifebar.set_max_life($Player.life)
 
 	# Game parameters
@@ -162,7 +162,7 @@ func add_random_pattern() -> void:
 	for e in current_enemies:
 		$Pattern.add_child(e)
 	# Increase speed for next pattern
-	Globals.pattern_velocity_multiplier += Globals.parameters.get_value(Globals.game_mode_selected, "pattern_velocity_increase")
+	Globals.pattern_velocity_multiplier += Settings.get_value(Globals.game_mode_selected, "pattern_velocity_increase")
 
 
 func load_pattern(patterns, i: int) -> Array:
@@ -217,7 +217,7 @@ func _on_WarningAnimation_animation_finished(anim_name: String) -> void:
 		$Timers/RainStopTimer.start()
 	# Step 5
 	elif anim_name == "alert_off":
-		add_bonus_coins(Globals.parameters.get_value(Globals.game_mode_selected, "coins_rain_reward"))
+		add_bonus_coins(Settings.get_value(Globals.game_mode_selected, "coins_rain_reward"))
 		for torch in $Torches.get_children():
 			torch.set_alert(false)
 		$Timers/RainRewardTimer.start()
@@ -241,8 +241,8 @@ func _on_RainStopTimer_timeout() -> void:
 
 	$Timers/RainSpawnTimer.stop()
 	$Control/Warning/ColorRect/WarningAnimation.play("alert_off")
-	Globals.rain_velocity_multiplier += Globals.parameters.get_value(Globals.game_mode_selected, "rain_velocity_increase")
-	$Timers/RainSpawnTimer.wait_time /= Globals.parameters.get_value(Globals.game_mode_selected, "rain_density_increase")
+	Globals.rain_velocity_multiplier += Settings.get_value(Globals.game_mode_selected, "rain_velocity_increase")
+	$Timers/RainSpawnTimer.wait_time /= Settings.get_value(Globals.game_mode_selected, "rain_density_increase")
 
 
 func _on_RainRewardTimer_timeout() -> void:
@@ -339,7 +339,7 @@ func _on_BonusTimer_timeout() -> void:
 
 func _on_Bonus_caught() -> void:
 	Stats.bonus_caught += 1
-	call_deferred("add_bonus_coins", Globals.parameters.get_value(Globals.game_mode_selected, "coins_bonus"))
+	call_deferred("add_bonus_coins", Settings.get_value(Globals.game_mode_selected, "coins_bonus"))
 
 
 func _on_Bonus_fall_in_lava() -> void:
@@ -361,9 +361,8 @@ func on_death() -> void:
 		_:
 			Globals.score = score
 	# Store coins in the inventory
-	var total_coins = Globals.shop.get_value("INVENTORY", "coins")
-	Globals.shop.set_value("INVENTORY", "coins", total_coins + Globals.score)
-	Globals.save_shop()
+	var total_coins = Shop.get_value("INVENTORY", "coins")
+	Shop.set_value("INVENTORY", "coins", total_coins + Globals.score)
 
 	next_scene = "res://src/actors/screens/GameOver.tscn"
 	$FadeTransition.fade_in()
@@ -373,33 +372,33 @@ func on_death() -> void:
 func load_game_mode() -> void:
 	var mode = Globals.game_mode_selected
 
-	game_coin = Globals.parameters.get_value(mode, "game_coin")
-	game_pattern = Globals.parameters.get_value(mode, "game_pattern")
-	game_rain = Globals.parameters.get_value(mode, "game_rain")
-	game_bonus = Globals.parameters.get_value(mode, "game_bonus")
+	game_coin = Settings.get_value(mode, "game_coin")
+	game_pattern = Settings.get_value(mode, "game_pattern")
+	game_rain = Settings.get_value(mode, "game_rain")
+	game_bonus = Settings.get_value(mode, "game_bonus")
 
 	if mode == "GAME_MODE_NORMAL":
 		$Control/ScoreContainer/ValueScoreMax.hide()
 		# Set timers
-		$Timers/BonusTimer.wait_time = Globals.parameters.get_value(mode, "timer_bonus")
-		$Timers/RainStartTimer.wait_time = Globals.parameters.get_value(mode, "timer_rain_start")
-		$Timers/RainSpawnTimer.wait_time = Globals.parameters.get_value(mode, "timer_rain_dt")
-		$Timers/RainStopTimer.wait_time = Globals.parameters.get_value(mode, "timer_rain_stop")
-		$Timers/RainRewardTimer.wait_time = Globals.parameters.get_value(mode, "timer_rain_reward")
+		$Timers/BonusTimer.wait_time = Settings.get_value(mode, "timer_bonus")
+		$Timers/RainStartTimer.wait_time = Settings.get_value(mode, "timer_rain_start")
+		$Timers/RainSpawnTimer.wait_time = Settings.get_value(mode, "timer_rain_dt")
+		$Timers/RainStopTimer.wait_time = Settings.get_value(mode, "timer_rain_stop")
+		$Timers/RainRewardTimer.wait_time = Settings.get_value(mode, "timer_rain_reward")
 	elif mode == "GAME_MODE_COINSFRENZY":
 		$Control/ScoreContainer/ValueScoreMax.show()
 	elif mode == "GAME_MODE_RAIN":
 		$Control/ScoreContainer/ValueScoreMax.hide()
 		# Set timers
-		$Timers/RainStartTimer.wait_time = Globals.parameters.get_value(mode, "timer_rain_start")
-		$Timers/RainSpawnTimer.wait_time = Globals.parameters.get_value(mode, "timer_rain_dt")
-		$Timers/RainStopTimer.wait_time = Globals.parameters.get_value(mode, "timer_rain_stop")
-		$Timers/RainRewardTimer.wait_time = Globals.parameters.get_value(mode, "timer_rain_reward")
+		$Timers/RainStartTimer.wait_time = Settings.get_value(mode, "timer_rain_start")
+		$Timers/RainSpawnTimer.wait_time = Settings.get_value(mode, "timer_rain_dt")
+		$Timers/RainStopTimer.wait_time = Settings.get_value(mode, "timer_rain_stop")
+		$Timers/RainRewardTimer.wait_time = Settings.get_value(mode, "timer_rain_reward")
 
 
 func get_random_position_spawning() -> Vector2:
-	var w :int= Globals.parameters.get_value("VIEWPORT", "width")
-	var cell :int= Globals.parameters.get_value("VIEWPORT", "cell_size")
+	var w :int= Settings.get_value("VIEWPORT", "width")
+	var cell :int= Settings.get_value("VIEWPORT", "cell_size")
 	var x := round(rand_range(cell + 8, w - cell - 8))
 	var y := round(rand_range(-8, -64))
 	return Vector2(x, y)

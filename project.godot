@@ -21,10 +21,15 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Globals="*res://src/scripts/Globals.gd"
+Globals="*res://src/scripts/autoload/Globals.gd"
+Settings="*res://src/scripts/autoload/Settings.gd"
+SettingsUser="*res://src/scripts/autoload/SettingsUser.gd"
+Achievements="*res://src/scripts/autoload/Achievements.gd"
+Leaderboards="*res://src/scripts/autoload/Leaderboards.gd"
+Shop="*res://src/scripts/autoload/Shop.gd"
+Init="*res://src/scripts/autoload/Init.gd"
 MusicController="*res://src/actors/MusicController.tscn"
-Achievements="*res://src/scripts/Achievements.gd"
-Stats="*res://src/scripts/Stats.gd"
+Stats="*res://src/scripts/autoload/Stats.gd"
 
 [display]
 

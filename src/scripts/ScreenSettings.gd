@@ -11,15 +11,15 @@ var next_scene := String()
 
 
 func _ready() -> void:
-	if MusicController.current_track != "menu":
+	if MusicController.track_current != "menu":
 		MusicController.set_track_menu("menu")
 
-	if Globals.music_on:
+	if MusicController.is_music_on():
 		$Container/VBox/Sound/MusicButton.icon = img_music_on
 	else:
 		$Container/VBox/Sound/MusicButton.icon = img_music_off
 
-	if Globals.sound_fx:
+	if MusicController.is_sound_fx_on():
 		$Container/VBox/Sound/EffectsButton.icon = img_sound_fx
 	else:
 		$Container/VBox/Sound/EffectsButton.icon = img_fx_off
@@ -30,32 +30,34 @@ func _ready() -> void:
 
 func _on_ButtonEn_pressed() -> void:
 	TranslationServer.set_locale("en")
-	Globals.save_settings()
+	SettingsUser.set_value("settings", "language", "en")
 
 
 func _on_ButtonFr_pressed() -> void:
 	TranslationServer.set_locale("fr")
-	Globals.save_settings()
+	SettingsUser.set_value("settings", "language", "fr")
 
 
 func _on_MusicButton_pressed() -> void:
-	if Globals.music_on:
-		Globals.set_music(false)
+	if MusicController.is_music_on():
 		$Container/VBox/Sound/MusicButton.icon = img_music_off
+		MusicController.set_music(false)
+		SettingsUser.set_value("settings", "music", false)
 	else:
-		Globals.set_music(true)
 		$Container/VBox/Sound/MusicButton.icon = img_music_on
-	Globals.save_settings()
+		MusicController.set_music(true)
+		SettingsUser.set_value("settings", "music", true)
 
 
 func _on_EffectsButton_pressed() -> void:
-	if Globals.sound_fx:
-		Globals.set_sound_fx(false)
+	if MusicController.is_sound_fx_on():
 		$Container/VBox/Sound/EffectsButton.icon = img_fx_off
+		MusicController.set_sound_fx(false)
+		SettingsUser.set_value("settings", "sound_fx", false)
 	else:
-		Globals.set_sound_fx(true)
 		$Container/VBox/Sound/EffectsButton.icon = img_sound_fx
-	Globals.save_settings()
+		MusicController.set_sound_fx(true)
+		SettingsUser.set_value("settings", "sound_fx", true)
 
 
 func _on_MainMenuButton_pressed() -> void:
