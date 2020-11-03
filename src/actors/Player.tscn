@@ -1,10 +1,9 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://assets/images/players/tofu_ninja.png" type="Texture" id=1]
 [ext_resource path="res://src/scripts/Player.gd" type="Script" id=2]
 [ext_resource path="res://assets/sounds/hurt.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/sounds/jump.wav" type="AudioStream" id=4]
-[ext_resource path="res://assets/images/jump_animation.png" type="Texture" id=5]
 [ext_resource path="res://assets/sounds/bounce.wav" type="AudioStream" id=6]
 
 [sub_resource type="AtlasTexture" id=1]
@@ -81,37 +80,36 @@ extents = Vector2( 12, 12 )
 [sub_resource type="OccluderPolygon2D" id=14]
 polygon = PoolVector2Array( -12, -24, -12, 0, 12, 0, 12, -24 )
 
-[sub_resource type="AtlasTexture" id=15]
-atlas = ExtResource( 5 )
-region = Rect2( 0, 0, 24, 24 )
+[sub_resource type="Gradient" id=22]
+colors = PoolColorArray( 1, 1, 1, 1, 0.25, 0.25, 0.25, 1 )
 
-[sub_resource type="AtlasTexture" id=16]
-atlas = ExtResource( 5 )
-region = Rect2( 24, 0, 24, 24 )
+[sub_resource type="GradientTexture" id=23]
+gradient = SubResource( 22 )
 
-[sub_resource type="AtlasTexture" id=17]
-atlas = ExtResource( 5 )
-region = Rect2( 48, 0, 24, 24 )
+[sub_resource type="Curve" id=24]
+min_value = 0.5
+max_value = 2.0
+_data = [ Vector2( 0, 2 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.5 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="AtlasTexture" id=18]
-atlas = ExtResource( 5 )
-region = Rect2( 72, 0, 24, 24 )
+[sub_resource type="CurveTexture" id=25]
+curve = SubResource( 24 )
 
-[sub_resource type="AtlasTexture" id=19]
-atlas = ExtResource( 5 )
-region = Rect2( 96, 0, 24, 24 )
-
-[sub_resource type="AtlasTexture" id=20]
-atlas = ExtResource( 5 )
-region = Rect2( 120, 0, 24, 24 )
-
-[sub_resource type="SpriteFrames" id=21]
-animations = [ {
-"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
-"loop": false,
-"name": "default",
-"speed": 24.0
-} ]
+[sub_resource type="ParticlesMaterial" id=26]
+resource_local_to_scene = true
+lifetime_randomness = 0.5
+emission_shape = 2
+emission_box_extents = Vector3( 12, 1, 1 )
+flag_disable_z = true
+direction = Vector3( 0, 1, 0 )
+spread = 75.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 15.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 3.0
+scale_random = 0.5
+scale_curve = SubResource( 25 )
+color_ramp = SubResource( 23 )
 
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 8
@@ -132,10 +130,34 @@ shape = SubResource( 13 )
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource( 14 )
 
-[node name="JumpAnimation" type="AnimatedSprite" parent="."]
-position = Vector2( 0, 12 )
-frames = SubResource( 21 )
-frame = 5
+[node name="Particules" type="Node2D" parent="."]
+
+[node name="JumpParticles1" type="Particles2D" parent="Particules"]
+emitting = false
+amount = 10
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+local_coords = false
+process_material = SubResource( 26 )
+
+[node name="JumpParticles2" type="Particles2D" parent="Particules"]
+emitting = false
+amount = 10
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+local_coords = false
+process_material = SubResource( 26 )
+
+[node name="JumpParticles3" type="Particles2D" parent="Particules"]
+emitting = false
+amount = 10
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+local_coords = false
+process_material = SubResource( 26 )
 
 [node name="AudioHurt" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )

@@ -55,8 +55,15 @@ func jump() -> void:
 	velocity.y = -speed.y
 	$AudioJump.play()
 	$AnimatedSprite.frame = 0
-	$JumpAnimation.frame = 0
-	$JumpAnimation.play()
+	# Allow several jump cloud at the same time
+	if not $Particules/JumpParticles1.emitting:
+		$Particules/JumpParticles1.restart()
+	elif not $Particules/JumpParticles2.emitting:
+		$Particules/JumpParticles2.restart()
+	elif not $Particules/JumpParticles3.emitting:
+		$Particules/JumpParticles2.restart()
+	else:
+		$Particules/JumpParticles1.restart()
 	set_sprite_direction()
 
 
