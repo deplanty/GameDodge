@@ -4,6 +4,11 @@ extends Control
 onready var line_scene := preload("res://src/actors/WindowAchievementsLine.tscn")
 
 
+func _ready() -> void:
+	# Set theme color
+	$Border.color = Skins.accent
+
+
 func add_line(title: String, description: String, reward: int, done: bool) -> void:
 	var line = line_scene.instance()
 	line.set_labels(title, description, reward)

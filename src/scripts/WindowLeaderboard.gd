@@ -1,6 +1,12 @@
 extends Control
 
 
+func _ready() -> void:
+	# Set theme color
+	$Border.color = Skins.accent
+	$BorderTitle.color = Skins.accent
+
+
 func set_title(title: String) -> void:
 	$Title/Label.text = title
 
