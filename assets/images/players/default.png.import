@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tofu_ninja.png-74d839899529f8e3096e4f0784caa7bf.stex"
+path="res://.import/default.png-ea564ab5958660c4a72f0bb050c0cc48.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/players/tofu_ninja.png"
-dest_files=[ "res://.import/tofu_ninja.png-74d839899529f8e3096e4f0784caa7bf.stex" ]
+source_file="res://assets/images/players/default.png"
+dest_files=[ "res://.import/default.png-ea564ab5958660c4a72f0bb050c0cc48.stex" ]
 
 [params]
 
