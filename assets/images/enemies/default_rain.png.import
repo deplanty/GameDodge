@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/enemy_rain.png-dda6d2f9208dc461137b5bf550ff7d10.stex"
+path="res://.import/default_rain.png-c76fbeb13e920dd17738bc7ae674ff62.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/enemy_rain.png"
-dest_files=[ "res://.import/enemy_rain.png-dda6d2f9208dc461137b5bf550ff7d10.stex" ]
+source_file="res://assets/images/enemies/default_rain.png"
+dest_files=[ "res://.import/default_rain.png-c76fbeb13e920dd17738bc7ae674ff62.stex" ]
 
 [params]
 
