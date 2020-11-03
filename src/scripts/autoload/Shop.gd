@@ -1,7 +1,7 @@
 extends Node
 
 
-const path_res := "res://assets/shop.ini"
+const path_res := "res://assets/files/shop.ini"
 const path_user := "user://shop.ini"
 var _cfg := ConfigFile.new()
 

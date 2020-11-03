@@ -1,6 +1,6 @@
 extends Node
 
-const path_res := "res://assets/achievements.ini"
+const path_res := "res://assets/files/achievements.ini"
 const path_user := "user://achievements.ini"
 var _cfg := ConfigFile.new()
 

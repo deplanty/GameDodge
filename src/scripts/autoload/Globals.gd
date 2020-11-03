@@ -2,7 +2,7 @@ extends Node
 
 
 # Paths
-const path_enemy_patterns := "res://assets/patterns.json"
+const path_enemy_patterns := "res://assets/files/patterns.json"
 
 # Previous scene
 var previous_scene := String()
