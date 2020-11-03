@@ -1,9 +1,8 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/scripts/ScreenLeaderboard.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/ui/reload.png" type="Texture" id=2]
 [ext_resource path="res://assets/images/ui/home.png" type="Texture" id=3]
-[ext_resource path="res://assets/images/background.png" type="Texture" id=4]
 [ext_resource path="res://src/actors/FadeTransition.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/images/tilesets/default.tres" type="TileSet" id=6]
 [ext_resource path="res://assets/images/ui/arrow_left.png" type="Texture" id=7]
@@ -20,13 +19,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Background" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+color = Color( 0, 0, 0, 1 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 6 )
@@ -177,7 +173,6 @@ __meta__ = {
 }
 
 [node name="PopupConfirmReset" parent="." instance=ExtResource( 10 )]
-visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5

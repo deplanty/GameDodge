@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://src/actors/Torch.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/actors/Player.tscn" type="PackedScene" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://assets/images/ui/pause.png" type="Texture" id=4]
 [ext_resource path="res://src/actors/FadeTransition.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/actors/Lifebar.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/images/background.png" type="Texture" id=7]
 [ext_resource path="res://assets/font/Run.tres" type="DynamicFont" id=8]
 [ext_resource path="res://src/scripts/ScreenLevel.gd" type="Script" id=9]
 [ext_resource path="res://assets/images/coin_rotated.png" type="Texture" id=10]
@@ -81,9 +80,13 @@ one_shot = true
 [node name="RainRewardTimer" type="Timer" parent="Timers"]
 one_shot = true
 
-[node name="background" type="Sprite" parent="."]
-position = Vector2( 208, 304 )
-texture = ExtResource( 7 )
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Torches" type="Node2D" parent="."]
 

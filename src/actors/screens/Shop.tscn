@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/scripts/ScreenShop.gd" type="Script" id=1]
 [ext_resource path="res://assets/font/Run.tres" type="DynamicFont" id=2]
 [ext_resource path="res://assets/images/ui/arrow_left.png" type="Texture" id=3]
-[ext_resource path="res://assets/images/background.png" type="Texture" id=4]
 [ext_resource path="res://src/actors/FadeTransition.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/font/Overpass-Regular_18.tres" type="DynamicFont" id=6]
 [ext_resource path="res://assets/images/coin_rotated.png" type="Texture" id=7]
@@ -18,10 +17,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Background" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 4 )
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 8 )

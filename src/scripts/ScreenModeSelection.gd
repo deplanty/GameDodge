@@ -5,6 +5,7 @@ var next_scene := String()
 
 
 func _ready() -> void:
+	$Background.color = Skins.color
 	$FadeTransition.fade_out()
 
 

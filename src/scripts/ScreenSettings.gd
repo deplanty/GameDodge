@@ -11,6 +11,8 @@ var next_scene := String()
 
 
 func _ready() -> void:
+	$Background.color = Skins.color
+
 	if MusicController.track_current != "menu":
 		MusicController.set_track_menu("menu")
 

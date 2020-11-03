@@ -5,6 +5,7 @@ var next_scene := String()
 
 
 func _ready() -> void:
+	$Background.color = Skins.color
 	# Set the total amount of coins
 	var total_coins = Shop.get_value("INVENTORY", "coins")
 	$CoinsContainer/CoinsLabel.text = str(total_coins)
@@ -25,9 +26,11 @@ func _on_BackButton_pressed() -> void:
 
 
 func _on_SelectButton_pressed(row: int, skin_name: String) -> void:
-	prints(row, skin_name)
 	Globals.tileset_name = skin_name
 	Globals.tileset = load("res://assets/images/tilesets/%s.tres" % skin_name)
+	Preferences.set_value("skins", "world", skin_name)
+	Skins.load_skin(skin_name)
+
 	for i in $Grid.get_child_count() / 2:
 		if i == row:
 			$Grid.get_child(i * 2 + 1).text = "Selected"
@@ -35,8 +38,8 @@ func _on_SelectButton_pressed(row: int, skin_name: String) -> void:
 			$Grid.get_child(i * 2 + 1).text = "Select"
 
 	$TileMap.tile_set = Globals.tileset
+	$Background.color = Skins.color
 
-	Preferences.set_value("skins", "world", skin_name)
 
 # Tools
 

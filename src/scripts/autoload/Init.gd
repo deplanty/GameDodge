@@ -6,8 +6,11 @@ func _ready() -> void:
 	Achievements.init()
 	Leaderboards.init()
 	Shop.init()
+
 	# Set language
 	TranslationServer.set_locale(Preferences.get_value("settings", "language"))
 
-	# Initialize tileset
-	Globals.set_tileset(Preferences.get_value("skins", "world"))
+	# Set theme
+	var world_skin = Preferences.get_value("skins", "world")
+	Globals.set_tileset(world_skin)
+	Skins.load_skin(world_skin)

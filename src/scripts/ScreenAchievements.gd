@@ -5,6 +5,7 @@ var next_scene := String()
 
 
 func _ready() -> void:
+	$Background.color = Skins.color
 	# Add achievements on screen
 	for achievement in Achievements.get_all():
 		var title :String= achievement

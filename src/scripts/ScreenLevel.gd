@@ -27,6 +27,7 @@ var game_rain = false
 # Process
 
 func _ready() -> void:
+	$Background.color = Skins.color
 	# Set music
 	if MusicController.track_current != "game":
 		MusicController.set_track_menu("game")

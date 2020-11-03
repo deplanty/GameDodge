@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/scripts/WindowAchievements.gd" type="Script" id=1]
 
-[sub_resource type="StyleBoxLine" id=3]
+[sub_resource type="StyleBoxLine" id=1]
 color = Color( 0, 0, 0, 0 )
 thickness = 0
 
@@ -17,7 +17,7 @@ __meta__ = {
 [node name="Border" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.6, 0.516, 0.096, 1 )
+color = Color( 0.588235, 0.509804, 0.0784314, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -41,7 +41,7 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = -16.0
 margin_bottom = -16.0
-custom_styles/bg = SubResource( 3 )
+custom_styles/bg = SubResource( 1 )
 scroll_horizontal_enabled = false
 __meta__ = {
 "_edit_use_anchors_": false

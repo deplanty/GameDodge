@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/font/Run.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/images/ui/arrow_left.png" type="Texture" id=2]
-[ext_resource path="res://assets/images/background.png" type="Texture" id=3]
 [ext_resource path="res://assets/images/tilesets/default.tres" type="TileSet" id=4]
 [ext_resource path="res://src/scripts/ScreenAchievements.gd" type="Script" id=5]
 [ext_resource path="res://src/actors/FadeTransition.tscn" type="PackedScene" id=6]
@@ -17,10 +16,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-texture = ExtResource( 3 )
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

@@ -28,6 +28,7 @@ var next_scene := String()
 
 
 func _ready() -> void:
+	$Background.color = Skins.color
 	# Load stats
 	set_stats()
 	# Player
