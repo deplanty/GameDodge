@@ -4,9 +4,6 @@
 [ext_resource path="res://src/actors/Enemy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/scripts/Tool_Pattern.gd" type="Script" id=3]
 
-
-
-
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 3 )
 
@@ -15,12 +12,11 @@ tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )
 collision_layer = 8
 format = 1
-tile_data = PoolIntArray( -655360, 2, 0, -655348, 4, 0, -589824, 2, 0, -589812, 4, 0, -524288, 2, 0, -524276, 4, 0, -458752, 2, 0, -458740, 4, 0, -393216, 2, 0, -393204, 4, 0, -327680, 2, 0, -327668, 4, 0, -262144, 2, 0, -262132, 4, 0, -196608, 2, 0, -196596, 4, 0, -131072, 2, 0, -131060, 4, 0, -65536, 2, 0, -65524, 4, 0, 0, 2, 0, 12, 4, 0, 65536, 2, 0, 65548, 4, 0, 131072, 2, 0, 131084, 4, 0, 196608, 2, 0, 196620, 4, 0, 262144, 2, 0, 262156, 4, 0, 327680, 2, 0, 327692, 4, 0, 393216, 2, 0, 393228, 4, 0, 458752, 2, 0, 458764, 4, 0, 524288, 2, 0, 524300, 4, 0, 589824, 2, 0, 589836, 4, 0, 655360, 2, 0, 655372, 4, 0, 720896, 2, 0, 720908, 4, 0, 786432, 2, 0, 786444, 4, 0, 851968, 2, 0, 851980, 4, 0, 917504, 2, 0, 917516, 4, 0, 983040, 2, 0, 983052, 4, 0, 1048576, 2, 0, 1048588, 4, 0, 1114112, 2, 0, 1114124, 4, 0, 1179648, 2, 0, 1179660, 4, 0, 1245184, 6, 0, 1245185, 6, 0, 1245186, 6, 0, 1245187, 6, 0, 1245188, 6, 0, 1245189, 6, 0, 1245190, 6, 0, 1245191, 6, 0, 1245192, 6, 0, 1245193, 6, 0, 1245194, 6, 0, 1245195, 6, 0, 1245196, 6, 0 )
+tile_data = PoolIntArray( -655360, 0, 0, -655348, 2, 0, -589824, 0, 0, -589812, 2, 0, -524288, 0, 0, -524276, 2, 0, -458752, 0, 0, -458740, 2, 0, -393216, 0, 0, -393204, 2, 0, -327680, 0, 0, -327668, 2, 0, -262144, 0, 0, -262132, 2, 0, -196608, 0, 0, -196596, 2, 0, -131072, 0, 0, -131060, 2, 0, -65536, 0, 0, -65524, 2, 0, 0, 0, 0, 12, 2, 0, 65536, 0, 0, 65548, 2, 0, 131072, 0, 0, 131084, 2, 0, 196608, 0, 0, 196620, 2, 0, 262144, 0, 0, 262156, 2, 0, 327680, 0, 0, 327692, 2, 0, 393216, 0, 0, 393228, 2, 0, 458752, 0, 0, 458764, 2, 0, 524288, 0, 0, 524300, 2, 0, 589824, 0, 0, 589836, 2, 0, 655360, 0, 0, 655372, 2, 0, 720896, 0, 0, 720908, 2, 0, 786432, 0, 0, 786444, 2, 0, 851968, 0, 0, 851980, 2, 0, 917504, 0, 0, 917516, 2, 0, 983040, 0, 0, 983052, 2, 0, 1048576, 0, 0, 1048588, 2, 0, 1114112, 0, 0, 1114124, 2, 0, 1179648, 0, 0, 1179649, 6, 0, 1179650, 6, 0, 1179651, 6, 0, 1179652, 6, 0, 1179653, 6, 0, 1179654, 6, 0, 1179655, 6, 0, 1179656, 6, 0, 1179657, 6, 0, 1179658, 6, 0, 1179659, 6, 0, 1179660, 2, 0 )
 
 [node name="Patterns" type="Node2D" parent="."]
 
 [node name="Pattern1" type="Node2D" parent="Patterns"]
-visible = false
 
 [node name="Enemy" parent="Patterns/Pattern1" instance=ExtResource( 2 )]
 position = Vector2( 40, -56 )
@@ -51,7 +47,6 @@ position = Vector2( 280, -8 )
 velocity = Vector2( -200, 100 )
 
 [node name="Pattern2" type="Node2D" parent="Patterns"]
-visible = false
 
 [node name="Enemy" parent="Patterns/Pattern2" instance=ExtResource( 2 )]
 position = Vector2( 40, -104 )
@@ -82,7 +77,6 @@ position = Vector2( 376, -8 )
 velocity = Vector2( -200, 100 )
 
 [node name="Pattern3" type="Node2D" parent="Patterns"]
-visible = false
 
 [node name="Enemy" parent="Patterns/Pattern3" instance=ExtResource( 2 )]
 position = Vector2( 40, -72 )
@@ -109,7 +103,6 @@ position = Vector2( 80, -8 )
 velocity = Vector2( 280, 140 )
 
 [node name="Pattern4" type="Node2D" parent="Patterns"]
-visible = false
 
 [node name="Enemy" parent="Patterns/Pattern4" instance=ExtResource( 2 )]
 position = Vector2( 40, -40 )
@@ -165,25 +158,104 @@ position = Vector2( 232, -32 )
 [node name="Enemy8" parent="Patterns/Pattern5" instance=ExtResource( 2 )]
 position = Vector2( 208, -8 )
 
+[node name="Pattern6" type="Node2D" parent="Patterns"]
+
+[node name="Enemy2" parent="Patterns/Pattern6" instance=ExtResource( 2 )]
+position = Vector2( 184, -56 )
+velocity = Vector2( -200, 100 )
+
+[node name="Enemy3" parent="Patterns/Pattern6" instance=ExtResource( 2 )]
+position = Vector2( 232, -56 )
+
+[node name="Enemy4" parent="Patterns/Pattern6" instance=ExtResource( 2 )]
+position = Vector2( 184, -32 )
+
+[node name="Enemy5" parent="Patterns/Pattern6" instance=ExtResource( 2 )]
+position = Vector2( 232, -32 )
+velocity = Vector2( -200, 100 )
+
+[node name="Enemy6" parent="Patterns/Pattern6" instance=ExtResource( 2 )]
+position = Vector2( 184, -8 )
+velocity = Vector2( -200, 100 )
+
+[node name="Enemy7" parent="Patterns/Pattern6" instance=ExtResource( 2 )]
+position = Vector2( 232, -8 )
+velocity = Vector2( 200, 100 )
+
+[node name="Pattern7" type="Node2D" parent="Patterns"]
+
+[node name="Enemy" parent="Patterns/Pattern7" instance=ExtResource( 2 )]
+position = Vector2( 152, -56 )
+velocity = Vector2( -200, 100 )
+
+[node name="Enemy2" parent="Patterns/Pattern7" instance=ExtResource( 2 )]
+position = Vector2( 144, -16 )
+velocity = Vector2( -200, 100 )
+
+[node name="Enemy3" parent="Patterns/Pattern7" instance=ExtResource( 2 )]
+position = Vector2( 112, -48 )
+velocity = Vector2( -200, 100 )
+
+[node name="Enemy4" parent="Patterns/Pattern7" instance=ExtResource( 2 )]
+position = Vector2( 104, -8 )
+velocity = Vector2( -200, 100 )
+
+[node name="Enemy5" parent="Patterns/Pattern7" instance=ExtResource( 2 )]
+position = Vector2( 136, -160 )
+velocity = Vector2( 200, 100 )
+
+[node name="Enemy6" parent="Patterns/Pattern7" instance=ExtResource( 2 )]
+position = Vector2( 96, -168 )
+velocity = Vector2( 200, 100 )
+
+[node name="Enemy7" parent="Patterns/Pattern7" instance=ExtResource( 2 )]
+position = Vector2( 144, -120 )
+velocity = Vector2( 200, 100 )
+
+[node name="Enemy8" parent="Patterns/Pattern7" instance=ExtResource( 2 )]
+position = Vector2( 104, -128 )
+velocity = Vector2( 200, 100 )
+
 [node name="Control" type="Control" parent="."]
-margin_left = 32.0
-margin_right = 384.0
-margin_bottom = 544.0
+rect_min_size = Vector2( 416, 608 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="QuitButton" type="Button" parent="Control"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -64.0
-margin_top = -18.0
-margin_right = 64.0
-margin_bottom = 18.0
-text = "Close the window"
+[node name="CenterContainer" type="CenterContainer" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="Control/QuitButton" to="." method="_on_QuitButton_pressed"]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/CenterContainer"]
+margin_left = 148.0
+margin_top = 254.0
+margin_right = 268.0
+margin_bottom = 354.0
+custom_constants/separation = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ReloadButton" type="Button" parent="Control/CenterContainer/VBoxContainer"]
+margin_right = 120.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 120, 40 )
+text = "Reload scene"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QuitButton" type="Button" parent="Control/CenterContainer/VBoxContainer"]
+margin_top = 60.0
+margin_right = 120.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 120, 40 )
+text = "Close window"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Control/CenterContainer/VBoxContainer/ReloadButton" to="." method="_on_ReloadButton_pressed"]
+[connection signal="pressed" from="Control/CenterContainer/VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
