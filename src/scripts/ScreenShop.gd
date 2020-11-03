@@ -36,7 +36,7 @@ func _on_SelectButton_pressed(row: int, skin_name: String) -> void:
 
 	$TileMap.tile_set = Globals.tileset
 
-	SettingsUser.set_value("skins", "world", skin_name)
+	Preferences.set_value("skins", "world", skin_name)
 
 # Tools
 

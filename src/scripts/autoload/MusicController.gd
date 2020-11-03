@@ -11,8 +11,8 @@ var sound_fx_on := bool() setget set_sound_fx, is_sound_fx_on
 
 
 func _ready() -> void:
-	set_music(SettingsUser.get_value("settings", "music"))
-	set_sound_fx(SettingsUser.get_value("settings", "sound_fx"))
+	set_music(Preferences.get_value("settings", "music"))
+	set_sound_fx(Preferences.get_value("settings", "sound_fx"))
 
 # Functions
 

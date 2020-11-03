@@ -23,7 +23,7 @@ config/icon="res://icon.png"
 
 Globals="*res://src/scripts/autoload/Globals.gd"
 Settings="*res://src/scripts/autoload/Settings.gd"
-SettingsUser="*res://src/scripts/autoload/SettingsUser.gd"
+Preferences="*res://src/scripts/autoload/Preferences.gd"
 Achievements="*res://src/scripts/autoload/Achievements.gd"
 Leaderboards="*res://src/scripts/autoload/Leaderboards.gd"
 Shop="*res://src/scripts/autoload/Shop.gd"

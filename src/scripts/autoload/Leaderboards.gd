@@ -1,7 +1,7 @@
 extends Node
 
-const path_res := "res://assets/files/highscore.json"
-const path_user := "user://highscore.json"
+const path_res := "res://assets/files/leaderboards.json"
+const path_user := "user://leaderboards.json"
 var _data := Dictionary()
 
 

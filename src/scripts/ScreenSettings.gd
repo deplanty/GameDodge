@@ -30,34 +30,34 @@ func _ready() -> void:
 
 func _on_ButtonEn_pressed() -> void:
 	TranslationServer.set_locale("en")
-	SettingsUser.set_value("settings", "language", "en")
+	Preferences.set_value("settings", "language", "en")
 
 
 func _on_ButtonFr_pressed() -> void:
 	TranslationServer.set_locale("fr")
-	SettingsUser.set_value("settings", "language", "fr")
+	Preferences.set_value("settings", "language", "fr")
 
 
 func _on_MusicButton_pressed() -> void:
 	if MusicController.is_music_on():
 		$Container/VBox/Sound/MusicButton.icon = img_music_off
 		MusicController.set_music(false)
-		SettingsUser.set_value("settings", "music", false)
+		Preferences.set_value("settings", "music", false)
 	else:
 		$Container/VBox/Sound/MusicButton.icon = img_music_on
 		MusicController.set_music(true)
-		SettingsUser.set_value("settings", "music", true)
+		Preferences.set_value("settings", "music", true)
 
 
 func _on_EffectsButton_pressed() -> void:
 	if MusicController.is_sound_fx_on():
 		$Container/VBox/Sound/EffectsButton.icon = img_fx_off
 		MusicController.set_sound_fx(false)
-		SettingsUser.set_value("settings", "sound_fx", false)
+		Preferences.set_value("settings", "sound_fx", false)
 	else:
 		$Container/VBox/Sound/EffectsButton.icon = img_sound_fx
 		MusicController.set_sound_fx(true)
-		SettingsUser.set_value("settings", "sound_fx", true)
+		Preferences.set_value("settings", "sound_fx", true)
 
 
 func _on_MainMenuButton_pressed() -> void:

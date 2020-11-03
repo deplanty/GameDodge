@@ -1,7 +1,7 @@
 extends Node
 
 
-const path_res := "res://assets/files/game_parameters.ini"
+const path_res := "res://assets/files/settings.ini"
 var _cfg := ConfigFile.new()
 
 

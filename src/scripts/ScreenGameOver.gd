@@ -79,7 +79,7 @@ func _on_NameButton_pressed() -> void:
 	$Buttons/RestartButton.grab_focus()
 	# Save higscore and player name
 	Leaderboards.add_entry(Globals.game_mode_selected, $Name/NameEdit.text, Globals.score)
-	SettingsUser.set_value("user", "name", $Name/NameEdit.text)
+	Preferences.set_value("user", "name", $Name/NameEdit.text)
 
 
 func _on_RestartButton_pressed() -> void:
@@ -156,7 +156,7 @@ func show_after_animation() -> void:
 		$ScoreLabel.text = "TITLE_NEW_HIGHSCORE"
 		$Name.show()
 		$Buttons.hide()
-		$Name/NameEdit.text = SettingsUser.get_value("user", "name")
+		$Name/NameEdit.text = Preferences.get_value("user", "name")
 		$Name/NameEdit.grab_focus()
 		$Control/Player.set_physics_process(true)
 	# If score is not a highscore
