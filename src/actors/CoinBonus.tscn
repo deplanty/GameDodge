@@ -1,8 +1,10 @@
 [gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://assets/images/coin_bonus.png" type="Texture" id=1]
+[ext_resource path="res://assets/images/coins/default_bonus.png" type="Texture" id=1]
 [ext_resource path="res://src/scripts/CoinBonus.gd" type="Script" id=2]
 [ext_resource path="res://assets/sounds/coin.wav" type="AudioStream" id=3]
+
+
 
 [sub_resource type="Curve" id=1]
 min_value = 0.5
