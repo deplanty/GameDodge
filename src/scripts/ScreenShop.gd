@@ -37,7 +37,7 @@ func _on_SelectButton_pressed(row: int, skin_name: String) -> void:
 		else:
 			$Grid.get_child(i * 2 + 1).text = "Select"
 
-	$TileMap.tile_set = Globals.tileset
+	$WorldTileMap.update_tile_set()
 	$Background.color = Skins.color
 
 
