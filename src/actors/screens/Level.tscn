@@ -131,6 +131,7 @@ tile_data = PoolIntArray( -65535, 4, 0, -65534, 4, 0, -65533, 4, 0, -65532, 4, 0
 
 [node name="LavaDetector" type="Area2D" parent="World"]
 collision_layer = 16
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/LavaDetector"]
 position = Vector2( 208, 600 )

@@ -349,7 +349,10 @@ func _on_Bonus_fall_in_lava() -> void:
 # Lava
 
 func _on_LavaDetector_body_entered(body: Node) -> void:
-	$Player.touch_lava()
+	if body == $Player:
+		$Player.touch_lava()
+	elif typeof(body) == typeof(enemy_scene):
+		body.queue_free()
 
 # Game
 

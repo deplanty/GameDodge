@@ -13,10 +13,6 @@ func _physics_process(delta: float) -> void:
 	if is_on_wall():
 		velocity.x *= -1
 
-	# Delete when on lava
-	if is_on_floor():
-		queue_free()
-
 	move_and_slide(velocity, Vector2.UP)
 
 # Signals
