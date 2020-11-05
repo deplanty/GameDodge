@@ -113,10 +113,12 @@ position = Vector2( 376, 384 )
 [node name="World" type="Node2D" parent="."]
 
 [node name="LightOccluder2D_Right" type="LightOccluder2D" parent="World"]
+visible = false
 position = Vector2( 392, 0 )
 occluder = SubResource( 1 )
 
 [node name="LightOccluder2D_Left" type="LightOccluder2D" parent="World"]
+visible = false
 occluder = SubResource( 1 )
 
 [node name="LimiterUp" type="TileMap" parent="World"]
