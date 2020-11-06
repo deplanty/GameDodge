@@ -6,7 +6,6 @@ func _ready() -> void:
 	Achievements.init()
 	Leaderboards.init()
 	Shop.init()
-	Shop.coins = 1200
 
 	# Set language
 	TranslationServer.set_locale(Preferences.get_value("settings", "language"))
