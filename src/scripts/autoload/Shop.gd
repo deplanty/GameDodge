@@ -37,6 +37,11 @@ func buy(section: String, item: String) -> void:
 	_cfg.set_value(section, item, 0)
 
 
+func is_bought(section: String, item: String) -> bool:
+	# An item is bought if its price is 0
+	return _cfg.get_value(section, item) == 0
+
+
 # Getters
 
 func get_world_skins() ->  PoolStringArray:
