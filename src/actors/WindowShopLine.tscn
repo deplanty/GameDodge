@@ -1,0 +1,69 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/font/Overpass-Bold_14.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/scripts/WindowShopLine.gd" type="Script" id=2]
+
+[node name="WindowShopLine" type="Control"]
+anchor_right = 1.0
+margin_right = 3.05176e-05
+margin_bottom = 150.0
+rect_min_size = Vector2( 250, 150 )
+mouse_filter = 1
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Border" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 96, 142 )
+mouse_filter = 1
+color = Color( 0.588235, 0.509804, 0.0784314, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fill" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = -2.0
+margin_bottom = -2.0
+rect_min_size = Vector2( 96, 138 )
+mouse_filter = 1
+color = Color( 0.117647, 0.117647, 0.117647, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="."]
+anchor_right = 1.0
+margin_left = 4.0
+margin_top = 3.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 0, 20 )
+mouse_filter = 1
+custom_fonts/font = ExtResource( 1 )
+text = "Lorem ipsum dolor sit amet"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Scroll" type="ScrollContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 28.0
+margin_right = -4.0
+margin_bottom = 16.0
+mouse_filter = 1
+scroll_vertical_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="List" type="HBoxContainer" parent="Scroll"]
+custom_constants/separation = 10

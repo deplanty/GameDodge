@@ -5,6 +5,8 @@ const path_res := "res://assets/files/shop.ini"
 const path_user := "user://shop.ini"
 var _cfg := ConfigFile.new()
 
+var coins := int() setget set_coins, get_coins
+
 # Functions
 
 func init(force: bool=false) -> void:
@@ -21,10 +23,38 @@ func init(force: bool=false) -> void:
 
 	_cfg.load(path_user)
 
+
+func buy(section: String, item: String) -> void:
+	var price = _cfg.get_value(section, item)
+	var money = get_coins()
+	money -= price
+
+	if money < 0:
+		push_error("Coins in inventory cannot be negative.")
+		return
+
+	set_coins(money)
+	_cfg.set_value(section, item, 0)
+
+
 # Getters
 
 func get_world_skins() ->  PoolStringArray:
-	return _cfg.get_section_keys("WORLD_SKINS")
+	return _cfg.get_section_keys("WORLD_SKIN")
+
+
+func get_section_keys(section: String) -> PoolStringArray:
+	return _cfg.get_section_keys(section)
+
+
+func get_coins() -> int:
+	return _cfg.get_value("INVENTORY", "coins")
+
+
+func set_coins(value: int):
+	_cfg.set_value("INVENTORY", "coins", value)
+	save()
+
 
 # ConfigFile functions
 

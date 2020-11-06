@@ -11,11 +11,13 @@ TITLE_SETTINGS;Settings;Options
 TITLE_MODE_SELECTION;Game mode;Mode de jeu
 TITLE_SHOP;Shop;Magasin
 TITLE_ACHIEVEMENTS;Achievements;Accomplissements
-BUTTON_MODE_LABEL;Mode :;Mode :
 BUTTON_MAINMENU;Main menu;Menu principal
 BUTTON_RESTART;Restart;Recommencer
 BUTTON_RESUME;Resume;Reprendre
 BUTTON_OK;Ok;Ok
+LABEL_SELECT;Select;Sélectionner
+LABEL_SELECTED;Selected;Sélectionné
+LABEL_BOUGHT;Bought;Acheté
 LABEL_YES;Yes;Oui
 LABEL_NO;No;Non
 LABEL_LANGUAGE;Language;Langue

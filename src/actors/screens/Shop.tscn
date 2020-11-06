@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/scripts/ScreenShop.gd" type="Script" id=1]
 [ext_resource path="res://assets/font/Run.tres" type="DynamicFont" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://src/actors/FadeTransition.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/font/Overpass-Regular_18.tres" type="DynamicFont" id=6]
 [ext_resource path="res://assets/images/coin_rotated.png" type="Texture" id=7]
+[ext_resource path="res://src/actors/WindowShop.tscn" type="PackedScene" id=8]
 
 [node name="Shop" type="Control"]
 anchor_right = 1.0
@@ -86,7 +87,19 @@ margin_right = -64.0
 margin_bottom = -64.0
 columns = 2
 
+[node name="WindowShop" parent="." instance=ExtResource( 8 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -168.0
+margin_top = -128.0
+margin_right = 168.0
+margin_bottom = 233.0
+
 [node name="FadeTransition" parent="." instance=ExtResource( 5 )]
 visible = false
 [connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="buy" from="WindowShop" to="." method="_on_WindowShop_buy"]
+[connection signal="request_update" from="WindowShop" to="." method="_on_WindowShop_request_update"]
 [connection signal="animation_finished" from="FadeTransition" to="." method="_on_FadeTransition_animation_finished"]

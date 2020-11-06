@@ -7,8 +7,7 @@ var next_scene := String()
 func _ready() -> void:
 	$Background.color = Skins.color
 	# Set the total amount of coins
-	var total_coins = Shop.get_value("INVENTORY", "coins")
-	$CoinsContainer/CoinsLabel.text = str(total_coins)
+	$CoinsContainer/CoinsLabel.text = str(Shop.coins)
 	# Set the shop
 	set_shop()
 	# Show the screen
@@ -56,7 +55,7 @@ func set_shop() -> void:
 		label.text = skin_name
 		$Grid.add_child(label)
 		# Button
-		var price = Shop.get_value("WORLD_SKINS", skin_name)
+		var price = Shop.get_value("WORLD_SKIN", skin_name)
 		var button := Button.new()
 		if price > 0:
 			button.text = "Buy %d" % price
@@ -69,3 +68,15 @@ func set_shop() -> void:
 		$Grid.add_child(button)
 
 		row += 1
+
+
+func _on_WindowShop_buy(price: int) -> void:
+	# When a purchase has been made
+
+	$CoinsContainer/CoinsLabel.text = str(Shop.coins)
+
+
+func _on_WindowShop_request_update(section: String) -> void:
+	# When a skin has been selected
+	$WorldTileMap.update_tile_set()
+	$Background.color = Skins.color
