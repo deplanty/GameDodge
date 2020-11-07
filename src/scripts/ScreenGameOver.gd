@@ -174,7 +174,6 @@ func show_after_animation() -> void:
 		$Buttons/RestartButton.grab_focus()
 
 	# Show achievements
-	print("Show achievements")
 	show_achievements()
 
 	$ScoreLabel.show()

@@ -17,8 +17,6 @@ func _ready() -> void:
 	$Player.velocity.x = -$Player.speed.x
 	$Player.look_left()
 
-	print("Total coins: ", Shop.get_value("INVENTORY", "coins"))
-
 # Signals
 
 func _on_OptionButton_pressed() -> void:
