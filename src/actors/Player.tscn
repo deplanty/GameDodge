@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/images/players/christmas.png" type="Texture" id=5]
 [ext_resource path="res://assets/sounds/bounce.wav" type="AudioStream" id=6]
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=13]
 resource_name = "fade"
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
@@ -18,13 +18,13 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2, 0.4, 0.6, 1 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.117647 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.117647 ), Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.784314, 0.588235, 0.117647, 0.117647 ), Color( 0.784314, 0.588235, 0.117647, 1 ), Color( 0.784314, 0.588235, 0.117647, 0.117647 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=14]
 extents = Vector2( 12, 12 )
 
-[sub_resource type="OccluderPolygon2D" id=7]
+[sub_resource type="OccluderPolygon2D" id=15]
 polygon = PoolVector2Array( -12, -24, -12, 0, 12, 0, 12, -24 )
 
 [sub_resource type="Gradient" id=8]
@@ -66,16 +66,19 @@ script = ExtResource( 2 )
 position = Vector2( 0, -16 )
 texture = ExtResource( 5 )
 hframes = 3
+region_rect = Rect2( 216.456, 41.5586, 0.945374, 0 )
 
 [node name="FadeAnimation" type="AnimationPlayer" parent="Sprite"]
-anims/fade = SubResource( 5 )
+anims/fade = SubResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 0, -12 )
-shape = SubResource( 6 )
+shape = SubResource( 14 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-occluder = SubResource( 7 )
+visible = false
+occluder = SubResource( 15 )
 
 [node name="Particules" type="Node2D" parent="."]
 
