@@ -14,3 +14,6 @@ func _ready() -> void:
 	var world_skin = Preferences.get_value("skins", "world_skin")
 	Globals.set_tileset(world_skin)
 	Skins.load_skin(world_skin)
+
+	var player_skin = Preferences.get_value("skins", "player_skin")
+	Globals.set_player(player_skin)

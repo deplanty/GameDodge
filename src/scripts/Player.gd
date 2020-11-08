@@ -10,9 +10,17 @@ onready var gravity :float= Settings.get_value("GAMEPLAY", "gravity")
 onready var speed :Vector2= Settings.get_value("PLAYER", "speed")
 onready var velocity := speed
 
+const img_midair := 0
+const img_jump := 1
+const img_fall := 2
+
 # Life
 var life := int()
 var invulnerability := false
+
+
+func _ready() -> void:
+	$Sprite.texture = Globals.player
 
 
 func _physics_process(delta: float) -> void:
@@ -30,6 +38,8 @@ func _physics_process(delta: float) -> void:
 	velocity.y += gravity * delta
 	velocity.y = move_and_slide(velocity, Vector2.UP).y
 
+	set_sprite_direction()
+
 # Signals
 
 func _on_Timer_timeout() -> void:
@@ -40,11 +50,11 @@ func _on_Timer_timeout() -> void:
 # Look direction
 
 func look_right() -> void:
-	$AnimatedSprite.scale.x = 1
+	$Sprite.scale.x = 1
 
 
 func look_left() -> void:
-	$AnimatedSprite.scale.x = -1
+	$Sprite.scale.x = -1
 
 # Jump
 
@@ -54,7 +64,6 @@ func jump() -> void:
 	first_move = true
 	velocity.y = -speed.y
 	$AudioJump.play()
-	$AnimatedSprite.frame = 0
 	# Allow several jump cloud at the same time
 	if not $Particules/JumpParticles1.emitting:
 		$Particules/JumpParticles1.restart()
@@ -79,14 +88,17 @@ func jump_right() -> void:
 # Tools
 
 func set_sprite_direction() -> void:
-	if invulnerability:
-		return
 	if velocity.x < 0:
 		look_left()
-		$AnimatedSprite.play("jump")
 	else:
 		look_right()
-		$AnimatedSprite.play("jump")
+
+	if abs(velocity.y) < 40:
+		$Sprite.frame = img_midair
+	elif velocity.y < 0:
+		$Sprite.frame = img_jump
+	else:
+		$Sprite.frame = img_fall
 
 
 func touch_lava() -> void:
@@ -101,9 +113,7 @@ func lose_life() -> void:
 		invulnerability = true
 		$Timer.start(Settings.get_value("PLAYER", "invulnerability_time"))
 		set_collision_layer_bit(0, false)
-		$AnimatedSprite.frame = 0
-		$AnimatedSprite.play("hurt")
-		$AnimatedSprite/FadeAnimation.play("fade")
+		$Sprite/FadeAnimation.play("fade")
 		# Lose  life
 		life -= 1
 		emit_signal("lose_life")

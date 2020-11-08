@@ -17,14 +17,19 @@ var score := 0
 var pattern_velocity_multiplier := 1.0
 var rain_velocity_multiplier := 1.0
 onready var enemy_patterns := load_enemy_patterns()
-var tileset_name := String()
+# Tileset
 var tileset :Resource
+# Player
+var player :Texture
 
 # Tileset
 
 func set_tileset(name: String) -> void:
-	tileset_name = name
-	tileset = load("res://assets/images/tilesets/%s.tres" % tileset_name)
+	tileset = load("res://assets/images/tilesets/%s.tres" % name)
+
+
+func set_player(name: String) -> void:
+	player = load("res://assets/images/players/%s.png" % name)
 
 # Enemy pattern
 

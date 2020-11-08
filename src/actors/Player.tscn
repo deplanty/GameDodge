@@ -1,65 +1,12 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://assets/images/players/default.png" type="Texture" id=1]
 [ext_resource path="res://src/scripts/Player.gd" type="Script" id=2]
 [ext_resource path="res://assets/sounds/hurt.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/sounds/jump.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/images/players/christmas.png" type="Texture" id=5]
 [ext_resource path="res://assets/sounds/bounce.wav" type="AudioStream" id=6]
 
-[sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 24, 24 )
-
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 1 )
-region = Rect2( 24, 0, 24, 24 )
-
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 1 )
-region = Rect2( 48, 0, 24, 24 )
-
-[sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 1 )
-region = Rect2( 72, 0, 24, 24 )
-
-[sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 1 )
-region = Rect2( 96, 0, 24, 24 )
-
-[sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 24, 24, 24 )
-
-[sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 1 )
-region = Rect2( 24, 24, 24, 24 )
-
-[sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 1 )
-region = Rect2( 48, 24, 24, 24 )
-
-[sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 1 )
-region = Rect2( 72, 24, 24, 24 )
-
-[sub_resource type="AtlasTexture" id=10]
-atlas = ExtResource( 1 )
-region = Rect2( 96, 24, 24, 24 )
-
-[sub_resource type="SpriteFrames" id=11]
-animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
-"loop": false,
-"name": "jump",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
-"loop": false,
-"name": "hurt",
-"speed": 5.0
-} ]
-
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=5]
 resource_name = "fade"
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
@@ -74,27 +21,27 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.117647 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.117647 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=13]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 12, 12 )
 
-[sub_resource type="OccluderPolygon2D" id=14]
+[sub_resource type="OccluderPolygon2D" id=7]
 polygon = PoolVector2Array( -12, -24, -12, 0, 12, 0, 12, -24 )
 
-[sub_resource type="Gradient" id=15]
+[sub_resource type="Gradient" id=8]
 colors = PoolColorArray( 1, 1, 1, 1, 0.25, 0.25, 0.25, 1 )
 
-[sub_resource type="GradientTexture" id=16]
-gradient = SubResource( 15 )
+[sub_resource type="GradientTexture" id=9]
+gradient = SubResource( 8 )
 
-[sub_resource type="Curve" id=17]
+[sub_resource type="Curve" id=10]
 min_value = 0.5
 max_value = 2.0
 _data = [ Vector2( 0, 2 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.5 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=18]
-curve = SubResource( 17 )
+[sub_resource type="CurveTexture" id=11]
+curve = SubResource( 10 )
 
-[sub_resource type="ParticlesMaterial" id=19]
+[sub_resource type="ParticlesMaterial" id=12]
 resource_local_to_scene = true
 lifetime_randomness = 0.5
 emission_shape = 2
@@ -108,27 +55,27 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 3.0
 scale_random = 0.5
-scale_curve = SubResource( 18 )
-color_ramp = SubResource( 16 )
+scale_curve = SubResource( 11 )
+color_ramp = SubResource( 9 )
 
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 8
 script = ExtResource( 2 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+[node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -12 )
-frames = SubResource( 11 )
-animation = "jump"
+texture = ExtResource( 5 )
+hframes = 3
 
-[node name="FadeAnimation" type="AnimationPlayer" parent="AnimatedSprite"]
-anims/fade = SubResource( 12 )
+[node name="FadeAnimation" type="AnimationPlayer" parent="Sprite"]
+anims/fade = SubResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -12 )
-shape = SubResource( 13 )
+shape = SubResource( 6 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-occluder = SubResource( 14 )
+occluder = SubResource( 7 )
 
 [node name="Particules" type="Node2D" parent="."]
 
@@ -139,7 +86,7 @@ lifetime = 0.4
 one_shot = true
 explosiveness = 1.0
 local_coords = false
-process_material = SubResource( 19 )
+process_material = SubResource( 12 )
 
 [node name="JumpParticles2" type="Particles2D" parent="Particules"]
 emitting = false
@@ -148,7 +95,7 @@ lifetime = 0.4
 one_shot = true
 explosiveness = 1.0
 local_coords = false
-process_material = SubResource( 19 )
+process_material = SubResource( 12 )
 
 [node name="JumpParticles3" type="Particles2D" parent="Particules"]
 emitting = false
@@ -157,7 +104,7 @@ lifetime = 0.4
 one_shot = true
 explosiveness = 1.0
 local_coords = false
-process_material = SubResource( 19 )
+process_material = SubResource( 12 )
 
 [node name="AudioHurt" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )

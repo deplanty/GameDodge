@@ -48,7 +48,12 @@ func _on_Button_pressed() -> void:
 		set_item(section, $Title.text)
 		emit_signal("buy", price)
 	elif state == "available":
-		Globals.set_tileset($Title.text)
-		Preferences.set_value("skins", section.to_lower(), $Title.text)
-		Skins.load_skin($Title.text)
-		emit_signal("request_update", section)
+		if section == "WORLD_SKIN":
+			Globals.set_tileset($Title.text)
+			Preferences.set_value("skins", section.to_lower(), $Title.text)
+			Skins.load_skin($Title.text)
+			emit_signal("request_update", section)
+		elif section == "PLAYER_SKIN":
+			Globals.set_player($Title.text)
+			Preferences.set_value("skins", section.to_lower(), $Title.text)
+			emit_signal("request_update", section)
