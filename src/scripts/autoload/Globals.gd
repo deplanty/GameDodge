@@ -16,16 +16,24 @@ var game_mode_selected := "GAME_MODE_NORMAL"
 var score := 0
 var pattern_velocity_multiplier := 1.0
 var rain_velocity_multiplier := 1.0
-onready var enemy_patterns := load_enemy_patterns()
 # Tileset
 var tileset :Resource
 # Player
 var player :Texture
+# Enemies
+onready var enemy_patterns := load_enemy_patterns()
+var enemy_pattern : Texture
+var enemy_rain :Texture
+# Skin
+var world_skin := String()
 
 # Tileset
 
-func set_tileset(name: String) -> void:
+func set_world_skin(name: String) -> void:
+	world_skin = name
 	tileset = load("res://assets/images/tilesets/%s.tres" % name)
+	enemy_pattern = load("res://assets/images/enemies/%s_pattern.png" % name)
+	enemy_rain = load("res://assets/images/enemies/%s_rain.png" % name)
 
 
 func set_player(name: String) -> void:

@@ -49,7 +49,7 @@ func _on_Button_pressed() -> void:
 		emit_signal("buy", price)
 	elif state == "available":
 		if section == "WORLD_SKIN":
-			Globals.set_tileset($Title.text)
+			Globals.set_world_skin($Title.text)
 			Preferences.set_value("skins", section.to_lower(), $Title.text)
 			Skins.load_skin($Title.text)
 			emit_signal("request_update", section)

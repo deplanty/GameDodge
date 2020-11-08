@@ -5,8 +5,9 @@ export var velocity := Vector2(200, 100)
 
 
 func _ready() -> void:
-	$Sprite.texture = Globals.enemy_pattern
+	$Sprite.texture = Globals.enemy_rain
 	$Explosion/ExplosionTimer.wait_time = $Explosion.lifetime
+	$Tail.process_material.color_ramp = Skins.rain_tail_gradient
 
 
 func _physics_process(delta: float) -> void:

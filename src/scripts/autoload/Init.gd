@@ -12,7 +12,7 @@ func _ready() -> void:
 
 	# Set theme
 	var world_skin = Preferences.get_value("skins", "world_skin")
-	Globals.set_tileset(world_skin)
+	Globals.set_world_skin(world_skin)
 	Skins.load_skin(world_skin)
 
 	var player_skin = Preferences.get_value("skins", "player_skin")

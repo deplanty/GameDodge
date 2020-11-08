@@ -34,7 +34,7 @@ func buy(section: String, item: String) -> void:
 		return
 
 	set_coins(money)
-	_cfg.set_value(section, item, 0)
+	set_value(section, item, 0)
 
 
 func is_bought(section: String, item: String) -> bool:

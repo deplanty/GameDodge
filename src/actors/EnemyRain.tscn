@@ -1,9 +1,7 @@
 [gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/images/enemies/default_rain.png" type="Texture" id=1]
-[ext_resource path="res://src/scripts/Enemy.gd" type="Script" id=2]
-
-
+[ext_resource path="res://src/scripts/EnemyRain.gd" type="Script" id=2]
 
 [sub_resource type="ParticlesMaterial" id=1]
 lifetime_randomness = 0.5
@@ -21,7 +19,7 @@ hue_variation = 0.15
 hue_variation_random = 0.4
 
 [sub_resource type="Gradient" id=2]
-colors = PoolColorArray( 1, 0.679688, 0, 1, 0.78125, 0.15564, 0.15564, 1 )
+colors = PoolColorArray( 0.4, 0.85, 0.95, 1, 1, 1, 1, 1 )
 
 [sub_resource type="GradientTexture" id=3]
 gradient = SubResource( 2 )
@@ -51,8 +49,6 @@ scale = 3.0
 scale_random = 1.0
 scale_curve = SubResource( 5 )
 color_ramp = SubResource( 3 )
-hue_variation = 0.1
-hue_variation_random = 0.4
 
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 7, 10 )
@@ -63,12 +59,11 @@ extents = Vector2( 7, 10 )
 [sub_resource type="OccluderPolygon2D" id=9]
 polygon = PoolVector2Array( -6, -2, -6, 10, 6, 10, 6, -2 )
 
-[node name="Enemy" type="KinematicBody2D"]
+[node name="EnemyRain" type="KinematicBody2D"]
 position = Vector2( 200, -8 )
 collision_layer = 2
 collision_mask = 8
 script = ExtResource( 2 )
-velocity = Vector2( 0, 150 )
 
 [node name="Explosion" type="Particles2D" parent="."]
 emitting = false
