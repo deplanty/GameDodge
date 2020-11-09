@@ -47,13 +47,13 @@ FIRST_TIME_HIT_NORMAL_3_DESC;Don't get hit for 90 seconds;Ne te fais pas toucher
 FIRST_TIME_HIT_NORMAL_4;Time first hit 4;Temps premier dégât 4
 FIRST_TIME_HIT_NORMAL_4_DESC;Don't get hit for 120 seconds;Ne te fais pas toucher pendant 120 secondes
 FIRST_TIME_HIT_RAIN_1;Time first rain hit 1;Temps premier dégât pluie 1
-FIRST_TIME_HIT_RAIN_1_DESC;Don't get hit by the rain for 20 seconds1;Ne te fais pas toucher par la pluie pendant 20 secondes
+FIRST_TIME_HIT_RAIN_1_DESC;Don't get hit by the rain for 20 seconds;Ne te fais pas toucher par la pluie pendant 20 secondes
 FIRST_TIME_HIT_RAIN_2;Time first rain hit 2;Temps premier dégât pluie 2
-FIRST_TIME_HIT_RAIN_2_DESC;Don't get hit by the rain for 40 seconds2;Ne te fais pas toucher par la pluie pendant 40 secondes
+FIRST_TIME_HIT_RAIN_2_DESC;Don't get hit by the rain for 40 seconds;Ne te fais pas toucher par la pluie pendant 40 secondes
 FIRST_TIME_HIT_RAIN_3;Time first rain hit 3;Temps premier dégât pluie 3
-FIRST_TIME_HIT_RAIN_3_DESC;Don't get hit by the rain for 60 seconds3;Ne te fais pas toucher par la pluie pendant 60 secondes
+FIRST_TIME_HIT_RAIN_3_DESC;Don't get hit by the rain for 60 seconds;Ne te fais pas toucher par la pluie pendant 60 secondes
 FIRST_TIME_HIT_RAIN_4;Time first rain hit 4;Temps premier dégât pluie 4
-FIRST_TIME_HIT_RAIN_4_DESC;Don't get hit by the rain for 80 seconds4;Ne te fais pas toucher par la pluie pendant 80 secondes
+FIRST_TIME_HIT_RAIN_4_DESC;Don't get hit by the rain for 80 seconds;Ne te fais pas toucher par la pluie pendant 80 secondes
 ONLY_COINS_BONUS_1;Only bonus coins 1;Que des pièces bonus 1
 ONLY_COINS_BONUS_1_DESC;Catch 20 bonus coins in a row;Attrape 20 pièces bonus à la suite
 ONLY_COINS_BONUS_2;Only bonus coins 2;Que des pièces bonus 2
