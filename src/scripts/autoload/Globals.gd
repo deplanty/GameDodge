@@ -48,3 +48,16 @@ func load_enemy_patterns() -> Array:
 	file.close()
 
 	return enemy_patterns
+
+# Tools
+
+static func merge_config_file(dst: ConfigFile, src: ConfigFile) -> void:
+	# Merge source ConfigFile into destination ConfigFile
+
+	for section in src.get_sections():
+		for key in src.get_section_keys(section):
+			# If source value is not in dest value
+			if not dst.has_section_key(section, key):
+				# Add it
+				var src_value = src.get_value(section, key)
+				dst.set_value(section, key, src_value)

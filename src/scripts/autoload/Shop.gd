@@ -15,13 +15,18 @@ func init(force: bool=false) -> void:
 	Force the replacement of the current shop if needed.
 	"""
 
+	# Load res shop
+	_cfg.load(path_res)
+
 	var dir := Directory.new()
 	if dir.file_exists(path_user) and not force:
-		pass
+		# Load user shop
+		var cfg_user := ConfigFile.new()
+		cfg_user.load(path_user)
+		# Set user shop in res shop
+		Globals.merge_config_file(_cfg, cfg_user)
 	else:
 		dir.copy(path_res, path_user)
-
-	_cfg.load(path_user)
 
 
 func buy(section: String, item: String) -> void:
