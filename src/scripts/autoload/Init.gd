@@ -3,6 +3,7 @@ extends Node
 
 func _ready() -> void:
 	Preferences.init()
+	MusicController.init()
 	Achievements.init()
 	Leaderboards.init()
 	Shop.init()

@@ -10,7 +10,7 @@ var music_on := bool() setget set_music, is_music_on
 var sound_fx_on := bool() setget set_sound_fx, is_sound_fx_on
 
 
-func _ready() -> void:
+func init() -> void:
 	set_music(Preferences.get_value("settings", "music"))
 	set_sound_fx(Preferences.get_value("settings", "sound_fx"))
 

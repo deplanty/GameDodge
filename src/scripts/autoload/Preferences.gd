@@ -21,7 +21,7 @@ func init(force: bool=false) -> void:
 		var cfg_user := ConfigFile.new()
 		cfg_user.load(path_user)
 		# Set user preferences in res preferences
-		Globals.merge_config_file(_cfg, cfg_user)
+		_cfg = Globals.merge_config_file(_cfg, cfg_user)
 	else:
 		dir.copy(path_res, path_user)
 
