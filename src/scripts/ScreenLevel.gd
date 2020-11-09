@@ -294,7 +294,8 @@ func _on_CoinBonus_caught() -> void:
 
 
 func _on_Coin_fall_in_lava() -> void:
-	score = int(max(0, score - 1))
+	# Punish on coin fall
+#	score = int(max(0, score - 1))
 	Stats.coins_lost += 1
 	$Control/ScoreContainer/ValueScore.text = str(score)
 	# Spawn a coin if count <= 1 because queue_free() takes some time
