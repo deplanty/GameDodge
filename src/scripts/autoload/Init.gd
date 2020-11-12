@@ -12,9 +12,9 @@ func _ready() -> void:
 	TranslationServer.set_locale(Preferences.get_value("settings", "language"))
 
 	# Set theme
-	var world_skin = Preferences.get_value("skins", "world_skin")
+	var world_skin = Preferences.get_value("shop", "world_skin")
 	Globals.set_world_skin(world_skin)
 	Skins.load_skin(world_skin)
 
-	var player_skin = Preferences.get_value("skins", "player_skin")
+	var player_skin = Preferences.get_value("shop", "player_skin")
 	Globals.set_player(player_skin)

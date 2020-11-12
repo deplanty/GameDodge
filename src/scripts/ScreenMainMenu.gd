@@ -11,11 +11,26 @@ func _ready() -> void:
 		MusicController.set_track_menu("menu")
 	# Set Interface
 	$FadeTransition.fade_out()
-	$PlayButton.grab_focus()
 	# Set player animation
 	$Player.first_move = true
 	$Player.velocity.x = -$Player.speed.x
 	$Player.look_left()
+
+# User events
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("jump_left"):
+		$Player.jump_left()
+	elif event.is_action_pressed("jump_right"):
+		$Player.jump_right()
+
+
+func _on_TouchLeft_pressed() -> void:
+	$Player.jump_left()
+
+
+func _on_TouchRight_pressed() -> void:
+	$Player.jump_right()
 
 # Signals
 
@@ -29,7 +44,7 @@ func _on_QuitButton_pressed() -> void:
 
 
 func _on_PlayButton_pressed() -> void:
-	next_scene = "res://src/actors/screens/ModeSelection.tscn"
+	next_scene = "res://src/actors/screens/Level.tscn"
 	$FadeTransition.fade_in()
 
 
@@ -70,3 +85,7 @@ func _on_FadeTransition_animation_finished(anim_name: String) -> void:
 			get_tree().quit()
 		else:
 			get_tree().change_scene(next_scene)
+
+
+func _on_Coin_caught() -> void:
+	_on_PlayButton_pressed()
