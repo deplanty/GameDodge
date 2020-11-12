@@ -82,7 +82,6 @@ func _on_PauseButton_pressed() -> void:
 	get_tree().paused = true
 	game_pause_time_start = OS.get_ticks_msec()
 	$PauseMenu.show()
-	$PauseMenu/MarginContainer/VBoxContainer/ResumeButton.grab_focus()
 
 
 func _on_ResumeButton_pressed() -> void:

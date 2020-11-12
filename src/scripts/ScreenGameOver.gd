@@ -77,7 +77,6 @@ func _on_NameButton_pressed() -> void:
 		return
 	$Name.hide()
 	$Buttons.show()
-	$Buttons/RestartButton.grab_focus()
 	# Save higscore and player name
 	Leaderboards.add_entry(Globals.game_mode_selected, $Name/NameEdit.text, Globals.score)
 	Preferences.set_value("user", "name", $Name/NameEdit.text)
@@ -142,20 +141,17 @@ func show_after_animation() -> void:
 		$Name.show()
 		$Buttons.hide()
 		$Name/NameEdit.text = Preferences.get_value("user", "name")
-		$Name/NameEdit.grab_focus()
 		$Control/Player.set_physics_process(true)
 	# If score is not a highscore
 	else:
 		$ScoreLabel.text = "TITLE_SCORE"
 		$Name.hide()
 		$Buttons.show()
-		$Buttons/RestartButton.grab_focus()
 
 	# If we come back from the leaderboard
 	if Globals.previous_scene_skip:
 		$Name.hide()
 		$Buttons.show()
-		$Buttons/RestartButton.grab_focus()
 
 	# Show achievements
 	show_achievements()
