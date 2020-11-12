@@ -47,6 +47,7 @@ func _on_Button_pressed() -> void:
 		Shop.buy(section, $Title.text)
 		set_item(section, $Title.text)
 		emit_signal("buy", price)
+		_on_Button_pressed()
 	elif state == "available":
 		if section == "WORLD_SKIN":
 			Globals.set_world_skin($Title.text)

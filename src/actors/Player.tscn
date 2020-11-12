@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/sounds/jump.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/sounds/bounce.wav" type="AudioStream" id=6]
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=1]
 resource_name = "fade"
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
@@ -21,27 +21,27 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 0.784314, 0.588235, 0.117647, 0.117647 ), Color( 0.784314, 0.588235, 0.117647, 1 ), Color( 0.784314, 0.588235, 0.117647, 0.117647 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=14]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 12, 12 )
 
-[sub_resource type="OccluderPolygon2D" id=15]
+[sub_resource type="OccluderPolygon2D" id=3]
 polygon = PoolVector2Array( -12, -24, -12, 0, 12, 0, 12, -24 )
 
-[sub_resource type="Gradient" id=8]
+[sub_resource type="Gradient" id=4]
 colors = PoolColorArray( 1, 1, 1, 1, 0.25, 0.25, 0.25, 1 )
 
-[sub_resource type="GradientTexture" id=9]
-gradient = SubResource( 8 )
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
 
-[sub_resource type="Curve" id=10]
+[sub_resource type="Curve" id=6]
 min_value = 0.5
 max_value = 2.0
 _data = [ Vector2( 0, 2 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.5 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=11]
-curve = SubResource( 10 )
+[sub_resource type="CurveTexture" id=7]
+curve = SubResource( 6 )
 
-[sub_resource type="ParticlesMaterial" id=12]
+[sub_resource type="ParticlesMaterial" id=8]
 resource_local_to_scene = true
 lifetime_randomness = 0.5
 emission_shape = 2
@@ -55,8 +55,8 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 3.0
 scale_random = 0.5
-scale_curve = SubResource( 11 )
-color_ramp = SubResource( 9 )
+scale_curve = SubResource( 7 )
+color_ramp = SubResource( 5 )
 
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 8
@@ -69,16 +69,14 @@ hframes = 3
 region_rect = Rect2( 216.456, 41.5586, 0.945374, 0 )
 
 [node name="FadeAnimation" type="AnimationPlayer" parent="Sprite"]
-anims/fade = SubResource( 13 )
+anims/fade = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( 0, -12 )
-shape = SubResource( 14 )
+shape = SubResource( 2 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-visible = false
-occluder = SubResource( 15 )
+occluder = SubResource( 3 )
 
 [node name="Particules" type="Node2D" parent="."]
 
@@ -89,7 +87,7 @@ lifetime = 0.4
 one_shot = true
 explosiveness = 1.0
 local_coords = false
-process_material = SubResource( 12 )
+process_material = SubResource( 8 )
 
 [node name="JumpParticles2" type="Particles2D" parent="Particules"]
 emitting = false
@@ -98,7 +96,7 @@ lifetime = 0.4
 one_shot = true
 explosiveness = 1.0
 local_coords = false
-process_material = SubResource( 12 )
+process_material = SubResource( 8 )
 
 [node name="JumpParticles3" type="Particles2D" parent="Particules"]
 emitting = false
@@ -107,7 +105,7 @@ lifetime = 0.4
 one_shot = true
 explosiveness = 1.0
 local_coords = false
-process_material = SubResource( 12 )
+process_material = SubResource( 8 )
 
 [node name="AudioHurt" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )

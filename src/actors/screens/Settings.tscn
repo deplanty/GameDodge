@@ -80,6 +80,7 @@ margin_bottom = 32.0
 rect_min_size = Vector2( 32, 32 )
 mouse_default_cursor_shape = 2
 icon = ExtResource( 10 )
+flat = true
 
 [node name="ButtonFr" type="Button" parent="Container/VBox/Language"]
 margin_left = 178.0
@@ -88,6 +89,7 @@ margin_bottom = 32.0
 rect_min_size = Vector2( 32, 32 )
 mouse_default_cursor_shape = 2
 icon = ExtResource( 3 )
+flat = true
 
 [node name="Sound" type="HBoxContainer" parent="Container/VBox"]
 margin_top = 92.0
@@ -102,6 +104,7 @@ margin_right = 98.0
 margin_bottom = 56.0
 mouse_default_cursor_shape = 2
 icon = ExtResource( 6 )
+flat = true
 
 [node name="EffectsButton" type="Button" parent="Container/VBox/Sound"]
 margin_left = 118.0
@@ -109,6 +112,7 @@ margin_right = 180.0
 margin_bottom = 56.0
 mouse_default_cursor_shape = 2
 icon = ExtResource( 5 )
+flat = true
 
 [node name="MainMenuButton" type="Button" parent="."]
 anchor_left = 0.5
