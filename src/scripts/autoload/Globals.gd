@@ -61,3 +61,10 @@ static func merge_config_file(dst: ConfigFile, src: ConfigFile) -> ConfigFile:
 			dst.set_value(section, key, src_value)
 
 	return dst
+
+func get_random_position_spawning() -> Vector2:
+	var w :int= Settings.get_value("VIEWPORT", "width")
+	var cell :int= Settings.get_value("VIEWPORT", "cell_size")
+	var x := round(rand_range(cell + 8, w - cell - 8))
+	var y := round(rand_range(-8, -64))
+	return Vector2(x, y)

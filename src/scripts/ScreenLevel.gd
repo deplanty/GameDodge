@@ -230,7 +230,7 @@ func _on_RainSpawnTimer_timeout() -> void:
 	"""
 
 	var enemy := enemy_rain_scene.instance()
-	enemy.position = get_random_position_spawning()
+	enemy.position = Globals.get_random_position_spawning()
 	enemy.velocity = Vector2(0, 150) * Globals.rain_velocity_multiplier
 	$Rain.add_child(enemy)
 
@@ -311,7 +311,7 @@ func add_coins(n: int):
 	# Create coins at random positions
 	for i in range(n):
 		var coin = coin_scene.instance()
-		coin.init(get_random_position_spawning())
+		coin.init(Globals.get_random_position_spawning())
 		coin.connect("caught", self, "_on_Coin_caught")
 		coin.connect("fall_in_lava", self, "_on_Coin_fall_in_lava")
 		$Coins.add_child(coin)
@@ -320,7 +320,7 @@ func add_coins(n: int):
 func add_bonus_coins(n: int) -> void:
 	for i in range(n):
 		# Get x and y position
-		var coords := get_random_position_spawning()
+		var coords := Globals.get_random_position_spawning()
 		# Create coin
 		var coin = coin_bonus_scene.instance()
 		coin.init(coords)
@@ -332,7 +332,7 @@ func add_bonus_coins(n: int) -> void:
 
 func _on_BonusTimer_timeout() -> void:
 	var bonus := bonus_scene.instance()
-	var coords := get_random_position_spawning()
+	var coords := Globals.get_random_position_spawning()
 	bonus.init(coords)
 	bonus.connect("caught", self, "_on_Bonus_caught")
 	bonus.connect("fall_in_lava", self, "_on_Bonus_fall_in_lava")
@@ -399,11 +399,3 @@ func load_game_mode() -> void:
 		$Timers/RainSpawnTimer.wait_time = Settings.get_value(mode, "timer_rain_dt")
 		$Timers/RainStopTimer.wait_time = Settings.get_value(mode, "timer_rain_stop")
 		$Timers/RainRewardTimer.wait_time = Settings.get_value(mode, "timer_rain_reward")
-
-
-func get_random_position_spawning() -> Vector2:
-	var w :int= Settings.get_value("VIEWPORT", "width")
-	var cell :int= Settings.get_value("VIEWPORT", "cell_size")
-	var x := round(rand_range(cell + 8, w - cell - 8))
-	var y := round(rand_range(-8, -64))
-	return Vector2(x, y)

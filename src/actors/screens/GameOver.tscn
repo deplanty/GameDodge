@@ -34,7 +34,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="WorldTileMap" parent="." instance=ExtResource( 2 )]
+[node name="Coins" type="Node2D" parent="."]
+position = Vector2( 0, -32 )
 
 [node name="Control" type="Control" parent="."]
 anchor_left = 0.5
@@ -49,8 +50,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Coins" type="Node2D" parent="Control"]
-
 [node name="Player" parent="Control" instance=ExtResource( 10 )]
 position = Vector2( 16, 24 )
 
@@ -61,6 +60,8 @@ position = Vector2( 16, 38 )
 shape = SubResource( 1 )
 
 [node name="SpawnTimer" type="Timer" parent="Control"]
+
+[node name="WorldTileMap" parent="." instance=ExtResource( 2 )]
 
 [node name="ScoreLabel" type="Label" parent="."]
 visible = false

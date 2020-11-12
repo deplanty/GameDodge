@@ -19,7 +19,7 @@ extends Control
 
 # Satisfying animation to reach the score
 var coin_sum := 0  # To reach the score
-export var coin_spawn_dt := 0.1  # To spawn coins
+export var coin_spanw_time := 3.0  # seconds
 onready var coin_scene := preload("res://src/actors/Coin.tscn")
 # Achievements
 var achievement_popup_scene := preload("res://src/actors/popups/AchievementPopup.tscn")
@@ -38,9 +38,9 @@ func _ready() -> void:
 	$Control/Player.look_right()
 	# Start animation
 	if Globals.score > 0 and not Globals.previous_scene_skip:
-		$Control/SpawnTimer.start(coin_spawn_dt )
+		var coin_spawn_dt = coin_spanw_time / Globals.score
+		$Control/SpawnTimer.start(coin_spawn_dt)
 	else:
-		show_after_animation()
 		_on_SkipAnimationButton_pressed()
 
 	# Check for achievements
@@ -52,7 +52,7 @@ func _ready() -> void:
 
 func _on_SkipAnimationButton_pressed() -> void:
 	$SkipAnimationButton.hide()
-	for coin in $Control/Coins.get_children():
+	for coin in $Coins.get_children():
 		coin.queue_free()
 	$Control/SpawnTimer.stop()
 	$ScoreValue.text = str(Globals.score)
@@ -114,29 +114,16 @@ func _on_SpawnTimer_timeout() -> void:
 	# If not all coins have spawned
 	if coin_sum < Globals.score:
 		var coin = coin_scene.instance()
-		var coords = $Control/Player.position
-		coords.y -= 100
-		coin.init(coords)
-		# If last coin
-		if coin_sum == Globals.score - 1:
-			coin.connect("caught", self, "_on_Coin_caught_last")
-		else:
-			coin.connect("caught", self, "_on_Coin_caught")
-		coin.get_node("AnimationPlayer").play("fade_in")
-		$Control/Coins.add_child(coin)
+		coin.position = Globals.get_random_position_spawning()
+		coin.get_node("Detector").monitoring = false
+		coin.get_node("AudioStreamPlayer").play()
+		$Coins.add_child(coin)
 		coin_sum += 1
-	# Lase coin
+		$ScoreValue.text = str(coin_sum)
+	# Last coin
 	else:
 		$Control/SpawnTimer.stop()
-
-
-func _on_Coin_caught() -> void:
-	$ScoreValue.text = str(coin_sum)
-
-
-func _on_Coin_caught_last() -> void:
-	_on_Coin_caught()
-	show_after_animation()
+		show_after_animation()
 
 
 func _on_AreaJump_body_entered(body: Node) -> void:
