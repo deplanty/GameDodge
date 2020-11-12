@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/christmas.png-1ad728ed721d5cccc3918a7d54c4c3bd.stex"
+path="res://.import/angel.png-81b3ad013a57ad14e99edad7ea05caee.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/players/christmas.png"
-dest_files=[ "res://.import/christmas.png-1ad728ed721d5cccc3918a7d54c4c3bd.stex" ]
+source_file="res://assets/images/players/angel.png"
+dest_files=[ "res://.import/angel.png-81b3ad013a57ad14e99edad7ea05caee.stex" ]
 
 [params]
 
