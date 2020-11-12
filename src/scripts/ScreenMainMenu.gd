@@ -49,11 +49,13 @@ func _on_PlayButton_pressed() -> void:
 
 
 func _on_AchievementsButton_pressed() -> void:
+	Globals.previous_scene = get_tree().current_scene.filename
 	next_scene = "res://src/actors/screens/Achievements.tscn"
 	$FadeTransition.fade_in()
 
 
 func _on_HighscoreButton_pressed() -> void:
+	Globals.previous_scene = get_tree().current_scene.filename
 	next_scene = "res://src/actors/screens/Leaderboard.tscn"
 	$FadeTransition.fade_in()
 

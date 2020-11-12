@@ -86,21 +86,18 @@ func _on_NameButton_pressed() -> void:
 func _on_RestartButton_pressed() -> void:
 	next_scene = "res://src/actors/screens/Level.tscn"
 	Globals.previous_scene_skip = false
-	Globals.previous_scene_button = false
 	$FadeTransition.fade_in()
 
 
 func _on_MainMenuButton_pressed() -> void:
 	next_scene = "res://src/actors/screens/MainMenu.tscn"
 	Globals.previous_scene_skip = false
-	Globals.previous_scene_button = false
 	$FadeTransition.fade_in()
 
 
 func _on_HighscoreButton_pressed() -> void:
 	$FadeTransition.fade_in()
 	Globals.previous_scene_skip = true
-	Globals.previous_scene_button = true
 	next_scene = "res://src/actors/screens/Leaderboard.tscn"
 
 

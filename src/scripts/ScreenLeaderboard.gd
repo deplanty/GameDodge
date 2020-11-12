@@ -10,13 +10,8 @@ func _ready() -> void:
 	if MusicController.track_current != "menu":
 		MusicController.set_track_menu("menu")
 	set_highscores()
+
 	$FadeTransition.fade_out()
-	$Buttons/HBoxContainer/MainMenuButton.grab_focus()
-	# Set the previous button
-	if Globals.previous_scene_button:
-		$BackButton.show()
-	else:
-		$BackButton.hide()
 
 # Signals
 
@@ -31,21 +26,8 @@ func _on_MainMenuButton_pressed() -> void:
 	$FadeTransition.fade_in()
 
 
-func _on_ResetButton_pressed() -> void:
-	$PopupConfirmReset.show()
-
-
-func _on_YesNoPopup_pressed_yes_no(yes) -> void:
-	if yes:
-		Leaderboards.init(true)
-		set_highscores()
-
-	$PopupConfirmReset.hide()
-
-
 func _on_FadeTransition_animation_finished(anim_name: String) -> void:
 	if anim_name == "fade_in":
-		Globals.previous_scene_button = false
 		Globals.previous_scene = get_tree().current_scene.filename
 		get_tree().change_scene(next_scene)
 

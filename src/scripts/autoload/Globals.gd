@@ -6,7 +6,6 @@ const path_enemy_patterns := "res://assets/files/patterns.json"
 
 # Previous scene
 var previous_scene := String()
-var previous_scene_button := bool()
 var previous_scene_skip := bool()
 
 # Mode

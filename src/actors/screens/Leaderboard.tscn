@@ -1,14 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/scripts/ScreenLeaderboard.gd" type="Script" id=1]
-[ext_resource path="res://assets/images/ui/reload.png" type="Texture" id=2]
-[ext_resource path="res://assets/images/ui/home.png" type="Texture" id=3]
 [ext_resource path="res://src/actors/WorldTileMap.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/actors/FadeTransition.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/images/ui/arrow_left.png" type="Texture" id=7]
 [ext_resource path="res://assets/font/Run.tres" type="DynamicFont" id=8]
 [ext_resource path="res://src/actors/WindowLeaderboard.tscn" type="PackedScene" id=9]
-[ext_resource path="res://src/actors/popups/YesNoPopup.tscn" type="PackedScene" id=10]
 
 [node name="Highscore" type="Control"]
 anchor_right = 1.0
@@ -47,7 +44,7 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -176.0
-margin_top = -160.0
+margin_top = -104.0
 margin_right = 176.0
 margin_bottom = 320.0
 scroll_vertical_enabled = false
@@ -67,24 +64,6 @@ margin_right = 200.0
 margin_bottom = 280.0
 rect_min_size = Vector2( 200, 280 )
 
-[node name="Score1" parent="Scores/HBox/Normal/Scores/Lines" index="0"]
-margin_right = 176.0
-
-[node name="Score2" parent="Scores/HBox/Normal/Scores/Lines" index="1"]
-margin_right = 176.0
-
-[node name="Score3" parent="Scores/HBox/Normal/Scores/Lines" index="2"]
-margin_right = 176.0
-
-[node name="Score4" parent="Scores/HBox/Normal/Scores/Lines" index="3"]
-margin_right = 176.0
-
-[node name="Score5" parent="Scores/HBox/Normal/Scores/Lines" index="4"]
-margin_right = 176.0
-
-[node name="Score6" parent="Scores/HBox/Normal/Scores/Lines" index="5"]
-margin_right = 176.0
-
 [node name="CoinsFrenzy" parent="Scores/HBox" instance=ExtResource( 9 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -101,61 +80,7 @@ margin_right = 660.0
 margin_bottom = 280.0
 rect_min_size = Vector2( 200, 280 )
 
-[node name="Buttons" type="Control" parent="."]
-margin_left = 48.0
-margin_top = 448.0
-margin_right = 368.0
-margin_bottom = 504.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Buttons"]
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = -54.0
-custom_constants/separation = 80
-alignment = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MainMenuButton" type="Button" parent="Buttons/HBoxContainer"]
-margin_left = 59.0
-margin_right = 121.0
-margin_bottom = 56.0
-rect_min_size = Vector2( 60, 54 )
-mouse_default_cursor_shape = 2
-icon = ExtResource( 3 )
-flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ResetButton" type="Button" parent="Buttons/HBoxContainer"]
-margin_left = 201.0
-margin_right = 261.0
-margin_bottom = 56.0
-mouse_default_cursor_shape = 2
-icon = ExtResource( 2 )
-flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="Buttons/HBoxContainer/ResetButton"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-text = "0"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="BackButton" type="Button" parent="."]
-visible = false
 margin_left = 32.0
 margin_right = 94.0
 margin_bottom = 56.0
@@ -166,23 +91,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PopupConfirmReset" parent="." instance=ExtResource( 10 )]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -150.0
-margin_top = -90.0
-margin_right = 150.0
-margin_bottom = 90.0
-message = "LABEL_RESET_LEADERBOARD"
-
 [node name="FadeTransition" parent="." instance=ExtResource( 5 )]
 visible = false
-[connection signal="pressed" from="Buttons/HBoxContainer/MainMenuButton" to="." method="_on_MainMenuButton_pressed"]
-[connection signal="pressed" from="Buttons/HBoxContainer/ResetButton" to="." method="_on_ResetButton_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]
-[connection signal="pressed_yes_no" from="PopupConfirmReset" to="." method="_on_YesNoPopup_pressed_yes_no"]
 [connection signal="animation_finished" from="FadeTransition" to="." method="_on_FadeTransition_animation_finished"]
-
-[editable path="Scores/HBox/Normal"]
