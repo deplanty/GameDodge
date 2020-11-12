@@ -28,8 +28,15 @@ func add_line(title: String):
 	return line
 
 
+func reload() -> void:
+	for line in $Scroll/List.get_children():
+		for item in line.get_node("Scroll/List").get_children():
+			item.update_item()
+
+
 func _on_Line_buy(price: int):
 	emit_signal("buy", price)
+
 
 func _on_Line_request_update(section: String):
 	emit_signal("request_update", section)

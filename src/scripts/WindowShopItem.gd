@@ -15,10 +15,15 @@ func set_item(section_name: String, name: String) -> void:
 	section = section_name
 	item = name
 	price = Shop.get_value(section, name)
-	$Title.text = "LABEL_SHOP_%s_%s" % [section.to_upper(), name.to_upper()]
+
+	update_item()
+
+
+func update_item() -> void:
+	$Title.text = "LABEL_SHOP_%s_%s" % [section.to_upper(), item.to_upper()]
 
 	# Selected item
-	if Preferences.get_value("shop", section.to_lower()) == name:
+	if Preferences.get_value("shop", section.to_lower()) == item:
 		state = "selected"
 		$Button.text = "LABEL_SELECTED"
 		$Button.disabled = true

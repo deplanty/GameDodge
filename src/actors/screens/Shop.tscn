@@ -53,6 +53,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="LazyButton" type="Button" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -160.0
+margin_top = 128.0
+margin_right = -40.0
+margin_bottom = 168.0
+text = "Lazy as fuck"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="CoinsContainer" type="HBoxContainer" parent="."]
 margin_left = 40.0
 margin_top = 136.0
@@ -91,6 +103,9 @@ margin_bottom = 233.0
 [node name="FadeTransition" parent="." instance=ExtResource( 5 )]
 visible = false
 [connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="pressed" from="LazyButton" to="." method="_on_LazyButton_pressed"]
 [connection signal="buy" from="WindowShop" to="." method="_on_WindowShop_buy"]
 [connection signal="request_update" from="WindowShop" to="." method="_on_WindowShop_request_update"]
 [connection signal="animation_finished" from="FadeTransition" to="." method="_on_FadeTransition_animation_finished"]
+
+[editable path="WindowShop"]

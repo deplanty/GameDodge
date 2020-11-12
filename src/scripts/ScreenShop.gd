@@ -22,6 +22,12 @@ func _on_BackButton_pressed() -> void:
 	$FadeTransition.fade_in()
 
 
+func _on_LazyButton_pressed() -> void:
+	Shop.coins += 100
+	$CoinsContainer/CoinsLabel.text = str(Shop.coins)
+	$WindowShop.reload()
+
+
 func _on_WindowShop_buy(price: int) -> void:
 	# When a purchase has been made
 	$CoinsContainer/CoinsLabel.text = str(Shop.coins)
