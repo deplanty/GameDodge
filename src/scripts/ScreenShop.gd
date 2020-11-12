@@ -24,7 +24,6 @@ func _on_BackButton_pressed() -> void:
 
 func _on_WindowShop_buy(price: int) -> void:
 	# When a purchase has been made
-
 	$CoinsContainer/CoinsLabel.text = str(Shop.coins)
 
 

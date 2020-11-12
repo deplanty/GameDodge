@@ -20,7 +20,7 @@ func _ready() -> void:
 
 func add_line(title: String):
 	var line = line_scene.instance()
-	line.set_title(title)
+	line.set_title("LABEL_SHOP_" + title)
 	line.connect("buy", self, "_on_Line_buy")
 	line.connect("request_update", self, "_on_Line_request_update")
 	$Scroll/List.add_child(line)
