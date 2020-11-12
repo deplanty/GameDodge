@@ -49,6 +49,15 @@ func _ready() -> void:
 	# Fade out to display the game
 	$FadeTransition.fade_out()
 
+
+func _process(delta: float) -> void:
+	if $Player.first_move:
+		var time_played := OS.get_ticks_msec() - game_start_time - game_pause_time_total
+		var s := round(time_played / 1000)
+		var m := int(s / 60)
+		s = s - m * 60
+		$Control/Chrono.text = "%02d:%02d" % [m, s]
+
 # User events
 
 func _input(event: InputEvent) -> void:

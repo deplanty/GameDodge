@@ -263,6 +263,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Chrono" type="Label" parent="Control"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -94.0
+margin_top = 56.0
+margin_right = -32.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 62, 0 )
+text = "00:00"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="TouchLeft" type="TouchScreenButton" parent="Control"]
 position = Vector2( 0, 64 )
 shape = SubResource( 4 )
