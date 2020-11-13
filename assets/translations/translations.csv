@@ -56,6 +56,8 @@ LABEL_STATS_BONUS_CAUGHT;Bonus caught;Bonus attrapés
 LABEL_STATS_BONUS_LOST;Bonus lost;Bonus perdus
 LABEL_STATS_TAUNT;Your score if you caught everything;Ton score si tu avais tout attrapé
 LABEL_RESET_LEADERBOARD;This action can't be undone.\n\nAre you sure you want to reset the leaderboard?;Cette action est définitive.\n\nEtes-vous sûr de vouloir remettre à zéro les scores ?
+LABEL_CONFIRM_RESTART;Do you really want to restart?;Etes-vous sûr de vouloir recommencer ?
+LABEL_CONFIRM_MAINMENU;Do you really want to go to main menu?;Etes-vous sûr de vouloir retourner au menu principal ?
 LABEL_CONFIRM_QUIT;Do you really want to quit?;Etes-vous sûr de vouloir partir ?
 FIRST_TIME_HIT_NORMAL_1;Time first hit 1;Temps premier dégât 1
 FIRST_TIME_HIT_NORMAL_1_DESC;Don't get hit for 30 seconds;Ne te fais pas toucher pendant 30 secondes

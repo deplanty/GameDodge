@@ -91,16 +91,26 @@ func _on_ResumeButton_pressed() -> void:
 
 
 func _on_RestartButton_pressed() -> void:
-	get_tree().paused = false
-	$PauseMenu.hide()
-	get_tree().reload_current_scene()
+	next_scene = get_tree().current_scene.filename
+	$ConfirmPopup.message = "LABEL_CONFIRM_RESTART"
+	$ConfirmPopup.show()
 
 
 func _on_MainMenuButton_pressed() -> void:
-	get_tree().paused = false
-	$PauseMenu.hide()
 	next_scene = "res://src/actors/screens/MainMenu.tscn"
-	$FadeTransition.fade_in()
+	$ConfirmPopup.message = "LABEL_CONFIRM_MAINMENU"
+	$ConfirmPopup.show()
+
+
+func _on_ConfirmPopup_pressed_yes_no(yes: bool) -> void:
+	if yes:
+		get_tree().paused = false
+		$ConfirmPopup.hide()
+		$PauseMenu.hide()
+		$FadeTransition.fade_in()
+	else:
+		$ConfirmPopup.hide()
+		$ConfirmPopup.hide()
 
 
 func _on_ResumeTimer_timeout() -> void:

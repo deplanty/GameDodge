@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/actors/Torch.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/actors/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/actors/popups/YesNoPopup.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/images/ui/pause.png" type="Texture" id=4]
 [ext_resource path="res://src/actors/FadeTransition.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/actors/Lifebar.tscn" type="PackedScene" id=6]
@@ -371,6 +372,18 @@ rect_min_size = Vector2( 0, 40 )
 mouse_default_cursor_shape = 2
 text = "BUTTON_MAINMENU"
 
+[node name="ConfirmPopup" parent="." instance=ExtResource( 3 )]
+pause_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -120.0
+margin_top = -64.0
+margin_right = 120.0
+margin_bottom = 64.0
+message = "LABEL_CONFIRM_RESTART"
+
 [node name="FadeTransition" parent="." instance=ExtResource( 5 )]
 visible = false
 [connection signal="timeout" from="Timers/ResumeTimer" to="." method="_on_ResumeTimer_timeout"]
@@ -389,4 +402,5 @@ visible = false
 [connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_ResumeButton_pressed"]
 [connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/MainMenuButton" to="." method="_on_MainMenuButton_pressed"]
+[connection signal="pressed_yes_no" from="ConfirmPopup" to="." method="_on_ConfirmPopup_pressed_yes_no"]
 [connection signal="animation_finished" from="FadeTransition" to="." method="_on_FadeTransition_animation_finished"]

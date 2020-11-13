@@ -205,10 +205,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -150.0
-margin_top = -90.0
-margin_right = 150.0
-margin_bottom = 90.0
+margin_left = -120.0
+margin_top = -64.0
+margin_right = 120.0
+margin_bottom = 64.0
 message = "LABEL_CONFIRM_QUIT"
 
 [node name="FadeTransition" parent="." instance=ExtResource( 1 )]
