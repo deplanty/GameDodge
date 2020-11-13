@@ -133,6 +133,8 @@ func show_after_animation() -> void:
 	Show UI elements after the coins animation.
 	"""
 
+	$SkipAnimationButton.hide()
+
 	var leaderboard = Leaderboards.get_leaderboard(Globals.game_mode_selected)
 
 	# If score is a highscore (at least superior than the lowest)
