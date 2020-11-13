@@ -15,6 +15,7 @@ BUTTON_MAINMENU;Main menu;Menu principal
 BUTTON_RESTART;Restart;Recommencer
 BUTTON_RESUME;Resume;Reprendre
 BUTTON_OK;Ok;Ok
+LABEL_GAME_MODE;Game mode;Mode de jeu
 LABEL_PLAY_INSTRUCTION;Catch this coin to play;Attrape cette pièce pour jouer
 LABEL_SELECT;Select;Sélectionner
 LABEL_SELECTED;Selected;Sélectionné
@@ -28,7 +29,7 @@ LABEL_SHOP_GAME_MODE;Game modes;Modes de jeu
 LABEL_SHOP_PLAYER_SKIN;Player skins;Costumes
 LABEL_SHOP_WORLD_SKIN;World skins;Décors
 LABEL_SHOP_GAME_MODE_NORMAL;Normal;Normal
-LABEL_SHOP_GAME_MODE_COINS_FRENZY;Coins frenzy;Frénésie de pièces
+LABEL_SHOP_GAME_MODE_COINSFRENZY;Coins frenzy;Frénésie de pièces
 LABEL_SHOP_GAME_MODE_RAIN;Rain;Pluie
 LABEL_SHOP_PLAYER_SKIN_DEFAULT;Tofu;Tofu
 LABEL_SHOP_PLAYER_SKIN_FATOFU;Fatofu;Grofu

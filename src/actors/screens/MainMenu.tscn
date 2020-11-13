@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://src/actors/FadeTransition.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/actors/Player.tscn" type="PackedScene" id=2]
@@ -13,14 +13,15 @@
 [ext_resource path="res://assets/images/ui/medal.png" type="Texture" id=11]
 [ext_resource path="res://src/actors/Coin.tscn" type="PackedScene" id=12]
 [ext_resource path="res://assets/images/ui/leaderboards.png" type="Texture" id=13]
+[ext_resource path="res://assets/font/Overpass-Regular_12.tres" type="DynamicFont" id=15]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 104, 180 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 104, 180 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 104, 180 )
-
-[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 208, 48 )
 
 [node name="MainMenu" type="Control"]
@@ -89,9 +90,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -128.0
-margin_top = -103.5
+margin_top = -104.0
 margin_right = 128.0
-margin_bottom = -46.5
+margin_bottom = -47.0
 custom_fonts/font = ExtResource( 7 )
 text = "LABEL_PLAY_INSTRUCTION"
 align = 1
@@ -101,6 +102,38 @@ clip_text = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="HBox" type="HBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -144.0
+margin_top = -15.0
+margin_right = 144.0
+margin_bottom = 25.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameModeLabel" type="Label" parent="HBox"]
+margin_left = 84.0
+margin_top = 14.0
+margin_right = 200.0
+margin_bottom = 26.0
+custom_fonts/font = ExtResource( 15 )
+text = "LABEL_GAME_MODE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameMode" type="Label" parent="HBox"]
+margin_left = 204.0
+margin_top = 14.0
+margin_right = 204.0
+margin_bottom = 26.0
+custom_fonts/font = ExtResource( 15 )
 
 [node name="Coin" parent="." instance=ExtResource( 12 )]
 position = Vector2( 208, 276 )
@@ -150,11 +183,11 @@ __meta__ = {
 
 [node name="TouchLeft" type="TouchScreenButton" parent="."]
 position = Vector2( 0, 64 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="TouchRight" type="TouchScreenButton" parent="."]
 position = Vector2( 208, 64 )
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 339, 384 )
@@ -165,7 +198,7 @@ position = Vector2( 0, 445 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( 208, 24 )
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 
 [node name="QuitPopup" parent="." instance=ExtResource( 3 )]
 anchor_left = 0.5

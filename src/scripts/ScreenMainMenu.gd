@@ -9,12 +9,13 @@ func _ready() -> void:
 	# Set menu music
 	if MusicController.track_current != "menu":
 		MusicController.set_track_menu("menu")
-	# Set Interface
-	$FadeTransition.fade_out()
 	# Set player animation
 	$Player.first_move = true
 	$Player.velocity.x = -$Player.speed.x
 	$Player.look_left()
+	# Set Interface
+	$HBox/GameMode.text = Globals.game_mode_selected
+	$FadeTransition.fade_out()
 
 # User events
 
