@@ -139,6 +139,7 @@ shape = SubResource( 15 )
 [node name="Light2D" type="Light2D" parent="."]
 scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 2 )
+energy = 0.75
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
