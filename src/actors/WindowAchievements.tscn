@@ -7,8 +7,8 @@ color = Color( 0, 0, 0, 0 )
 thickness = 0
 
 [node name="WindowAchievements" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+margin_right = 336.0
+margin_bottom = 334.0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -48,7 +48,7 @@ __meta__ = {
 }
 
 [node name="VBox" type="VBoxContainer" parent="Scroll"]
-margin_right = 384.0
+margin_right = 304.0
 size_flags_horizontal = 3
 custom_constants/separation = 15
 alignment = 1

@@ -16,10 +16,10 @@
 [ext_resource path="res://assets/font/Overpass-Regular_12.tres" type="DynamicFont" id=15]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 104, 180 )
+extents = Vector2( 104, 272 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 104, 180 )
+extents = Vector2( 104, 272 )
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 208, 48 )
@@ -139,6 +139,14 @@ custom_fonts/font = ExtResource( 15 )
 position = Vector2( 208, 276 )
 velocity = Vector2( 0, 0 )
 
+[node name="TouchLeft" type="TouchScreenButton" parent="."]
+position = Vector2( 0, 64 )
+shape = SubResource( 1 )
+
+[node name="TouchRight" type="TouchScreenButton" parent="."]
+position = Vector2( 208, 64 )
+shape = SubResource( 2 )
+
 [node name="ButtonsContainer" type="HBoxContainer" parent="."]
 anchor_top = 1.0
 anchor_right = 1.0
@@ -181,14 +189,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TouchLeft" type="TouchScreenButton" parent="."]
-position = Vector2( 0, 64 )
-shape = SubResource( 1 )
-
-[node name="TouchRight" type="TouchScreenButton" parent="."]
-position = Vector2( 208, 64 )
-shape = SubResource( 2 )
-
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 339, 384 )
 collision_mask = 24
@@ -201,14 +201,15 @@ position = Vector2( 208, 24 )
 shape = SubResource( 3 )
 
 [node name="QuitPopup" parent="." instance=ExtResource( 3 )]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -120.0
-margin_top = -64.0
+margin_top = -112.0
 margin_right = 120.0
-margin_bottom = 64.0
+margin_bottom = 32.0
 message = "LABEL_CONFIRM_QUIT"
 
 [node name="FadeTransition" parent="." instance=ExtResource( 1 )]
@@ -216,11 +217,11 @@ visible = false
 [connection signal="pressed" from="OptionButton" to="." method="_on_OptionButton_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="caught" from="Coin" to="." method="_on_Coin_caught"]
+[connection signal="pressed" from="TouchLeft" to="." method="_on_TouchLeft_pressed"]
+[connection signal="pressed" from="TouchRight" to="." method="_on_TouchRight_pressed"]
 [connection signal="pressed" from="ButtonsContainer/AchievementsButton" to="." method="_on_AchievementsButton_pressed"]
 [connection signal="pressed" from="ButtonsContainer/HighscoreButton" to="." method="_on_HighscoreButton_pressed"]
 [connection signal="pressed" from="ButtonsContainer/ShopButton" to="." method="_on_ShopButton_pressed"]
-[connection signal="pressed" from="TouchLeft" to="." method="_on_TouchLeft_pressed"]
-[connection signal="pressed" from="TouchRight" to="." method="_on_TouchRight_pressed"]
 [connection signal="first_jump" from="Player" to="." method="_on_Player_first_jump"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="pressed_yes_no" from="QuitPopup" to="." method="_on_QuitPopup_pressed_yes_no"]

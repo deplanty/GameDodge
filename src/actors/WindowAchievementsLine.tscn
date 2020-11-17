@@ -8,6 +8,8 @@
 
 [node name="WindowAchievementsLine" type="Control"]
 anchor_right = 1.0
+margin_right = -112.0
+margin_bottom = 64.0
 rect_min_size = Vector2( 250, 64 )
 mouse_filter = 1
 script = ExtResource( 2 )
@@ -39,9 +41,9 @@ __meta__ = {
 }
 
 [node name="Title" type="Label" parent="ColorRect"]
-anchor_right = 0.694
+anchor_right = 0.687
 margin_left = 6.0
-margin_right = 0.071991
+margin_right = -0.100037
 margin_bottom = 20.0
 custom_fonts/font = ExtResource( 4 )
 text = "Lorem ipsum dolor sit amet"
@@ -52,13 +54,13 @@ __meta__ = {
 
 [node name="Description" type="Label" parent="ColorRect"]
 anchor_top = 0.5
-anchor_right = 0.694
+anchor_right = 0.687
 anchor_bottom = 0.5
 margin_left = 6.0
 margin_top = -10.0
-margin_right = 0.071991
+margin_right = -8.10004
 margin_bottom = 24.0
-rect_min_size = Vector2( 200, 0 )
+rect_min_size = Vector2( 180, 34 )
 mouse_filter = 1
 custom_fonts/font = ExtResource( 3 )
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
@@ -70,10 +72,10 @@ __meta__ = {
 }
 
 [node name="Medal" type="TextureRect" parent="ColorRect"]
-anchor_left = 0.735165
-anchor_top = 0.516667
-anchor_right = 0.735165
-anchor_bottom = 0.517
+anchor_left = 0.715165
+anchor_top = 0.483334
+anchor_right = 0.715165
+anchor_bottom = 0.483667
 margin_left = -24.888
 margin_top = -25.0
 margin_right = 25.112

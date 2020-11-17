@@ -4,6 +4,7 @@
 [ext_resource path="res://src/scripts/YesNoPopup.gd" type="Script" id=2]
 
 [node name="YesNoPopup" type="Popup"]
+visible = true
 light_mask = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -27,7 +28,7 @@ anchor_bottom = 1.0
 margin_left = 8.0
 margin_top = 8.0
 margin_right = -8.0
-margin_bottom = -48.0
+margin_bottom = -56.0
 custom_fonts/font = ExtResource( 1 )
 align = 1
 valign = 1
@@ -43,7 +44,7 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = 8.0
-margin_top = -40.0
+margin_top = -48.0
 margin_right = -7.99998
 margin_bottom = -8.0
 mouse_default_cursor_shape = 2
@@ -60,7 +61,7 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 8.0
-margin_top = -40.0
+margin_top = -48.0
 margin_right = -8.0
 margin_bottom = -8.0
 mouse_default_cursor_shape = 2

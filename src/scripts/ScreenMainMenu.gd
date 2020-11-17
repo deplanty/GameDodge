@@ -42,6 +42,8 @@ func _on_OptionButton_pressed() -> void:
 
 func _on_QuitButton_pressed() -> void:
 	$QuitPopup.show()
+	$TouchLeft.hide()
+	$TouchRight.hide()
 
 
 func _on_PlayButton_pressed() -> void:
@@ -52,17 +54,20 @@ func _on_PlayButton_pressed() -> void:
 func _on_AchievementsButton_pressed() -> void:
 	Globals.previous_scene = get_tree().current_scene.filename
 	next_scene = "res://src/actors/screens/Achievements.tscn"
+	$Coin.disconnect("caught", self, "_on_Coin_caught")
 	$FadeTransition.fade_in()
 
 
 func _on_HighscoreButton_pressed() -> void:
 	Globals.previous_scene = get_tree().current_scene.filename
 	next_scene = "res://src/actors/screens/Leaderboard.tscn"
+	$Coin.disconnect("caught", self, "_on_Coin_caught")
 	$FadeTransition.fade_in()
 
 
 func _on_ShopButton_pressed() -> void:
 	next_scene = "res://src/actors/screens/Shop.tscn"
+	$Coin.disconnect("caught", self, "_on_Coin_caught")
 	$FadeTransition.fade_in()
 
 
@@ -70,6 +75,9 @@ func _on_QuitPopup_pressed_yes_no(yes: bool) -> void:
 	if yes:
 		next_scene = "quit"
 		$FadeTransition.fade_in()
+	else:
+		$TouchLeft.show()
+		$TouchRight.show()
 
 	$QuitPopup.hide()
 
