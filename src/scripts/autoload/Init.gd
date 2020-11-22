@@ -18,3 +18,6 @@ func _ready() -> void:
 
 	var player_skin = Preferences.get_value("shop", "player_skin")
 	Globals.set_player(player_skin)
+
+	var game_mode = Preferences.get_value("shop", "game_mode")
+	Globals.game_mode_selected = "GAME_MODE_" + game_mode.to_upper()
