@@ -313,8 +313,10 @@ func _on_CoinBonus_caught() -> void:
 
 func _on_Coin_fall_in_lava() -> void:
 	# Punish on coin fall in lava
-#	score = int(max(0, score - 1))
-#	$Control/ScoreContainer/ValueScore.text = str(score)
+	print(Globals.game_mode_selected)
+	if Globals.game_mode_selected == "GAME_MODE_COINSFRENZY":
+		score = int(max(0, score - 1))
+		$Control/ScoreContainer/ValueScore.text = str(score)
 	Stats.coins_lost += 1
 	# Spawn a coin if count <= 1 because queue_free() takes some time
 	if $Coins.get_child_count() <= 1:
