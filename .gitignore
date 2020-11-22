@@ -1,3 +1,6 @@
+# Files
+export_presets.cfg
+
 # Import cache
 .import/
 
